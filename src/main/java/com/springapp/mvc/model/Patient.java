@@ -8,52 +8,63 @@ package com.springapp.mvc.model;
  * 
  * @author Wojciech Golab
  */
-public class Patient extends Person{
-//	private int id;
+public class Patient {
+	private int id;
 	private int personId;
-    private int defaultDoc;
+	private int defaultDoc;
 	private String healthCard;
 	private int SIN;
 	private String currentHealth;
 
-    public int getPersonId() {
-        return personId;
-    }
+	/** Relations */
+	private Person person;
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public int getDefaultDoc() {
-        return defaultDoc;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setDefaultDoc(int defaultDoc) {
-        this.defaultDoc = defaultDoc;
-    }
+	public int getPersonId() {
+		return personId;
+	}
 
-    public String getHealthCard() {
-        return healthCard;
-    }
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
 
-    public void setHealthCard(String healthCard) {
-        this.healthCard = healthCard;
-    }
+	public int getDefaultDoc() {
+		return defaultDoc;
+	}
 
-    public int getSIN() {
-        return SIN;
-    }
+	public void setDefaultDoc(int defaultDoc) {
+		this.defaultDoc = defaultDoc;
+	}
 
-    public void setSIN(int SIN) {
-        this.SIN = SIN;
-    }
+	public String getHealthCard() {
+		return healthCard;
+	}
 
-    public String getCurrentHealth() {
-        return currentHealth;
-    }
+	public void setHealthCard(String healthCard) {
+		this.healthCard = healthCard;
+	}
 
-    public void setCurrentHealth(String currentHealth) {
-        this.currentHealth = currentHealth;
-    }
+	public int getSIN() {
+		return SIN;
+	}
+
+	public void setSIN(int SIN) {
+		this.SIN = SIN;
+	}
+
+	public String getCurrentHealth() {
+		return currentHealth;
+	}
+
+	public void setCurrentHealth(String currentHealth) {
+		this.currentHealth = currentHealth;
+	}
 
 }

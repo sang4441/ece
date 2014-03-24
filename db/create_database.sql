@@ -1,0 +1,101 @@
+CREATE TABLE `Roles` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`Description` VARCHAR(50) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `person` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`NameLast` VARCHAR(50) NOT NULL,
+`NameFirst` VARCHAR(50) NOT NULL,
+`Phone` VARCHAR(10) NULL,
+`username` VARCHAR(20) NOT NULL,
+`password` VARCHAR(20) NOT NULL,
+`street` VARCHAR(50) NULL,
+`City` VARCHAR(20) NULL,
+`Province` VARCHAR(20) NULL,
+`PostalCode` VARCHAR(6) NULL,
+`RoleID` INT NOT NULL,
+PRIMARY KEY (`id`),
+FOREIGN KEY (RoleID) REFERENCES `Roles` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `doctor` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`PersonID` INT NOT NULL,
+PRIMARY KEY (`id`),
+FOREIGN KEY (PersonID) REFERENCES `person` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `patients` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`PersonID` INT NOT NULL,
+`DefaultDoc` INT NOT NULL,
+`HealthCard` VARCHAR(12) NULL,
+`SIN` VARCHAR(9) NOT NULL,
+`CurrentHealth` VARCHAR(250) NOT NULL DEFAULT 'Healthy',
+PRIMARY KEY (`id`),
+FOREIGN KEY (PersonID) REFERENCES `person` (`id`),
+FOREIGN KEY (DefaultDoc) REFERENCES `doctor` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `visits` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`PatientID` INT NOT NULL,
+`DoctorID` INT NOT NULL,
+`Date` DATE NULL,
+`Length` INT NOT NULL DEFAULT 0,
+`Prescription` VARCHAR(200) NULL,
+`Diagnosis` VARCHAR(200) NULL,
+`Comment` VARCHAR(250) NULL,
+`DateModified` DATE NOT NULL,
+`InitialID` INT NOT NULL,
+PRIMARY KEY (`id`),
+FOREIGN KEY (PatientID) REFERENCES `patients` (`id`),
+FOREIGN KEY (DoctorID) REFERENCES `doctor` (`id`),
+FOREIGN KEY (InitialID) REFERENCES `visits` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `staff` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`PersonID` INT NULL,
+PRIMARY KEY (`id`),
+FOREIGN KEY (PersonID) REFERENCES `person` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `Permissions` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`Description` VARCHAR(150) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `AccessRights` (
+`PermissionID` INT NOT NULL,
+`RoleID` INT NOT NULL,
+PRIMARY KEY (`RoleID`, `PermissionID`),
+FOREIGN KEY (PermissionID) REFERENCES `Permissions` (`id`),
+FOREIGN KEY (RoleID) REFERENCES `Roles` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `financial` (
+`id` TINYINT NULL AUTO_INCREMENT,
+`PersonID` INT NOT NULL,
+PRIMARY KEY (`id`),
+FOREIGN KEY (PersonID) REFERENCES `person` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `PatientDoctor` (
+`PatientID` INT NOT NULL AUTO_INCREMENT,
+`DoctorID` INT NOT NULL,
+PRIMARY KEY (`PatientID`, `DoctorID`),
+FOREIGN KEY (PatientID) REFERENCES `patients` (`id`),
+FOREIGN KEY (DoctorID) REFERENCES `doctor` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `StaffDoctor` (
+`DoctorID` INT NOT NULL AUTO_INCREMENT,
+`StaffID` INT NOT NULL,
+PRIMARY KEY (`DoctorID`, `StaffID`),
+FOREIGN KEY (DoctorID) REFERENCES `doctor` (`id`),
+FOREIGN KEY (StaffID) REFERENCES `staff` (`id`)
+) ENGINE=InnoDB;
