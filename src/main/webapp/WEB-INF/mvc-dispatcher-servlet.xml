@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<context:annotation-config />
+
+    <context:component-scan base-package="com.springapp.mvc"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean id="basicDAO" class="com.springapp.mvc.dao.BasicDAO" />
+    <bean id="patientDAO" class="com.springapp.mvc.dao.PatientDAO" />
+    <bean id="personDAO" class="com.springapp.mvc.dao.PersonDAO" />
+
+    <bean id="accessRights" class="com.springapp.mvc.model.AccessRights" />
+    <bean id="doctor" class="com.springapp.mvc.model.Doctor" />
+    <bean id="finance" class="com.springapp.mvc.model.Finance" />
+    <bean id="legal" class="com.springapp.mvc.model.Legal" />
+    <bean id="patient" class="com.springapp.mvc.model.Patient" />
+    <bean id="permissions" class="com.springapp.mvc.model.Permissions" />
+    <bean id="person" class="com.springapp.mvc.model.Person" />
+    <bean id="roles" class="com.springapp.mvc.model.Roles" />
+    <bean id="staff" class="com.springapp.mvc.model.Staff" />
+    <bean id="visit" class="com.springapp.mvc.model.Visit" />
+
+
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://eceweb.uwaterloo.ca:3306/" />
+        <property name="username" value="gdogrady" />
+        <property name="password" value="user_gdogrady" />
+    </bean>
+</beans>
