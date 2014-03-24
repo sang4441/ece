@@ -29,9 +29,6 @@ public class BasicController {
             ModelMap model,
                         @RequestParam("username") String username,
                         @RequestParam("password") String password) {
-
-
-
         model.addAttribute("message", "Hello world!");
 
         String url;
