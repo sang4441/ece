@@ -9,3 +9,5 @@ INSERT INTO `person` (`NameLast`, `NameFirst`, `Phone`, `username`, `password`
 INSERT INTO `doctor` (`PersonID`) VALUES (2);
 
 INSERT INTO `patients` (`PersonID`, `DefaultDoc`, `HealthCard`, `SIN`, `CurrentHealth`) VALUES (3, 1, "27asdf7d8asd", "23421232", "Healthy");
+
+INSERT INTO `PatientDoctor` (`PatientID`, `DoctorID`) VALUES (1,1), (2,1);

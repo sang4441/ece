@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
 @Controller
-public class BasicController {
+public class LoginController {
 
     @Autowired PersonDAO personDAO;
 

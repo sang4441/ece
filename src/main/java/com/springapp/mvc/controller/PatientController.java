@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,14 +30,14 @@ public class PatientController {
 		return "patient/index";
 	}
 
-	// @RequestMapping(value = "/patient/{patientID}", method =
-	// RequestMethod.GET)
-	// public String getAllPatients(@PathVariable int patientID, ModelMap model)
-	// {
-	// // get all patients
-	// Patient patient = patientDAO.getByID(patientID);
-	// model.addAttribute("patient", patient);
-	//
-	// return "patient/index.html";
-	// }
+	@RequestMapping(value = "/doctor/{doctorId}/patients", method = RequestMethod.GET)
+	public String getAllPatientsOfDoctor(@PathVariable int doctorId,
+			ModelMap model) {
+		// get all patients of doctor
+		LOG.info("getAllPatientsOfDoctor");
+		List<Patient> patients = patientDAO.getAllPatientsOfDoctor(doctorId);
+
+		model.addAttribute("patients", patients);
+		return "patient/index";
+	}
 }
