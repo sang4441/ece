@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class hello_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -52,9 +52,10 @@ public final class hello_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("<html>\r\n");
       out.write("<body>\r\n");
-      out.write("\t<h1>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${message}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("</h1>\r\n");
+      out.write("\t<button><a href=\"login_form\">Log in</a></button>\r\n");
+      out.write("    <button><a href=\"create_appointment_form\">Create appointment</a></button>\r\n");
+      out.write("    <button><a href=\"create_patient_form\">Create patient</a></button>\r\n");
+      out.write("\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

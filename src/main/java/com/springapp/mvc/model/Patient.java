@@ -8,111 +8,52 @@ package com.springapp.mvc.model;
  * 
  * @author Wojciech Golab
  */
-public class Patient {
-	private int id;
-	private int person_id;
-	private int default_doc;
-	private String health_card;
-	private int sin;
-	private String current_health;
+public class Patient extends Person{
+//	private int id;
+	private int personId;
+    private int defaultDoc;
+	private String healthCard;
+	private int SIN;
+	private String currentHealth;
 
-	public Patient() {
-		this.id = -1;
-		this.person_id = -1;
-		this.default_doc = -1;
-		this.health_card = "";
-		this.sin = -1;
-		this.current_health = "";
-	}
+    public int getPersonId() {
+        return personId;
+    }
 
-	public Patient(int id, int person_id, int default_doc, String health_card,
-			int sin, String current_health) {
-		this.id = id;
-		this.person_id = person_id;
-		this.default_doc = default_doc;
-		this.health_card = health_card;
-		this.sin = sin;
-		this.current_health = current_health;
-	}
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
-	/**
-	 * Get the value of salary
-	 * 
-	 * @return the value of salary
-	 */
-	public int getID() {
-		return id;
-	}
+    public int getDefaultDoc() {
+        return defaultDoc;
+    }
 
-	public void setID(int id) {
+    public void setDefaultDoc(int defaultDoc) {
+        this.defaultDoc = defaultDoc;
+    }
 
-		this.id = id;
+    public String getHealthCard() {
+        return healthCard;
+    }
 
-	}
+    public void setHealthCard(String healthCard) {
+        this.healthCard = healthCard;
+    }
 
+    public int getSIN() {
+        return SIN;
+    }
 
-	/**
-	 * Get the value of deptID
-	 * 
-	 * @return the value of deptID
-	 */
-	public int getPersonID() {
-		return person_id;
-	}
+    public void setSIN(int SIN) {
+        this.SIN = SIN;
+    }
 
-	public void setPersonID(int person_id) {
+    public String getCurrentHealth() {
+        return currentHealth;
+    }
 
-		this.person_id = person_id;
-
-	}
-
-	/**
-	 * Set the value of deptID
-	 * 
-	 * @param deptID
-	 *            new value of deptID
-	 */
-	public void setSIN(int sin) {
-		this.sin = sin;
-	}
-
-	/**
-	 * Get the value of deptID
-	 * 
-	 * @param deptID
-	 *            new value of deptID
-	 */
-	public int getSIN() {
-		return sin;
-	}
-
-	public int getDefaultDoc() {
-		return default_doc;
-	}
-
-	public void setDefaultDoc(int default_doc) {
-
-		this.default_doc = default_doc;
-	}
-
-	public String getCurrentHealth() {
-		return current_health;
-	}
-
-	public void setCurrentHealth(String current_health) {
-
-		this.current_health = current_health;
-
-	}
-
-	public int getHealthCard() {
-		return sin;
-	}
-
-	public void setHealthCard(String health_card) {
-
-		this.health_card = health_card;
-		
-	}
+    public void setCurrentHealth(String currentHealth) {
+        this.currentHealth = currentHealth;
+    }
 
 }
