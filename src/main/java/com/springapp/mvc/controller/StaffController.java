@@ -1,17 +1,15 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.dao.BasicDAO;
+import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
 import com.springapp.mvc.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import com.springapp.mvc.model.*;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +24,7 @@ public class StaffController {
     @Autowired PersonDAO personDAO;
     @Autowired PatientDAO patientDAO;
     @Autowired BasicDAO basicDAO;
+    @Autowired DoctorDAO doctorDAO;
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView getAllPatients(HttpServletRequest request) {
@@ -50,10 +49,37 @@ public class StaffController {
         return "redirect:/staff/dashboard";
     }
 
-    @RequestMapping(value="/create_appointment_form", method = RequestMethod.GET)
-    public ModelAndView createAppointment() {
-        return new ModelAndView("staff/index", "content", "create_appointment_form");
+    @RequestMapping(value="/create_appointment_form_1", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView createAppointmentFirst(
+            @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+        ModelAndView model = new ModelAndView("staff/index");
+        if (keyword != null) {
+            List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
+            model.addObject("patients", patients);
+        }
+        model.addObject("content", "create_appointment_form_1");
+
+        return model;
     }
+
+    @RequestMapping(value="/create_appointment_form_2/{personId}", method = RequestMethod.GET)
+    public ModelAndView createAppointmentTwo(
+            @PathVariable int personId) {
+        Patient patient = patientDAO.getPatientsByPersonId(personId);
+        Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
+
+        ModelAndView model = new ModelAndView("staff/index");
+        model.addObject("patient", patient);
+        model.addObject("doctor", doctor);
+        model.addObject("content", "create_appointment_form_2");
+        return model;
+    }
+
+//    @RequestMapping(value = "/patient_search", method = RequestMethod.POST)
+//    public ModelAndView patientSearch() {
+//
+//    }
 
     @RequestMapping(value = "appointment_form_submit", method = RequestMethod.POST)
     public String appointmentFormSubmit(HttpServletRequest request,

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Patient;
 import com.springapp.mvc.model.Person;
 import com.springapp.mvc.model.Visit;
@@ -29,6 +30,18 @@ public class BasicDAO {
 
         List<Visit> appointments = jdbcTemplate.query(sql,
                 new Object[] { patientId },
+                new BeanPropertyRowMapper(Visit.class));
+
+        return appointments;
+    }
+
+    public List<Visit> getAppointmentsByDoctorId(int doctorId) {
+        String sql = "SELECT * FROM visits where DoctorID = ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Visit> appointments = jdbcTemplate.query(sql,
+                new Object[] { doctorId },
                 new BeanPropertyRowMapper(Visit.class));
 
         return appointments;

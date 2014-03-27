@@ -30,12 +30,15 @@ public class DoctorDAO {
 
 	@ModelAttribute("doctor")
 	public Doctor getDoctorById(int id) {
-		String sql = "SELECT * FROM doctor where id = ? LIMIT 1";
+		String sql = "SELECT * FROM doctor \n" +
+                "left join person\n" +
+                "on doctor.PersonId = person.id\n" +
+                "where doctor.id = ?;";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-		Doctor doctor = jdbcTemplate.queryForObject(sql, new Object[] { id },
-				Doctor.class);
+		Doctor doctor = (Doctor)jdbcTemplate.queryForObject(sql, new Object[] { id },
+                new BeanPropertyRowMapper(Doctor.class));
 
 		return doctor;
 	}

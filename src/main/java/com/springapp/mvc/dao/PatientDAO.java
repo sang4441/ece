@@ -71,6 +71,21 @@ public class PatientDAO {
         jdbcTemplate.update(sql, new Object[]{patient.getDefaultDoc(), patient.getHealthCard(), patient.getSIN(), patient.getCurrentHealth(), patient.getPersonId()});
     }
 
+    public List<Patient> searchPatientByKeyword(String keyword){
+        String sql = "SELECT * FROM patients \n" +
+                "left join person\n" +
+                "on patients.PersonId = person.id\n" +
+                "where CONCAT(person.NameFirst,person.NameLast) like ?;";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Patient> patients = jdbcTemplate.query(sql,
+                new Object[]{"%"+keyword+"%"},
+                new BeanPropertyRowMapper(Patient.class));
+
+        return patients;
+    }
+
 
 	@ModelAttribute("patientsOfDoctor")
 	public List<Patient> getAllPatientsOfDoctor(int id) {

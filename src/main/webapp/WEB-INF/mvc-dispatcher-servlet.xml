@@ -34,7 +34,7 @@
     <bean id="staff" class="com.springapp.mvc.model.Staff" />
     <bean id="visit" class="com.springapp.mvc.model.Visit" />
 
-
+    <bean id="basicService" class="com.springapp.mvc.service.BasicService" />
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">

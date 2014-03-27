@@ -72,4 +72,5 @@ public class PatientController {
         model.addObject("user", patient);
         return model;
     }
+
 }

@@ -1,6 +1,6 @@
 package com.springapp.mvc.model;
 
-public class Doctor {
+public class Doctor extends Person{
 
 	private int id;
 	private int person_id;
