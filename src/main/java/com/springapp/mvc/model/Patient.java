@@ -8,7 +8,7 @@ package com.springapp.mvc.model;
  * 
  * @author Wojciech Golab
  */
-public class Patient {
+public class Patient extends Person{
 	private int id;
 	private int personId;
 	private int defaultDoc;

@@ -18,7 +18,7 @@ public class DoctorDAO {
 
 	@ModelAttribute("doctors")
 	public List<Doctor> getAllDoctors() {
-		String sql = "SELECT * FROM doctors";
+		String sql = "SELECT * FROM doctor";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -30,7 +30,7 @@ public class DoctorDAO {
 
 	@ModelAttribute("doctor")
 	public Doctor getDoctorById(int id) {
-		String sql = "SELECT * FROM doctors where id = ? LIMIT 1";
+		String sql = "SELECT * FROM doctor where id = ? LIMIT 1";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

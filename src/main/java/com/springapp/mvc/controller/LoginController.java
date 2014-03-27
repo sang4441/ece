@@ -31,64 +31,45 @@ public class LoginController {
         return "login_form";
     }
 
-    @RequestMapping(value="/login_action", method = RequestMethod.GET)
+    @RequestMapping(value="/login_action", method = RequestMethod.POST)
     public String login(
             HttpServletRequest request,
             ModelMap model,
                         @RequestParam("username") String username,
                         @RequestParam("password") String password) {
-        model.addAttribute("message", "Hello world!");
 
-        String url;
+        String role;
             // find user/pass combo
             Person user = personDAO.getPersonWithUsernameAndPassword(username, password);
 
             // set user in session data
             if (user == null) {
                 // failed login
-                url = "login";
+                // error message required
+                return "login_form";
 
             } else {
                 // success
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 request.getSession().setAttribute("user", user);
+                if (user.getRoleID() == 1) {
+                    role = "patient";
+                } else if (user.getRoleID() == 2) {
+                    role = "doctor";
+                } else {
+                    role = "staff";
+                }
                 // get homepage
-                url = "index";
             }
-        return url;
+        return "redirect:"+role+"/dashboard";
     }
 
-    @RequestMapping(value="/Dashboard", method = RequestMethod.GET)
-    public String dashboard() {
-        return "index";
+    @RequestMapping(value="/log_out", method = RequestMethod.GET)
+    public String logOut(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("user", new Person());
+        return "redirect:";
     }
 
-    @RequestMapping(value="/create_patient_form", method = RequestMethod.GET)
-    public String createPatient() {
-        return "create_patient_form";
-    }
-    @RequestMapping(value = "patient_form_submit", method = RequestMethod.POST)
-    public String patientFormSubmit(HttpServletRequest request,
-                              @ModelAttribute("patient") Patient patient,
-                              BindingResult result) throws ParseException {
-
-
-
-        return "redirect:/Dashboard";
-    }
-
-    @RequestMapping(value="/create_appointment_form", method = RequestMethod.GET)
-    public String createAppointment() {
-        return "create_appointment_form";
-    }
-
-    @RequestMapping(value = "appointment_form_submit", method = RequestMethod.POST)
-    public String appointmentFormSubmit(HttpServletRequest request,
-                              @ModelAttribute("visit") Visit visit,
-                              BindingResult result) throws ParseException {
-
-
-        return "redirect:/Dashboard";
-    }
 }

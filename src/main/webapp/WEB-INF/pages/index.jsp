@@ -1,8 +1,13 @@
+<!DOCTYPE HTML>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <body>
-	<button><a href="login_form">Log in</a></button>
-    <button><a href="create_appointment_form">Create appointment</a></button>
-    <button><a href="create_patient_form">Create patient</a></button>
-
+    <form id="login" action="login_action" method="post" >
+        <input type="text" id="username" name="username" placeholder="username" />
+        <input type="password" id="password" name="password" placeholder="password"/>
+        <button type="submit">login</button>
+    </form>
 </body>
 </html>

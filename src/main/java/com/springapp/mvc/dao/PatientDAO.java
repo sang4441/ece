@@ -30,16 +30,47 @@ public class PatientDAO {
 		return patients;
 	}
 
-	public Patient getPatientsById(int id) {
-		String sql = "SELECT * FROM patients where id = ? LIMIT 1";
+	public Patient getPatientsByPersonId(int id) {
+		String sql = "SELECT * FROM patients " +
+                "inner join person " +
+                "on patients.PersonId = person.id " +
+                "where person.id = ? LIMIT 1";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-		Patient patient = jdbcTemplate.queryForObject(sql, new Object[] { id },
-				Patient.class);
+		Patient patient = (Patient)jdbcTemplate.queryForObject(sql, new Object[] { id },
+                new BeanPropertyRowMapper(Patient.class));
 
 		return patient;
 	}
+
+    public void updatePatient(Patient patient) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "UPDATE person\n" +
+                "SET NameLast = ?,\n" +
+                "NameFirst = ?,\n" +
+                "Phone = ?,\n" +
+                "username = ?,\n" +
+                "password = ?,\n" +
+                "street = ?,\n" +
+                "City = ?,\n" +
+                "Province = ?,\n" +
+                "PostalCode = ? \n" +
+                "WHERE id= ?";
+
+        jdbcTemplate.update(sql, new Object[]{patient.getNameLast(), patient.getNameFirst(), patient.getPhone(), patient.getUsername(), patient.getPassword(), patient.getStreet(), patient.getCity()
+                , patient.getProvince(), patient.getPostalCode(), patient.getPersonId()});
+
+        sql = "UPDATE patients\n" +
+                "SET DefaultDoc = ?,\n" +
+                "HealthCard = ?,\n" +
+                "SIN = ?,\n" +
+                "CurrentHealth = ?\n" +
+                "WHERE PersonID= ?";
+
+        jdbcTemplate.update(sql, new Object[]{patient.getDefaultDoc(), patient.getHealthCard(), patient.getSIN(), patient.getCurrentHealth(), patient.getPersonId()});
+    }
+
 
 	@ModelAttribute("patientsOfDoctor")
 	public List<Patient> getAllPatientsOfDoctor(int id) {
