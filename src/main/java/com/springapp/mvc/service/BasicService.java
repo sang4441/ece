@@ -1,7 +1,6 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.BasicDAO;
-import com.springapp.mvc.model.VisitDate;
 import com.springapp.mvc.model.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 

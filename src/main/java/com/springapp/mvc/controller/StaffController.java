@@ -37,9 +37,12 @@ public class StaffController {
         // get all patients
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 2){
+            return new ModelAndView("staff/index","content", "../InvalidAccess" );
+        }
         ModelAndView model = new ModelAndView("staff/index");
-        model.addObject("content", "dashboard");
         model.addObject("user", user);
+        model.addObject("content", "dashboard");
         return model;
     }
 
@@ -65,7 +68,6 @@ public class StaffController {
             model.addObject("patients", patients);
         }
         model.addObject("content", "create_appointment_form_1");
-
         return model;
     }
 
