@@ -50,6 +50,12 @@ public class StaffController {
     public ModelAndView createPatient() {
         return new ModelAndView("staff/index", "content", "create_patient_form");
     }
+    
+    @RequestMapping(value="/update_patient", method = RequestMethod.GET)
+    public ModelAndView updatePatient() {
+        return new ModelAndView("staff/index", "content", "update_patient");
+    }
+    
     @RequestMapping(value = "patient_form_submit", method = RequestMethod.POST)
     public String patientFormSubmit(HttpServletRequest request,
                                     @ModelAttribute("patient") Patient patient,
@@ -57,6 +63,14 @@ public class StaffController {
         //incomplete
         return "redirect:/staff/dashboard";
     }
+
+    // @RequestMapping(value = "", method = RequestMethod.POST)
+    // public String patientFormSubmit(HttpServletRequest request,
+    //                                 @ModelAttribute("patient") Patient patient,
+    //                                 BindingResult result) throws ParseException {
+    //     //incomplete
+    //     return "redirect:/staff/dashboard";
+    // }
 
     @RequestMapping(value="/create_appointment_form_1", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView createAppointmentFirst(
@@ -68,6 +82,21 @@ public class StaffController {
             model.addObject("patients", patients);
         }
         model.addObject("content", "create_appointment_form_1");
+        return model;
+    }
+
+
+    @RequestMapping(value="/searchPatient", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView searchPatientFirst(
+            @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+        ModelAndView model = new ModelAndView("staff/index");
+        if (keyword != null) {
+            List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
+            model.addObject("patients", patients);
+        }
+        model.addObject("content", "update_patient");
+
         return model;
     }
 
@@ -84,11 +113,6 @@ public class StaffController {
         model.addObject("content", "create_appointment_form_2");
         return model;
     }
-
-//    @RequestMapping(value = "/patient_search", method = RequestMethod.POST)
-//    public ModelAndView patientSearch() {
-//
-//    }
 
     @RequestMapping(value = "appointment_form_submit", method = RequestMethod.POST)
     public String appointmentFormSubmit(HttpServletRequest request,
