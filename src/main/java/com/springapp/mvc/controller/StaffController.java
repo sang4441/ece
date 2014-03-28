@@ -31,7 +31,7 @@ public class StaffController {
         // get all patients
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
-        if(user.getRoleID() != 2){
+        if(user.getRoleID() != 3){
             return new ModelAndView("staff/index","content", "../InvalidAccess" );
         }
         ModelAndView model = new ModelAndView("staff/index");

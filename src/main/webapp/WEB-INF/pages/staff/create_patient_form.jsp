@@ -1,6 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h2>edit profile</h2>
-<form method="post" action="patient_form_submit">
+<h2>New Patient Information</h2>
+<script type="text/javascript">
+    function checkPassword(form)
+    {
+        if(form.pwd1.value != form.pwd2.value)
+        {
+            alert("Error: new password does not match");
+            form.newPwd2.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<form method="post" onsubmit="return checkPassword(this)" action="patient_form_submit">
     <table>
         <tr>
             <td>First Name</td>
@@ -20,7 +32,11 @@
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="text" name="Password" ></td>
+            <td><input id="pwd1" type="password" name="Password" ></td>
+        </tr>
+        <tr>
+            <td>Re-Enter</td>
+            <td><input id="pwd2" type="password"></td>
         </tr>
         <tr>
             <td>Street</td>

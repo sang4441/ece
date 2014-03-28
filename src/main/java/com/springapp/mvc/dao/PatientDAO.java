@@ -100,4 +100,29 @@ public class PatientDAO {
 
 		return patients;
 	}
+
+    public void insertPatient(Patient patient) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "INSERT INTO person\n" +
+                "VALUES (NameLast = ?,\n" +
+                "NameFirst = ?,\n" +
+                "Phone = ?,\n" +
+                "username = ?,\n" +
+                "password = ?,\n" +
+                "street = ?,\n" +
+                "City = ?,\n" +
+                "Province = ?,\n" +
+                "PostalCode = ? \n)";
+
+        jdbcTemplate.update(sql, new Object[]{patient.getNameLast(), patient.getNameFirst(), patient.getPhone(), patient.getUsername(), patient.getPassword(), patient.getStreet(), patient.getCity()
+                , patient.getProvince(), patient.getPostalCode()});
+
+        sql = "INSERT INTO patients\n" +
+                "VALUES (DefaultDoc = ?,\n" +
+                "HealthCard = ?,\n" +
+                "SIN = ?,\n" +
+                "CurrentHealth = ?\n)";
+
+        jdbcTemplate.update(sql, new Object[]{patient.getDefaultDoc(), patient.getHealthCard(), patient.getSIN(), patient.getCurrentHealth()});
+    }
 }
