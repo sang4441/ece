@@ -12,29 +12,30 @@ import java.util.*;
 public class BasicService {
     @Autowired BasicDAO basicDAO;
 
-    public List<Map<Integer, String>> findScheduleByDoctorId(int docId, String start, String end) {
+    public List<Map<Integer, Object>> findScheduleByDoctorId(int docId, String start, String end) {
         String todayString;
         String lastDayString;
-
-        DateFormat myDate = new SimpleDateFormat("MM/dd/yyyy");
-        if (start == null || end == null) {
-            todayString = myDate.format(today.getTime());
-            lastDayString = myDate.format(lastDay.getTime());
-        } else {
-            Date now = new Date();
-            Calendar today = Calendar.getInstance();
-            Calendar lastDay = Calendar.getInstance();
-            today.setTime(now);
-            lastDay.setTime(now);
-            lastDay.add(Calendar.DATE, 5);
-            todayString = start;
-            lastDayString = end;
-        }
+        int daysSize = 5;
+        Date now = new Date();
+        Calendar today = Calendar.getInstance();
+        Calendar lastDay = Calendar.getInstance();
+        today.setTime(now);
+        lastDay.setTime(now);
+        lastDay.add(Calendar.DATE, daysSize);
+        DateFormat myDate = new SimpleDateFormat("yyyy/MM/dd");
+        todayString = myDate.format(today.getTime());
+        lastDayString = myDate.format(lastDay.getTime());
+//        if (start == null || end == null) {
+//            todayString = start;
+//            lastDayString = end;
+//        } else {
+//
+//        }
 
         List<Visit> visits = basicDAO.getAppointmentsByDoctorId(docId, todayString, lastDayString);
 
 
-        List<Map<Integer, String>> visitDailySet = new ArrayList<Map<Integer, String>>();
+        List<Map<Integer, Object>> visitDailySet = new ArrayList<Map<Integer, Object>>();
 
         for (Visit visit : visits) {
             Date startDate = today.getTime();
@@ -47,20 +48,20 @@ public class BasicService {
         }
 
         for (int i = 0; i < daysSize; i++) {
-            Map<Integer, String> schedule = new HashMap<Integer, String>();
+            Map<Integer, Object> schedule = new HashMap<Integer, Object>();
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             todayString = df.format(today.getTime());
             schedule.put(0, todayString);
 
             for (Visit visit : visits) {
                 if (visit.getDayCode() == i) {
-                    schedule.put(visit.getDateCode(), visit.getPatientName());
+                    schedule.put(visit.getDateCode(), "filled");
                 }
             }
 
             for (int j = 1; j < 15; j++ ) {
                 if (!schedule.containsKey(j)) {
-                    schedule.put(j, "available");
+                    schedule.put(j, todayString);
                 }
             }
             visitDailySet.add(schedule);
@@ -68,7 +69,7 @@ public class BasicService {
         }
         return visitDailySet;
     }
-    public List<Map<Integer, String>> findScheduleByDoctorId(int docId) {
+    public List<Map<Integer, Object>> findScheduleByDoctorId(int docId) {
         return findScheduleByDoctorId(docId, null, null);
     }
 }

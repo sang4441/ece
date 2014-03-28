@@ -71,7 +71,7 @@ public class StaffController {
             @PathVariable int personId) {
         Patient patient = patientDAO.getPatientsByPersonId(personId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
-        List<Map<Integer, String>> schedule = basicService.findScheduleByDoctorId(patient.getDefaultDoc());
+        List<Map<Integer, Object>> schedule = basicService.findScheduleByDoctorId(patient.getDefaultDoc());
         ModelAndView model = new ModelAndView("staff/index");
         model.addObject("schedule", schedule);
         model.addObject("patient", patient);
@@ -87,9 +87,12 @@ public class StaffController {
 
     @RequestMapping(value = "appointment_form_submit", method = RequestMethod.POST)
     public String appointmentFormSubmit(HttpServletRequest request,
+                                        @RequestParam(value = "time", defaultValue = "") String time,
                                         @ModelAttribute("visit") Visit visit,
                                         BindingResult result) throws ParseException {
-        //incomplete
+
+
+
         return "redirect:/staff/dashboard";
     }
 }
