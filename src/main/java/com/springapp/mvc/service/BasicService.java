@@ -1,6 +1,7 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.dao.BasicDAO;
+import com.springapp.mvc.model.Person;
 import com.springapp.mvc.model.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,4 +18,6 @@ public class BasicService {
 //
 //        return;
 //    }
+
+//    public Person getPerson
 }
