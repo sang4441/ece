@@ -53,24 +53,51 @@ public class BasicDAO {
         return appointments;
     }
 
-    public void insertAppointment(Visit appointment){
+    public void updateAppointment(Visit appointment){
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         String sql = "UPDATE visits\n" +
-                "SET doctorID = ?,\n" +
-                "date = ?,\n" +
-                "length = ?,\n" +
-                "prescription = ?,\n" +
-                "diagnosis = ?,\n" +
-                "comment = ?,\n" +
-                "date_modified = ?,\n" +
-                "parentID = ? \n" +
-                "initialID = ? \n" +
+                "SET PatientID = ?,\n" +
+                "DoctorID = ?,\n" +
+                "Date = ?,\n" +
+                "dateCode = ?,\n" +
+                "Length = ?,\n" +
+                "Prescription = ?,\n" +
+                "Diagnosis = ?,\n" +
+                "Comment = ? \n" +
+                "DateModified = ? \n" +
+                "InitialID = ? \n" +
                 "WHERE id= ?";
 
-        jdbcTemplate.update(sql, new Object[]{appointment.getDoctorId(), appointment.getDate(), appointment.getPrescription(),
-                appointment.getDiagnosis(), appointment.getComment(), appointment.getDate_modified()
-                , appointment.getParentID(), appointment.getInitialID(), appointment.getId()});
+        jdbcTemplate.update(sql, new Object[]{appointment.getParentID(), appointment.getDoctorId(), appointment.getDate(), appointment.getDateCode(),
+                appointment.getLength(), appointment.getPrescription(), appointment.getDiagnosis(), appointment.getComment(),
+                appointment.getDate_modified(), appointment.getInitialID(), appointment.getId()});
     }
 
+    public void insertAppointment(Visit appointment) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "INSERT INTO visits(PatientID, DoctorID, Date, dateCode, Length, Prescription, Diagnosis, Comment, DateModified, InitialID)"+
+                "VALUES (?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?,\n" +
+                "?)";
+
+        jdbcTemplate.update(sql, new Object[]{appointment.getParentID(), appointment.getDoctorId(), appointment.getDate(), appointment.getDateCode(),
+                appointment.getLength(), appointment.getPrescription(), appointment.getDiagnosis(), appointment.getComment(),
+                appointment.getDate_modified(), appointment.getInitialID()});
+    }
+
+    public void deleteAppointment(Visit appointment){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "DELETE FROM visits\n WHERE id= ?";
+
+        jdbcTemplate.update(sql, new Object[]{appointment.getId()});
+    }
 }
