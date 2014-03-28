@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.springapp.mvc.model.*;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,49 +28,63 @@ public class PatientController {
     @Autowired PatientDAO patientDAO;
     @Autowired BasicDAO basicDAO;
 
+    // Basic dashboard for the patient
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView getAllPatients(HttpServletRequest request) {
 		// get all patients
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
 		List<Visit> appointments = basicDAO.getAppoinmentsByPatientId(user.getId());
+        int personId = user.getId();
 
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "dashboard");
         model.addObject("user", user);
 		model.addObject("appointments", appointments);
+        model.addObject("personId", personId);
 		return model;
 	}
 
-    @RequestMapping(value = "/edit_profile", method = RequestMethod.GET)
-    public ModelAndView editProfile(HttpServletRequest request) {
+    // This function retrieves particular patient's info in a editable form
+    @RequestMapping(value = "/edit_profile/{personId}", method = RequestMethod.GET)
+    public ModelAndView editProfile(HttpServletRequest request,@PathVariable int personId) {
 
         HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
-        Patient patient = patientDAO.getPatientsByPersonId(user.getId());
+        int session_role = ((Person)session.getAttribute("user")).getRoleID();
+
+        Patient patient = patientDAO.getPatientsByPersonId(personId);
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "edit_profile");
         model.addObject("user", patient);
+        model.addObject("role", session_role);
         return model;
     }
 
+    // This function only involves in changing patient info
     @RequestMapping(value = "/edit_profile_action", method = RequestMethod.POST)
     public String editProfileAction(HttpServletRequest request, @ModelAttribute("patient") Patient patient) {
-    	HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
         patient.setPersonId(user.getId());
         patientDAO.updatePatient(patient);
-        return "redirect:/patient/profile";
+        Patient tmp_patient = patient;
+        int personId = tmp_patient.getPersonId();
+        return "redirect:/patient/profile/"+personId;
+        
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public ModelAndView patientProfile(HttpServletRequest request) {
+
+    // This function retrieves particular patient's profile 
+    @RequestMapping(value = "/profile/{personId}", method = RequestMethod.GET)
+    public ModelAndView patientProfile(HttpServletRequest request, @PathVariable int personId) {
+
         HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
-        Patient patient = patientDAO.getPatientsByPersonId(user.getId());
+        int session_role = ((Person)session.getAttribute("user")).getRoleID();
+        Patient patient = patientDAO.getPatientsByPersonId(personId);
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "profile");
         model.addObject("user", patient);
+        model.addObject("role", session_role);
         return model;
     }
 

@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <h2>${user.nameFirst}'s Dashboard (PATIENT)</h2>
-<a href="/ece/patient/profile"><button>view my profile</button></a>
+<a href="/ece/patient/profile/${personId}"><button>view my profile</button></a>
 <table>
     <tr>
         <td>Id</td>
