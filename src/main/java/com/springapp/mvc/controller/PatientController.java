@@ -51,18 +51,21 @@ public class PatientController {
 
         HttpSession session = request.getSession();
         int session_role = ((Person)session.getAttribute("user")).getRoleID();
+        int person_id = personId;
 
         Patient patient = patientDAO.getPatientsByPersonId(personId);
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "edit_profile");
         model.addObject("user", patient);
         model.addObject("role", session_role);
+        model.addObject("personId", person_id);
         return model;
     }
 
     // This function only involves in changing patient info
     @RequestMapping(value = "/edit_profile_action", method = RequestMethod.POST)
     public String editProfileAction(HttpServletRequest request, @ModelAttribute("patient") Patient patient) {
+
         patientDAO.updatePatient(patient);
         int personId = patient.getPersonId();
         return "redirect:/patient/profile/"+personId;

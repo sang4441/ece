@@ -108,7 +108,7 @@
             <td> Current Health</td>
             <td><input type="text" name="currentHealth" value="${user.currentHealth}"></td>
         </tr>
+        <input type="hidden" name="personId" value="${personId}"/>
     </table>
-    <input type="hidden" name="personId" value="${user.personId}"></input>
     <div><input type="submit" value="submit"></div>
 </form>
