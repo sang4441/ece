@@ -43,7 +43,6 @@ public class Doctor extends Person{
 	public void setPersonID(int person_id) {
 
 		this.person_id = person_id;
-		
 	}
 
 

@@ -1,8 +1,10 @@
 <%@ page import="com.springapp.mvc.model.Doctor" %>
+<%@ page import="com.springapp.mvc.model.Visit" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <h2>${user.nameFirst}'s Dashboard (PATIENT)</h2>
+
 <a href="/ece/patient/profile/${personId}"><button>view my profile</button></a>
 <table>
     <tr>

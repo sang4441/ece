@@ -30,4 +30,13 @@ public class PersonDAO {
         Person person  = (Person)jdbcTemplate.queryForObject(sql, new Object[]{username, password}, new BeanPropertyRowMapper(Person.class));
         return person;
     }
+
+    public Person getPersonById(int id){
+        String sql = "select * from person " +
+                "where person.id = id";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Person person  = (Person)jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
+        return person;
+    }
 }
