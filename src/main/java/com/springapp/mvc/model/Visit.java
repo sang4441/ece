@@ -5,58 +5,42 @@ import java.util.Date;
 public class Visit {
 
 	private int id;
-	private int patient_id;
+    private int patient_id;
     private String patientName;
-	private Date date;
     private long dayCode;
     private int dateCode;
+	private int parentID;
+    private Date date;
 	private int length;
 	private String prescription;
 	private String diagnosis;
-	private int doctor_id;
+	private int doctorID;
 	private Date date_modified;
 	private String comment;
-	private int initial_id;
+	private int initialID;
 
 	public Visit() {
 
 	}
 
-	public Visit(int id, int patient_id, Date date, int length,
-			String prescription, String diagnosis, int doctor_id,
-			Date date_modified, String comment, int initial_id) {
-		this.id = id;
-		this.patient_id = patient_id;
-		this.date = date;
-		this.length = length;
-		this.prescription = prescription;
-		this.diagnosis = diagnosis;
-		this.doctor_id = doctor_id;
-		this.date_modified = date_modified;
-		this.comment = comment;
-		this.initial_id = initial_id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * Getters and Setters
-	 * 
-	 */
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
+    public int getParentID() {
+        return parentID;
+    }
 
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
+    public void setParentID(int parentID) {
+        this.parentID = parentID;
+    }
+    public void setPatient_id(int patient_id) {
+        this.patient_id = patient_id;
+    }
 
 
     public int getDateCode() {
@@ -74,118 +58,61 @@ public class Visit {
 		return patient_id;
 	}
 
-	/**
-	 * @param patient_id
-	 *            the patient_id to set
-	 */
-	public void setPatient_id(int patient_id) {
-		this.patient_id = patient_id;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	/**
-	 * @return the date
-	 */
-	public Date getDate() {
-		return date;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	/**
-	 * @param date
-	 *            the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public int getLength() {
+        return length;
+    }
 
-	/**
-	 * @return the length
-	 */
-	public int getLength() {
-		return length;
-	}
+    public void setLength(int length) {
+        this.length = length;
+    }
 
-	/**
-	 * @param length
-	 *            the length to set
-	 */
-	public void setLength(int length) {
-		this.length = length;
-	}
+    public String getPrescription() {
+        return prescription;
+    }
 
-	/**
-	 * @return the prescription
-	 */
-	public String getPrescription() {
-		return prescription;
-	}
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
 
-	/**
-	 * @param prescription
-	 *            the prescription to set
-	 */
-	public void setPrescription(String prescription) {
-		this.prescription = prescription;
-	}
+    public String getDiagnosis() {
+        return diagnosis;
+    }
 
-	/**
-	 * @return the diagnosis
-	 */
-	public String getDiagnosis() {
-		return diagnosis;
-	}
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
 
-	/**
-	 * @param diagnosis
-	 *            the diagnosis to set
-	 */
-	public void setDiagnosis(String diagnosis) {
-		this.diagnosis = diagnosis;
-	}
+    public int getDoctorID() {
+        return doctorID;
+    }
 
-	/**
-	 * @return the doctor_id
-	 */
-	public int getDoctor_id() {
-		return doctor_id;
-	}
+    public void setDoctorID(int doctorID) {
+        this.doctorID = doctorID;
+    }
 
-	/**
-	 * @param doctor_id
-	 *            the doctor_id to set
-	 */
-	public void setDoctor_id(int doctor_id) {
-		this.doctor_id = doctor_id;
-	}
+    public Date getDate_modified() {
+        return date_modified;
+    }
 
-	/**
-	 * @return the date_modified
-	 */
-	public Date getDate_modified() {
-		return date_modified;
-	}
+    public void setDate_modified(Date date_modified) {
+        this.date_modified = date_modified;
+    }
 
-	/**
-	 * @param date_modified
-	 *            the date_modified to set
-	 */
-	public void setDate_modified(Date date_modified) {
-		this.date_modified = date_modified;
-	}
+    public int getInitialID() {
+        return initialID;
+    }
 
-	/**
-	 * @return the initial_id
-	 */
-	public int getInitial_id() {
-		return initial_id;
-	}
-
-	/**
-	 * @param initial_id
-	 *            the initial_id to set
-	 */
-	public void setInitial_id(int initial_id) {
-		this.initial_id = initial_id;
-	}
+    public void setInitialID(int initialID) {
+        this.initialID = initialID;
+    }
 
 	public String getComment() {
 		return this.comment;
@@ -210,4 +137,5 @@ public class Visit {
     public void setPatientName(String patientName) {
         this.patientName = patientName;
     }
+
 }

@@ -16,6 +16,7 @@ import com.springapp.mvc.model.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
 
@@ -51,4 +52,25 @@ public class BasicDAO {
 
         return appointments;
     }
+
+    public void insertAppointment(Visit appointment){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "UPDATE visits\n" +
+                "SET doctorID = ?,\n" +
+                "date = ?,\n" +
+                "length = ?,\n" +
+                "prescription = ?,\n" +
+                "diagnosis = ?,\n" +
+                "comment = ?,\n" +
+                "date_modified = ?,\n" +
+                "parentID = ? \n" +
+                "initialID = ? \n" +
+                "WHERE id= ?";
+
+        jdbcTemplate.update(sql, new Object[]{appointment.getDoctorID(), appointment.getDate(), appointment.getPrescription(),
+                appointment.getDiagnosis(), appointment.getComment(), appointment.getDate_modified()
+                , appointment.getParentID(), appointment.getInitialID(), appointment.getId()});
+    }
+
 }
