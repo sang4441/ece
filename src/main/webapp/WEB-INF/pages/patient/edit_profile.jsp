@@ -12,7 +12,6 @@
     </c:otherwise>
 </c:choose>
 
-<form method="post" action="/ece/patient/edit_profile_action">
 <script type="text/javascript">
     function checkPassword(form)
     {

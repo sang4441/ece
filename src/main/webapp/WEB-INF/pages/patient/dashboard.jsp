@@ -22,7 +22,7 @@
             <td> <fmt:formatDate type="date" dateStyle="long" value="${appointment.date}" /> </td>
             <td> <fmt:formatDate type="time" timeStyle="short" value="${appointment.date}" /> </td>
             <td>${appointment.length}</td>
-            <td>${appointment.doctorID}</td>
+            <td>${appointment.doctorId}</td>
             <td>${appointment.prescription}</td>
             <td>${appointment.diagnosis}</td>
         </tr>
