@@ -101,28 +101,25 @@ public class PatientDAO {
 		return patients;
 	}
 
-    public void insertPatient(Patient patient) {
+    public int insertPatient(Patient patient) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        String sql = "INSERT INTO person\n" +
-                "VALUES (NameLast = ?,\n" +
-                "NameFirst = ?,\n" +
-                "Phone = ?,\n" +
-                "username = ?,\n" +
-                "password = ?,\n" +
-                "street = ?,\n" +
-                "City = ?,\n" +
-                "Province = ?,\n" +
-                "PostalCode = ? \n)";
+        String sql = "INSERT INTO person\n (NameLast, NameFirst, Phone, username, password, street, City, Province, PostalCode, RoleID)" +
+                "VALUES (?,\n?,\n?,\n?,\n?,\n?,\n?,\n?,\n?,\n?)";
 
         jdbcTemplate.update(sql, new Object[]{patient.getNameLast(), patient.getNameFirst(), patient.getPhone(), patient.getUsername(), patient.getPassword(), patient.getStreet(), patient.getCity()
-                , patient.getProvince(), patient.getPostalCode()});
+                , patient.getProvince(), patient.getPostalCode(), 1});
 
-        sql = "INSERT INTO patients\n" +
-                "VALUES (DefaultDoc = ?,\n" +
-                "HealthCard = ?,\n" +
-                "SIN = ?,\n" +
-                "CurrentHealth = ?\n)";
+        sql = "select id from person \n" +
+                "order by id DESC\n" +
+                "limit 1;";
 
-        jdbcTemplate.update(sql, new Object[]{patient.getDefaultDoc(), patient.getHealthCard(), patient.getSIN(), patient.getCurrentHealth()});
+        java.lang.Integer personId = jdbcTemplate.queryForObject(sql, java.lang.Integer.class);
+
+        sql = "INSERT INTO patients\n (PersonID, DefaultDoc, HealthCard, SIN, CurrentHealth)" +
+                "VALUES (?,\n?,\n?,\n?,\n?)";
+
+        jdbcTemplate.update(sql, new Object[]{personId, patient.getDefaultDoc(), patient.getHealthCard(), patient.getSIN(), patient.getCurrentHealth()});
+
+        return personId;
     }
 }

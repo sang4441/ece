@@ -8,8 +8,9 @@
             alert("Error: new password does not match");
             form.newPwd2.focus();
             return false;
+        }else {
+            return true;
         }
-        return true;
     }
 </script>
 <form method="post" onsubmit="return checkPassword(this)" action="patient_form_submit">
@@ -28,11 +29,11 @@
         </tr>
         <tr>
             <td>Username</td>
-            <td><input type="text" name="Username" ></td>
+            <td><input type="text" name="Username" required></td>
         </tr>
         <tr>
             <td>Password</td>
-            <td><input id="pwd1" type="password" name="Password" ></td>
+            <td><input id="pwd1" type="password" name="Password" required></td>
         </tr>
         <tr>
             <td>Re-Enter</td>
@@ -56,7 +57,7 @@
         </tr>
         <tr>
             <td>Default Doctor</td>
-            <td><input type="text" name="defaultDoc" ></td>
+            <td><input type="number" name="defaultDoc" min="1" required></td>
         </tr>
         <tr>
             <td>Health Card</td>
@@ -64,7 +65,7 @@
         </tr>
         <tr>
             <td>SIN</td>
-            <td><input type="text" name="SIN" ></td>
+            <td><input type="number" name="SIN" min="1" required></td>
         </tr>
         <tr>
             <td> Current Health</td>

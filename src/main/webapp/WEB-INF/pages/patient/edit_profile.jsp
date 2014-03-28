@@ -14,35 +14,40 @@
 
 <form method="post" action="/ece/patient/edit_profile_action">
 <script type="text/javascript">
-	function checkPassword(form)
-	{
-		if(form.pwd.value == "")
+    function checkPassword(form)
+    {
+        if(form.pwd.value == "")
         {
             alert("Error: please enter the current password");
             form.pwd.focus();
             return false;
         }
         else if(form.pwd.value != ${user.password})
-		{
-			alert("Error: current password is wrong");
-      		form.pwd.focus();
-      		return false;
-		}
+        {
+            alert("Error: current password is wrong");
+            form.pwd.focus();
+            return false;
+        }
+        else if(form.newPwd1.value == "" && form.newPwd2.value == "")
+        {
+            return true;
+        }
         else if(form.newPwd1.value != form.newPwd2.value)
-		{
-			alert("Error: new password does not match");
-      		form.newPwd2.focus();
-      		return false;
-		}
+        {
+            alert("Error: new password does not match");
+            form.newPwd2.focus();
+            return false;
+        }
         else {
             form.pwd.name = "";
             form.newPwd2.name = "Password";
+            alert("Password has been changed");
             return true;
         }
-	}
-	
+    }
+
 </script>
-<form method="post" onsubmit="return checkPassword(this)" action="edit_profile_action">
+<form method="post" onsubmit="return checkPassword(this)" action="/ece/patient/edit_profile_action">
     <table>
         <tr>
             <td>First Name</td>

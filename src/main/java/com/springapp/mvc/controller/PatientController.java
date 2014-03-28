@@ -30,20 +30,20 @@ public class PatientController {
 
     // Basic dashboard for the patient
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView getAllPatients(HttpServletRequest request) {
-		// get all patients
+    public ModelAndView getAllPatients(HttpServletRequest request) {
+        // get all patients
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
-		List<Visit> appointments = basicDAO.getAppoinmentsByPatientId(user.getId());
+        List<Visit> appointments = basicDAO.getAppoinmentsByPatientId(user.getId());
         int personId = user.getId();
 
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "dashboard");
         model.addObject("user", user);
-		model.addObject("appointments", appointments);
+        model.addObject("appointments", appointments);
         model.addObject("personId", personId);
-		return model;
-	}
+        return model;
+    }
 
     // This function retrieves particular patient's info in a editable form
     @RequestMapping(value = "/edit_profile/{personId}", method = RequestMethod.GET)
@@ -63,14 +63,9 @@ public class PatientController {
     // This function only involves in changing patient info
     @RequestMapping(value = "/edit_profile_action", method = RequestMethod.POST)
     public String editProfileAction(HttpServletRequest request, @ModelAttribute("patient") Patient patient) {
-        HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
-        patient.setPersonId(user.getId());
         patientDAO.updatePatient(patient);
-        Patient tmp_patient = patient;
-        int personId = tmp_patient.getPersonId();
+        int personId = patient.getPersonId();
         return "redirect:/patient/profile/"+personId;
-        
     }
 
 

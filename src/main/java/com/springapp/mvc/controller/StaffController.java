@@ -57,11 +57,19 @@ public class StaffController {
     }
     
     @RequestMapping(value = "patient_form_submit", method = RequestMethod.POST)
-    public String patientFormSubmit(HttpServletRequest request,
-                                    @ModelAttribute("patient") Patient patient,
-                                    BindingResult result) throws ParseException {
-        //incomplete
-        return "redirect:/staff/dashboard";
+    public String patientFormSubmit(HttpServletRequest request, @ModelAttribute("patient") Patient patient){
+        int personId = patientDAO.insertPatient(patient);
+        return "redirect:/patient/profile/"+personId;
+        //return "redirect:/staff/dashboard";
+    }
+
+    @RequestMapping(value = "/edit_profile_action", method = RequestMethod.POST)
+    public String editProfileAction(HttpServletRequest request, @ModelAttribute("patient") Patient patient) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        patientDAO.updatePatient(patient);
+        int personId = patient.getPersonId();
+        return "redirect:/patient/profile/"+personId;
     }
 
     // @RequestMapping(value = "", method = RequestMethod.POST)
