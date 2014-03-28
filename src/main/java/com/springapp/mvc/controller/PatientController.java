@@ -55,7 +55,7 @@ public class PatientController {
 
     @RequestMapping(value = "/edit_profile_action", method = RequestMethod.POST)
     public String editProfileAction(HttpServletRequest request, @ModelAttribute("patient") Patient patient) {
-        HttpSession session = request.getSession();
+    	HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
         patient.setPersonId(user.getId());
         patientDAO.updatePatient(patient);
