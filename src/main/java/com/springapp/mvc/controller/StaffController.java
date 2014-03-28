@@ -98,10 +98,25 @@ public class StaffController {
 
         ModelAndView model = new ModelAndView("staff/index");
         if (keyword != null) {
-            List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
-            model.addObject("patients", patients);
+            List<Visit> appointments = basicDAO.getAppoinmentsByPatientName(keyword);
+            model.addObject("appointments", appointments);
         }
         model.addObject("content", "see_appointment");
+        return model;
+    }
+
+    @RequestMapping(value="/reschedule", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView reschedules(@RequestParam(value = "patientId", defaultValue = "") int patientId) {
+
+        ModelAndView model = new ModelAndView("staff/index");
+        Patient patient = new Patient();
+        patient.setId(patientId);
+//        Doctor doctor = doctorDAO.getDoctorById(pat);
+//        List<Map<Integer, Object>> schedule = basicService.findScheduleByDoctorId(docId);
+//        model.addObject("schedule", schedule);
+//        model.addObject("patient", patient);
+//        model.addObject("doctor", doctor);
+        model.addObject("content", "create_appointment_form_2");
         return model;
     }
 

@@ -3,6 +3,12 @@
 <form method="post" action="see_appointment">
     Search patient: <input type="text" name="keyword"/>
 </form>
-<c:forEach items="${patients}" var="patient" >
-    <a href="create_appointment_form_2/${patient.personId}"><div>${patient.nameFirst} ${patient.nameLast}</div></a>
-</c:forEach>
+
+<form method="post" action="reschedule">
+    <c:forEach items="${appointments}" var="appointment" >
+        <div><input type="radio" name="patientId" value="${appointment.patientId}"/>${appointment.patientName} ${appointment.date}</div>
+    </c:forEach>
+    <input type="hidden" name="patientId" value="${app}">
+    <input type="submit" value="reschedule">
+    <button>Delete</button>
+</form>

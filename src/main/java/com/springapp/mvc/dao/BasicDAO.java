@@ -37,6 +37,23 @@ public class BasicDAO {
         return appointments;
     }
 
+    public List<Visit> getAppoinmentsByPatientName(String patientName) {
+        String sql = "SELECT visits.*, CONCAT(person.NameFirst,person.NameLast) as patientName FROM visits \n" +
+                "left join patients on patients.id = visits.PatientID \n" +
+                "left join person \n" +
+                "on patients.PersonId = person.id \n" +
+                "where CONCAT(person.NameFirst,person.NameLast) like ?;";
+
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Visit> appointments = jdbcTemplate.query(sql,
+                new Object[] {"%"+patientName+"%"},
+                new BeanPropertyRowMapper(Visit.class));
+
+        return appointments;
+    }
+
     public List<Visit> getAppointmentsByDoctorId(int doctorId, String today, String lastDay) {
         String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n" +
                 "            left join patients on patients.id = visits.PatientID\n" +
