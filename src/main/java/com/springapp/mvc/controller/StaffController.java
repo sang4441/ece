@@ -92,6 +92,18 @@ public class StaffController {
         model.addObject("content", "create_appointment_form_1");
         return model;
     }
+    @RequestMapping(value="/see_appointment", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView seeAppointment(
+            @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+        ModelAndView model = new ModelAndView("staff/index");
+        if (keyword != null) {
+            List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
+            model.addObject("patients", patients);
+        }
+        model.addObject("content", "see_appointment");
+        return model;
+    }
 
 
     @RequestMapping(value="/searchPatient", method = {RequestMethod.GET, RequestMethod.POST})
@@ -131,6 +143,7 @@ public class StaffController {
         String str = time;
         List<String> timeList = Arrays.asList(str.split(","));
         String timeValue;
+        visit.setDateCode(Integer.parseInt(timeList.get(1).toString()));
         if (timeList.get(1).equals(1)) {timeValue="09:00:00";}
         else if (timeList.get(1).equals(2)) {timeValue="09:30:00";}
         else if (timeList.get(1).equals(3)) {timeValue="09:30:00";}

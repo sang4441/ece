@@ -44,7 +44,7 @@ public class BasicService {
             long endTime = endDate.getTime();
             long diffTime = endTime - startTime;
             long diffDays = (long) Math.ceil(diffTime / (1000.0 * 60.0 * 60.0 * 24.0));
-            visit.setDayCode(diffDays);
+            visit.setDayCode(diffDays-1);
         }
 
         for (int i = 0; i < daysSize; i++) {

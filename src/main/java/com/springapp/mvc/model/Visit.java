@@ -5,7 +5,7 @@ import java.util.Date;
 public class Visit {
 
 	private int id;
-    private int patient_id;
+    private int patientId;
     private String patientName;
     private long dayCode;
     private int dateCode;
@@ -14,7 +14,7 @@ public class Visit {
 	private int length;
 	private String prescription;
 	private String diagnosis;
-	private int doctorID;
+	private int doctorId;
 	private Date date_modified;
 	private String comment;
 	private int initialID;
@@ -38,10 +38,14 @@ public class Visit {
     public void setParentID(int parentID) {
         this.parentID = parentID;
     }
-    public void setPatient_id(int patient_id) {
-        this.patient_id = patient_id;
+
+    public int getPatientId() {
+        return patientId;
     }
 
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
 
     public int getDateCode() {
         return dateCode;
@@ -50,13 +54,6 @@ public class Visit {
     public void setDateCode(int dateCode) {
         this.dateCode = dateCode;
     }
-
-	/**
-	 * @return the patient_id
-	 */
-	public int getPatient_id() {
-		return patient_id;
-	}
 
     public Date getDate() {
         return date;
@@ -90,12 +87,12 @@ public class Visit {
         this.diagnosis = diagnosis;
     }
 
-    public int getDoctorID() {
-        return doctorID;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctorID(int doctorID) {
-        this.doctorID = doctorID;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
     public Date getDate_modified() {

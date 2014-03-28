@@ -68,7 +68,7 @@ public class BasicDAO {
                 "initialID = ? \n" +
                 "WHERE id= ?";
 
-        jdbcTemplate.update(sql, new Object[]{appointment.getDoctorID(), appointment.getDate(), appointment.getPrescription(),
+        jdbcTemplate.update(sql, new Object[]{appointment.getDoctorId(), appointment.getDate(), appointment.getPrescription(),
                 appointment.getDiagnosis(), appointment.getComment(), appointment.getDate_modified()
                 , appointment.getParentID(), appointment.getInitialID(), appointment.getId()});
     }

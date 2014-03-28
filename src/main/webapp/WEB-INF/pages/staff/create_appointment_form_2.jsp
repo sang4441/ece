@@ -3,7 +3,8 @@
     <h2>Create appointment</h2>
     <div>Patient: ${patient.nameLast} ${patient.nameFirst}</div>
     <div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>
-    <%--<input type="hidden" name="doctor"--%>
+    <input type="hidden" name="doctorId" value="${doctor.id}">
+    <input type="hidden" name="patientId" value="${patient.id}">
     <%--From: <input type="text" class="datepicker"> To: <input type="text" class="datepicker"> <button id="change_date">Change date</button>--%>
     <div>
 
@@ -45,17 +46,6 @@
                 </td>
             </c:forEach>
         </table>
-        <%--<div></div>--%>
-        <%--<div>Mar 27th</div>--%>
-
-        <%--<a href="create_appointment_form_2/${patient.personId}"><div>${patient.nameFirst} ${patient.nameLast}</div></a>--%>
-
-        <%--<select name="date">--%>
-            <%--<option value="1:30">1:30</option>--%>
-            <%--<option value="2:00">2:00</option>--%>
-            <%--<option value="2:30">2:30</option>--%>
-            <%--<option value="3:00">3:00</option>--%>
-        <%--</select>--%>
     </div>
 
     <div>Prescription: <input type="text" name="prescription"></div>
