@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.springapp.mvc.model.Doctor;
@@ -35,13 +36,17 @@ public class BasicDAO {
         return appointments;
     }
 
-    public List<Visit> getAppointmentsByDoctorId(int doctorId) {
-        String sql = "SELECT * FROM visits where DoctorID = ?";
+    public List<Visit> getAppointmentsByDoctorId(int doctorId, String today, String lastDay) {
+        String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n" +
+                "            left join patients on patients.id = visits.PatientID\n" +
+                "            left join person on person.id = patients.PersonID\n" +
+                "            where visits.DoctorID = ? \n " +
+                "and Date >= ? and Date <= ?";
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
         List<Visit> appointments = jdbcTemplate.query(sql,
-                new Object[] { doctorId },
+                new Object[] { doctorId, today, lastDay },
                 new BeanPropertyRowMapper(Visit.class));
 
         return appointments;

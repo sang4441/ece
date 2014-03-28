@@ -4,6 +4,7 @@ import com.springapp.mvc.dao.BasicDAO;
 import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
 import com.springapp.mvc.dao.PersonDAO;
+import com.springapp.mvc.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/staff")
@@ -25,6 +27,7 @@ public class StaffController {
     @Autowired PatientDAO patientDAO;
     @Autowired BasicDAO basicDAO;
     @Autowired DoctorDAO doctorDAO;
+    @Autowired BasicService basicService;
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView getAllPatients(HttpServletRequest request) {
@@ -68,8 +71,9 @@ public class StaffController {
             @PathVariable int personId) {
         Patient patient = patientDAO.getPatientsByPersonId(personId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
-
+        List<Map<Integer, String>> schedule = basicService.findScheduleByDoctorId(patient.getDefaultDoc());
         ModelAndView model = new ModelAndView("staff/index");
+        model.addObject("schedule", schedule);
         model.addObject("patient", patient);
         model.addObject("doctor", doctor);
         model.addObject("content", "create_appointment_form_2");

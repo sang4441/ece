@@ -6,7 +6,10 @@ public class Visit {
 
 	private int id;
 	private int patient_id;
+    private String patientName;
 	private Date date;
+    private long dayCode;
+    private int dateCode;
 	private int length;
 	private String prescription;
 	private String diagnosis;
@@ -53,6 +56,16 @@ public class Visit {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
+
+    public int getDateCode() {
+        return dateCode;
+    }
+
+    public void setDateCode(int dateCode) {
+        this.dateCode = dateCode;
+    }
 
 	/**
 	 * @return the patient_id
@@ -181,4 +194,20 @@ public class Visit {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+    public long getDayCode() {
+        return dayCode;
+    }
+
+    public void setDayCode(long dayCode) {
+        this.dayCode = dayCode;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
 }

@@ -8,11 +8,9 @@
 </c:forEach>
 <%--private int id;--%>
 <%--private int patient_id;--%>
-<%--private Date date;--%>
 <%--private int length;--%>
 <%--private String prescription;--%>
 <%--private String diagnosis;--%>
 <%--private int doctor_id;--%>
-<%--private Date date_modified;--%>
 <%--private String comment;--%>
 <%--private int initial_id;--%>

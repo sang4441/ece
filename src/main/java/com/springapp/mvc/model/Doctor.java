@@ -2,7 +2,6 @@ package com.springapp.mvc.model;
 
 public class Doctor extends Person{
 
-	private int id;
 	private int person_id;
 
 
@@ -10,9 +9,8 @@ public class Doctor extends Person{
 
 	}
 
-	public Doctor(int id, int person_id){
+	public Doctor(int person_id){
 
-		this.id = id;
 		this.person_id = person_id;
 
 	}
@@ -22,16 +20,16 @@ public class Doctor extends Person{
 	 * Get the value of salary
 	 * 
 	 * @return the value of salary
-	 */
-	public int getID() {
-		return id;
-	}
-
-	public void setID(int id) {
-
-		this.id = id;
-
-	}
+//	 */
+//	public int getID() {
+//		return id;
+//	}
+//
+//	public void setID(int id) {
+//
+//		this.id = id;
+//
+//	}
 
 	/**
 	 * Get the value of deptID
