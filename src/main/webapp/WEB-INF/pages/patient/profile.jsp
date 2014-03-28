@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td>Last Name</td>
-            <td>${user.nameLast}></td>
+            <td>${user.nameLast}</td>
         </tr>
         <tr>
             <td> Phone Number</td>
@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td>Password</td>
-            <td>${user.password}</td>
+            <td>**********</td>
         </tr>
         <tr>
             <td>Street</td>

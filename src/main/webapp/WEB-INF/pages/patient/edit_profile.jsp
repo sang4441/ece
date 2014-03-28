@@ -1,7 +1,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <h2>edit profile</h2>
 <a href="/ece/patient/profile"><button>back to my profile</button></a>
-<form method="post" action="edit_profile_action">
+<script type="text/javascript">
+	function checkPassword(form)
+	{
+		if(form.pwd.value == "")
+        {
+            alert("Error: please enter the current password");
+            form.pwd.focus();
+            return false;
+        }
+        else if(form.pwd.value != ${user.password})
+		{
+			alert("Error: current password is wrong");
+      		form.pwd.focus();
+      		return false;
+		}
+        else if(form.newPwd1.value != form.newPwd2.value)
+		{
+			alert("Error: new password does not match");
+      		form.newPwd2.focus();
+      		return false;
+		}
+        else {
+            form.pwd.name = "";
+            form.newPwd2.name = "Password";
+            return true;
+        }
+	}
+	
+</script>
+<form method="post" onsubmit="return checkPassword(this)" action="edit_profile_action">
     <table>
         <tr>
             <td>First Name</td>
@@ -21,7 +50,15 @@
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="text" name="Password" value="${user.password}"></td>
+            <td><input id="pwd" type="password" name="Password"></td>
+        </tr>
+        <tr>
+            <td>New Password</td>
+            <td><input id="newPwd1" type="password"></td>
+        </tr>
+        <tr>
+            <td>Re-Enter</td>
+            <td><input id="newPwd2" type="password"></td>
         </tr>
         <tr>
             <td>Street</td>

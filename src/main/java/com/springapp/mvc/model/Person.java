@@ -135,7 +135,7 @@ public class Person {
 	 *            the password to set
 	 */
 	public void setPassword(String password) {
-		Password = password;
+        Password = password;
 	}
 
 	/**
