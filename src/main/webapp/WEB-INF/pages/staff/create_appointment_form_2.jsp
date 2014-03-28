@@ -3,6 +3,7 @@
     <h2>Create appointment</h2>
     <div>Patient: ${patient.nameLast} ${patient.nameFirst}</div>
     <div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>
+    <%--<input type="hidden" name="doctor"--%>
     <%--From: <input type="text" class="datepicker"> To: <input type="text" class="datepicker"> <button id="change_date">Change date</button>--%>
     <div>
 
@@ -37,7 +38,7 @@
                             <div class="schedule-open">${slot.value}</div>
                         </c:when>
                         <c:otherwise>
-                            <div class="schedule-open"><input type="checkbox" name="time" value="${slot.value}|${slot.key}"></div>
+                            <div class="schedule-open"><input type="radio" name="time" value="${slot.value},${slot.key}"></div>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>

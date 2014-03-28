@@ -16,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -91,10 +94,32 @@ public class StaffController {
                                         @ModelAttribute("visit") Visit visit,
                                         BindingResult result) throws ParseException {
 
+        String str = time;
+        List<String> timeList = Arrays.asList(str.split(","));
+        String timeValue;
+        if (timeList.get(1).equals(1)) {timeValue="09:00:00";}
+        else if (timeList.get(1).equals(2)) {timeValue="09:30:00";}
+        else if (timeList.get(1).equals(3)) {timeValue="09:30:00";}
+        else if (timeList.get(1).equals(4)) {timeValue="10:00:00";}
+        else if (timeList.get(1).equals(5)) {timeValue="10:30:00";}
+        else if (timeList.get(1).equals(6)) {timeValue="11:00:00";}
+        else if (timeList.get(1).equals(7)) {timeValue="11:30:00";}
+        else if (timeList.get(1).equals(8)) {timeValue="12:00:00";}
+        else if (timeList.get(1).equals(9)) {timeValue="12:30:00";}
+        else if (timeList.get(1).equals(10)) {timeValue="14:30:00";}
+        else if (timeList.get(1).equals(11)) {timeValue="15:00:00";}
+        else if (timeList.get(1).equals(12)) {timeValue="15:30:00";}
+        else if (timeList.get(1).equals(13)) {timeValue="16:00:00";}
+        else {timeValue="16:30:00";}
 
+//        visit.setDate(timeList.get(0));
 
-        return "redirect:/staff/dashboard";
-    }
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+        String dateInString = timeList.get(0) + " " + timeValue;
+        Date date = sdf.parse(dateInString);
+        visit.setDate(date);
+            return "redirect:/staff/dashboard";
+        }
 }
 
 
