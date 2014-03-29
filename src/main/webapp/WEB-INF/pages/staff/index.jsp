@@ -7,10 +7,10 @@
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 <body>
-<button><a href="see_appointment">See appointment</a></button>
-<button><a href="create_appointment_form_1">Create appointment</a></button>
-<button><a href="create_patient_form">New patient</a></button>
-<button><a href="update_patient">Update patient</a></button>
+<button><a href="/ece/staff/see_appointment">See appointment</a></button>
+<button><a href="/ece/staff/create_appointment_form_1">Create appointment</a></button>
+<button><a href="/ece/staff/create_patient_form">New patient</a></button>
+<button><a href="/ece/staff/update_patient">Update patient</a></button>
 <a href="/ece/log_out"><button>logout</button></a><c:set var="content" value="${content}.jsp"/>
 <jsp:include page="${content}"/>
 </body>

@@ -153,33 +153,35 @@ public class StaffController {
     public String appointmentFormSubmit(HttpServletRequest request,
                                         @RequestParam(value = "time", defaultValue = "") String time,
                                         @ModelAttribute("visit") Visit visit,
+                                        @ModelAttribute("patient") Patient patient,
                                         BindingResult result) throws ParseException {
 
         String str = time;
         List<String> timeList = Arrays.asList(str.split(","));
         String timeValue;
         visit.setDateCode(Integer.parseInt(timeList.get(1).toString()));
-        if (timeList.get(1).equals(1)) {timeValue="09:00:00";}
-        else if (timeList.get(1).equals(2)) {timeValue="09:30:00";}
-        else if (timeList.get(1).equals(3)) {timeValue="09:30:00";}
-        else if (timeList.get(1).equals(4)) {timeValue="10:00:00";}
-        else if (timeList.get(1).equals(5)) {timeValue="10:30:00";}
-        else if (timeList.get(1).equals(6)) {timeValue="11:00:00";}
-        else if (timeList.get(1).equals(7)) {timeValue="11:30:00";}
-        else if (timeList.get(1).equals(8)) {timeValue="12:00:00";}
-        else if (timeList.get(1).equals(9)) {timeValue="12:30:00";}
-        else if (timeList.get(1).equals(10)) {timeValue="14:30:00";}
-        else if (timeList.get(1).equals(11)) {timeValue="15:00:00";}
-        else if (timeList.get(1).equals(12)) {timeValue="15:30:00";}
-        else if (timeList.get(1).equals(13)) {timeValue="16:00:00";}
+        if (timeList.get(1).equals("1")) {timeValue="09:00:00";}
+        else if (timeList.get(1).equals("2")) {timeValue="09:30:00";}
+        else if (timeList.get(1).equals("3")) {timeValue="10:00:00";}
+        else if (timeList.get(1).equals("4")) {timeValue="10:30:00";}
+        else if (timeList.get(1).equals("5")) {timeValue="11:00:00";}
+        else if (timeList.get(1).equals("6")) {timeValue="11:30:00";}
+        else if (timeList.get(1).equals("7")) {timeValue="13:00:00";}
+        else if (timeList.get(1).equals("8")) {timeValue="13:30:00";}
+        else if (timeList.get(1).equals("9")) {timeValue="14:00:00";}
+        else if (timeList.get(1).equals("10")) {timeValue="14:30:00";}
+        else if (timeList.get(1).equals("11")) {timeValue="15:00:00";}
+        else if (timeList.get(1).equals("12")) {timeValue="15:30:00";}
+        else if (timeList.get(1).equals("13")) {timeValue="16:00:00";}
         else {timeValue="16:30:00";}
 
 //        visit.setDate(timeList.get(0));
-
+        visit.setDate_modified(new Date());
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
         String dateInString = timeList.get(0) + " " + timeValue;
         Date date = sdf.parse(dateInString);
         visit.setDate(date);
+        basicDAO.insertAppointment(visit);
             return "redirect:/staff/dashboard";
         }
 }

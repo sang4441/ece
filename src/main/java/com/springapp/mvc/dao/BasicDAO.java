@@ -105,7 +105,7 @@ public class BasicDAO {
                 "?,\n" +
                 "?)";
 
-        jdbcTemplate.update(sql, new Object[]{appointment.getParentID(), appointment.getDoctorId(), appointment.getDate(), appointment.getDateCode(),
+        jdbcTemplate.update(sql, new Object[]{appointment.getPatientId(), appointment.getDoctorId(), appointment.getDate(), appointment.getDateCode(),
                 appointment.getLength(), appointment.getPrescription(), appointment.getDiagnosis(), appointment.getComment(),
                 appointment.getDate_modified(), appointment.getInitialID()});
     }
