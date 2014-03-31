@@ -1,6 +1,6 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.dao.BasicDAO;
+import com.springapp.mvc.dao.AppointmentDAO;
 import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
 import com.springapp.mvc.dao.PersonDAO;
@@ -28,7 +28,7 @@ public class StaffController {
 
     @Autowired PersonDAO personDAO;
     @Autowired PatientDAO patientDAO;
-    @Autowired BasicDAO basicDAO;
+    @Autowired AppointmentDAO appointmentDAO;
     @Autowired DoctorDAO doctorDAO;
     @Autowired BasicService basicService;
 
@@ -98,7 +98,7 @@ public class StaffController {
 
         ModelAndView model = new ModelAndView("staff/index");
         if (keyword != null) {
-            List<Visit> appointments = basicDAO.getAppoinmentsByPatientName(keyword);
+            List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientName(keyword);
             model.addObject("appointments", appointments);
         }
         model.addObject("content", "see_appointment");
@@ -181,7 +181,7 @@ public class StaffController {
         String dateInString = timeList.get(0) + " " + timeValue;
         Date date = sdf.parse(dateInString);
         visit.setDate(date);
-        basicDAO.insertAppointment(visit);
+        appointmentDAO.insertAppointment(visit);
             return "redirect:/staff/dashboard";
         }
 }

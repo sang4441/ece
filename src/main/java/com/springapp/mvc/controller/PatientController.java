@@ -1,6 +1,6 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.dao.BasicDAO;
+import com.springapp.mvc.dao.AppointmentDAO;
 import com.springapp.mvc.dao.PatientDAO;
 import com.springapp.mvc.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class PatientController {
 
     @Autowired PersonDAO personDAO;
     @Autowired PatientDAO patientDAO;
-    @Autowired BasicDAO basicDAO;
+    @Autowired AppointmentDAO appointmentDAO;
 
     // Basic dashboard for the patient
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
@@ -34,7 +34,7 @@ public class PatientController {
         // get all patients
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
-        List<Visit> appointments = basicDAO.getAppoinmentsByPatientId(user.getId());
+        List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientId(user.getId());
         int personId = user.getId();
 
         ModelAndView model = new ModelAndView("patient/index");

@@ -18,7 +18,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     
-    <bean id="basicDAO" class="com.springapp.mvc.dao.BasicDAO" />
+    <bean id="appointmentDAO" class="com.springapp.mvc.dao.AppointmentDAO" />
     <bean id="patientDAO" class="com.springapp.mvc.dao.PatientDAO" />
     <bean id="personDAO" class="com.springapp.mvc.dao.PersonDAO" />
     <bean id="doctorDAO" class="com.springapp.mvc.dao.DoctorDAO" />

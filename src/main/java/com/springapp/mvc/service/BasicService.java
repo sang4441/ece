@@ -1,6 +1,6 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.dao.BasicDAO;
+import com.springapp.mvc.dao.AppointmentDAO;
 import com.springapp.mvc.model.Person;
 import com.springapp.mvc.model.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BasicService {
-    @Autowired BasicDAO basicDAO;
+    @Autowired AppointmentDAO appointmentDAO;
 
     public List<Map<Integer, Object>> findScheduleByDoctorId(int docId, String start, String end) {
         String todayString;
@@ -32,7 +32,7 @@ public class BasicService {
 //
 //        }
 
-        List<Visit> visits = basicDAO.getAppointmentsByDoctorId(docId, todayString, lastDayString);
+        List<Visit> visits = appointmentDAO.getAppointmentsByDoctorId(docId, todayString, lastDayString);
 
 
         List<Map<Integer, Object>> visitDailySet = new ArrayList<Map<Integer, Object>>();
