@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h2>profile</h2>
+<h2>Patient profile</h2>
 
 <c:choose>
     <c:when test="${role==1}">
@@ -29,14 +29,18 @@
             <td> Phone Number</td>
             <td>${user.phone}</td>
         </tr>
-        <tr>
-            <td>Username</td>
-            <td>${user.username}</td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td>**********</td>
-        </tr>
+        <c:choose>
+            <c:when test="${role==1}">
+                <tr>
+                    <td>Username</td>
+                    <td>${user.username}</td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>**********</td>
+                </tr>
+            </c:when>
+        </c:choose>
         <tr>
             <td>Street</td>
             <td>${user.street}</td>
@@ -55,7 +59,7 @@
         </tr>
         <tr>
             <td>Default Doctor</td>
-            <td>${user.defaultDoc}</td>
+            <td>${doctor}</td>
         </tr>
         <tr>
             <td>Health Card</td>

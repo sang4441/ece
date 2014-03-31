@@ -98,12 +98,16 @@ public class PatientController {
 		HttpSession session = request.getSession();
 		int session_role = ((Person) session.getAttribute("user")).getRoleID();
 		Patient patient = patientDAO.getPatientsByPersonId(personId);
+		String doctor = doctorDAO.getDefaultDoctorByPersonId(personId);
+
 		List<Visit> visits = appointmentDAO.getAppoinmentsByPatientId(patient
 				.getId());
+
 		ModelAndView model = new ModelAndView("patient/index");
 		model.addObject("content", "profile");
 		model.addObject("user", patient);
 		model.addObject("role", session_role);
+		model.addObject("doctor", doctor);
 		model.addObject("visits", visits);
 		return model;
 	}
