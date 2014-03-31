@@ -1,6 +1,7 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.dao.AppointmentDAO;
+import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
 import com.springapp.mvc.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class PatientController {
     @Autowired PersonDAO personDAO;
     @Autowired PatientDAO patientDAO;
     @Autowired AppointmentDAO appointmentDAO;
-
+    @Autowired DoctorDAO doctorDAO;
     // Basic dashboard for the patient
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView getAllPatients(HttpServletRequest request) {
@@ -53,9 +54,12 @@ public class PatientController {
         int session_role = ((Person)session.getAttribute("user")).getRoleID();
         int person_id = personId;
 
+        List<Doctor> doctors = doctorDAO.getAllDoctors();
         Patient patient = patientDAO.getPatientsByPersonId(personId);
+
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "edit_profile");
+        model.addObject("doctors", doctors);
         model.addObject("user", patient);
         model.addObject("role", session_role);
         model.addObject("personId", person_id);
@@ -65,8 +69,15 @@ public class PatientController {
     // This function only involves in changing patient info
     @RequestMapping(value = "/edit_profile_action", method = RequestMethod.POST)
     public String editProfileAction(HttpServletRequest request, @ModelAttribute("patient") Patient patient) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if (user.getRoleID() == 1) {
+            patientDAO.updatePatient(patient);
+        }
+        else{
+            patientDAO.updatePatientAsStaff(patient);
+        }
 
-        patientDAO.updatePatient(patient);
         int personId = patient.getPersonId();
         return "redirect:/patient/profile/"+personId;
     }

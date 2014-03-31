@@ -53,7 +53,7 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
-		List<Patient> patients = patientDAO.getAllPatientsOfDoctor(doc.getId());
+		List<Patient> patients = patientDAO.getAllPatientsInfoOfDoctor(doc.getId());
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("content", "dashboard");
@@ -173,5 +173,4 @@ public class DoctorController {
 		// TODO: check if id is auto updated or if we have to search it again
 		return "redirect:/appointment/" + visit.getId();
 	}
-
 }

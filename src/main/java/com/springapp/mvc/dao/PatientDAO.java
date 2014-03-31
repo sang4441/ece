@@ -102,6 +102,31 @@ public class PatientDAO {
 						patient.getCurrentHealth(), patient.getPersonId() });
 	}
 
+    public void updatePatientAsStaff(Patient patient) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        String sql = "UPDATE person\n" + "SET NameLast = ?,\n"
+                + "NameFirst = ?,\n" + "Phone = ?,\n" + "username = ?,\n"
+                + "street = ?,\n" + "City = ?,\n"
+                + "Province = ?,\n" + "PostalCode = ? \n" + "WHERE id= ?";
+
+        jdbcTemplate.update(
+                sql,
+                new Object[] { patient.getNameLast(), patient.getNameFirst(),
+                        patient.getPhone(), patient.getUsername(), patient.getStreet(),
+                        patient.getCity(), patient.getProvince(),
+                        patient.getPostalCode(), patient.getPersonId() });
+
+        sql = "UPDATE patients\n" + "SET DefaultDoc = ?,\n"
+                + "HealthCard = ?,\n" + "SIN = ?,\n" + "CurrentHealth = ?\n"
+                + "WHERE PersonID= ?";
+
+        jdbcTemplate.update(
+                sql,
+                new Object[] { patient.getDefaultDoc(),
+                        patient.getHealthCard(), patient.getSIN(),
+                        patient.getCurrentHealth(), patient.getPersonId() });
+    }
+
 	public List<Patient> searchPatientByKeyword(String keyword) {
 		String sql = "SELECT * FROM patients \n" + "left join person\n"
 				+ "on patients.PersonId = person.id\n"
@@ -128,6 +153,19 @@ public class PatientDAO {
 
 		return patients;
 	}
+
+    public List<Patient> getAllPatientsInfoOfDoctor(int id) {
+        String sql = "SELECT * " + "FROM patients "
+                + "INNER JOIN PatientDoctor dp ON dp.PatientID = patients.id "
+                + "INNER JOIN person p ON p.id = patients.PersonID WHERE dp.DoctorID = ?";
+        LOG.info(sql);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Patient> patients = jdbcTemplate.query(sql, new Object[] { id },
+                new BeanPropertyRowMapper(Patient.class));
+
+        return patients;
+    }
 
 	public int insertPatient(Patient patient) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

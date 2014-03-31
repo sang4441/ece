@@ -8,13 +8,19 @@
         <a href="/ece/patient/profile/${user.personId}"><button>back to my profile</button></a>
     </c:when>
     <c:otherwise>
-        <a href="/ece/patient/profile/${user.personId}"><button>back to my profile</button></a>
+        <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
     </c:otherwise>
 </c:choose>
 
 <script type="text/javascript">
     function checkPassword(form)
     {
+        if (${role} == 3)
+        {
+            alert("Patient information has been changed");
+            return true;
+        }
+
         if(form.pwd.value == "")
         {
             alert("Error: please enter the current password");
@@ -94,7 +100,13 @@
         </tr>
         <tr>
             <td>Default Doctor</td>
-            <td><input type="text" name="defaultDoc" value="${user.defaultDoc}"></td>
+            <td>
+                <select name="defaultDoc">
+                    <c:forEach items="${doctors}" var="doctor">
+                        <option value="${doctor.id}" ${doctor.id == user.defaultDoc ? "selected":""}> ${doctor.nameFirst} ${doctor.nameLast}</option>
+                    </c:forEach>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Health Card</td>
@@ -108,7 +120,7 @@
             <td> Current Health</td>
             <td><input type="text" name="currentHealth" value="${user.currentHealth}"></td>
         </tr>
-        <input type="hidden" name="personId" value="${personId}"/>
     </table>
+    <input type="hidden" name="personId" value="${user.personId}"></input>
     <div><input type="submit" value="submit"></div>
 </form>

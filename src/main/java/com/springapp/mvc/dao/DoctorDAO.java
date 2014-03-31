@@ -22,7 +22,10 @@ public class DoctorDAO {
 
 	@ModelAttribute("doctors")
 	public List<Doctor> getAllDoctors() {
-		String sql = "SELECT * FROM doctor";
+		String sql = "select doctor.*, pe.nameFirst, pe.nameLast\n" +
+                "from doctor\n" +
+                "inner join person pe\n" +
+                "on doctor.personID = pe.id";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -46,7 +49,7 @@ public class DoctorDAO {
 	}
 
 	public Doctor getDoctorByPersonID(int id) {
-		String sql = "SELECT * FROM doctor " + "inner join person "
+		String sql = "select doctor.id FROM doctor " + "inner join person "
 				+ "on doctor.PersonId = person.id "
 				+ "where person.id = ? LIMIT 1";
 		LOG.info(sql);
