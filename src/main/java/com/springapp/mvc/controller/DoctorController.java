@@ -126,7 +126,8 @@ public class DoctorController {
 		model.addObject("user", user);
 		model.addObject("visits", visits);
 		// search parameters to be returned
-		model.addObject("date", FormatService.formatDate(date));
+		model.addObject("date",
+				date == null ? date : FormatService.formatDate(date));
 		model.addObject("patientName", patientName);
 		model.addObject("diagnosis", diagnosis);
 		model.addObject("comment", comment);
