@@ -99,4 +99,27 @@ public class DoctorDAO {
 
 		return doctors;
 	}
+
+
+    public String getDefaultDoctorByPersonId(int personId){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "select defaultDoc\n" +
+                "from patients\n" +
+                "where personID = ?";
+
+        int doctor_id = jdbcTemplate.queryForInt(sql, new Object[] { personId });
+
+        sql = "select CONCAT(pe.nameFirst,' ', pe.nameLast) as doctorName\n" +
+                "from doctor\n" +
+                "inner join person pe\n" +
+                "on pe.id = doctor.personID\n" +
+                "WHERE doctor.id = ?";
+
+        String doctor = (String)jdbcTemplate.queryForObject(sql,
+                new Object[] { doctor_id }, String.class);
+
+        return doctor;
+    }
 }
