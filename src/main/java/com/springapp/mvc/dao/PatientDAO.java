@@ -21,7 +21,10 @@ public class PatientDAO {
 
 	@ModelAttribute("patients")
 	public List<Patient> getAllPatients() {
-		String sql = "SELECT * FROM patients";
+		String sql = "select patients.*, pe.nameFirst, pe.nameLast\n" +
+                "from patients\n" +
+                "inner join person pe\n" +
+                "on pe.id = patients.personID";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -30,6 +33,23 @@ public class PatientDAO {
 
 		return patients;
 	}
+
+    //returns list of all patients by first name asc
+    public List<Patient> getAllPatientsSortedByName() {
+        String sql = "select patients.*, pe.nameFirst, pe.nameLast\n" +
+                "from patients\n" +
+                "inner join person pe\n" +
+                "on pe.id = patients.personID\n" +
+                "order by pe.nameFirst asc";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Patient> patients = jdbcTemplate.query(sql,
+                new BeanPropertyRowMapper(Patient.class));
+
+
+        return patients;
+    }
 
 	public Patient getPatient(int id) {
 		String sql = "SELECT * FROM patients " + "inner join person "

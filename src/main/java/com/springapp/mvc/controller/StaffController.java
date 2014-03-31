@@ -55,7 +55,53 @@ public class StaffController {
     public ModelAndView updatePatient() {
         return new ModelAndView("staff/index", "content", "update_patient");
     }
-    
+
+    @RequestMapping(value="/review_patient", method = RequestMethod.GET)
+    public ModelAndView reviewPatientRecord(HttpServletRequest request) {
+
+//        return new ModelAndView("staff/index", "content", "review_patient");
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        int person_id = user.getId();
+
+        //NEED TO ACCESS STAFFDOCTOR
+        ModelAndView model = new ModelAndView("staff/index");
+        List<Doctor> doctors = doctorDAO.searchDoctorsByStaffPersonId(person_id);
+        model.addObject("doctors", doctors);
+        model.addObject("content", "review_patient");
+        return model;
+    }
+
+    @RequestMapping(value="/assign_patient", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView assignPatient() {
+
+        // get all the doctors in the system
+        List<Doctor> doctors = doctorDAO.getAllDoctors();
+
+        ModelAndView model = new ModelAndView("staff/index");
+
+        model.addObject("content","assign_patient");
+        model.addObject("doctors", doctors );
+        return model;
+
+    }
+
+    @RequestMapping(value="/select_patient/{doctorId}", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView selectPatient(@PathVariable int doctorId) {
+
+        // get all the doctors in the system by firstname alphabetically
+        List<Patient> patients = patientDAO.getAllPatientsSortedByName();
+
+        ModelAndView model = new ModelAndView("staff/index");
+
+        model.addObject("content","select_patient");
+        model.addObject("patients", patients);
+        //save doctorId to assign patients
+        model.addObject("doctorId", doctorId);
+        return model;
+
+    }
+
     @RequestMapping(value = "patient_form_submit", method = RequestMethod.POST)
     public String patientFormSubmit(HttpServletRequest request, @ModelAttribute("patient") Patient patient){
         int personId = patientDAO.insertPatient(patient);
@@ -134,6 +180,24 @@ public class StaffController {
 
         return model;
     }
+
+    // This function retrieves particular patient's info in a editable form
+    @RequestMapping(value = "/review_records/{doctorId}", method = RequestMethod.GET)
+    public ModelAndView retrieveRecords(HttpServletRequest request,@PathVariable int doctorId) {
+
+        HttpSession session = request.getSession();
+        int session_role = ((Person)session.getAttribute("user")).getRoleID();
+        List<Visit> records = appointmentDAO.getRecordsByDoctorId(doctorId);
+        Doctor doctor = doctorDAO.getDoctorById(doctorId);
+
+        ModelAndView model = new ModelAndView("staff/index");
+        model.addObject("content", "review_records");
+        model.addObject("records", records);
+        model.addObject("doctor", doctor);
+        model.addObject("role", session_role);
+        return model;
+    }
+
 
     @RequestMapping(value="/create_appointment_form_2/{personId}", method = RequestMethod.GET)
     public ModelAndView createAppointmentTwo(

@@ -35,6 +35,30 @@ public class DoctorDAO {
 		return doctors;
 	}
 
+    public List<Doctor> searchDoctorsByStaffPersonId(int personId){
+
+        String sql = "select id\n" +
+                        "from staff\n" +
+                        "where personID = ?\n";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        int staff_id = jdbcTemplate.queryForInt(sql, new Object[]{personId});
+
+        sql = "select doctor.*, pe.nameFirst, pe.nameLast\n" +
+                "from doctor \n" +
+                "inner join person pe\n" +
+                "on doctor.personID = pe.id\n" +
+                "inner join StaffDoctor\n" +
+                "on StaffDoctor.doctorID = doctor.id\n" +
+                "where StaffDoctor.staffID = ?";
+
+        List<Doctor> doctors = jdbcTemplate.query(sql, new Object[] {staff_id}, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctors;
+    }
+
+
 	public Doctor getDoctorById(int id) {
 		String sql = "SELECT person.*, doctor.PersonId FROM doctor \n"
 				+ "left join person\n" + "on doctor.PersonId = person.id\n"
