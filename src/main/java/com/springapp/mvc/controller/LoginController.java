@@ -21,7 +21,8 @@ public class LoginController {
     @Autowired PersonDAO personDAO;
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
+	public String printWelcome(ModelMap model, HttpServletRequest request) {
+        model.addAttribute("login", request.getAttribute("login"));
 		model.addAttribute("message", "Hello world!");
 		return "index";
 	}
@@ -40,18 +41,26 @@ public class LoginController {
 
         String role;
             // find user/pass combo
-            Person user = personDAO.getPersonWithUsernameAndPassword(username, password);
+            String status = (personDAO.checkLogin(username, password) == 1? "success" : "fail");
+
+            HttpSession session = request.getSession();
 
             // set user in session data
-            if (user == null) {
+            if (status == "fail") {
                 // failed login
                 // error message required
-                return "login_form";
+
+                String err_msg = "Please check again for your login credentials";
+                session.setAttribute("login", err_msg);
+                request.getSession().setAttribute("login", err_msg);
+                return "redirect:/";
 
             } else {
                 // success
-                HttpSession session = request.getSession();
+                Person user = personDAO.getPersonWithUsernameAndPassword(username, password);
                 session.setAttribute("user", user);
+                session.setAttribute("login", "");
+                request.getSession().setAttribute("login", "");
                 request.getSession().setAttribute("user", user);
                 if (user.getRoleID() == 1) {
                     role = "patient";
