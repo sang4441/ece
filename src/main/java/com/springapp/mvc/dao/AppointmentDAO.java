@@ -82,14 +82,21 @@ public class AppointmentDAO {
 
 	public void insertAppointment(Visit appointment) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		String sql = "INSERT INTO visits(PatientID, DoctorID, Date, dateCode, Length, Prescription, Diagnosis, Comment, DateModified, InitialID)"
+
+        String sql = "select * from visits\n" +
+                "where PatientID = ? and DoctorID = ? and dateCode = ? and DATE(Date) = ?";
+        List<Visit> appointments = jdbcTemplate.query(sql, new Object[] { appointment.getPatientId(),
+                appointment.getDoctorId(), appointment.getDateCode(), appointment.getDate()}, new BeanPropertyRowMapper(
+                Visit.class));
+
+        sql = "INSERT INTO visits(PatientID, DoctorID, Date, dateCode, Length, Prescription, Diagnosis, Comment, DateModified)"
 				+ "VALUES (?,\n"
 				+ "?,\n"
 				+ "?,\n"
 				+ "?,\n"
 				+ "?,\n"
 				+ "?,\n"
-				+ "?,\n" + "?,\n" + "?,\n" + "?)";
+				+ "?,\n" + "?,\n" + "?)";
 
 		jdbcTemplate.update(
 				sql,
@@ -98,8 +105,20 @@ public class AppointmentDAO {
 						appointment.getDateCode(), appointment.getLength(),
 						appointment.getPrescription(),
 						appointment.getDiagnosis(), appointment.getComment(),
-						appointment.getDate_modified(),
-						appointment.getInitialID() });
+						appointment.getDate_modified() });
+
+        sql = "select max(id) from visits";
+
+        java.lang.Integer currentId  = jdbcTemplate.queryForObject(sql,
+                java.lang.Integer.class);
+
+        appointment.setInitialID(currentId);
+
+        sql = "UPDATE visits SET initialID = ? WHERE id = ?";
+
+        jdbcTemplate.update(
+                sql,
+                new Object[] { appointment.getInitialID(), appointment.getInitialID() });
 	}
 
 	public void deleteAppointment(Visit appointment) {

@@ -76,6 +76,19 @@ public class PatientDAO {
 		return patient;
 	}
 
+    public int getPatientsIdByPersonId(int id) {
+        String sql = "SELECT patients.id FROM patients " + "inner join person "
+                + "on patients.PersonId = person.id "
+                + "where person.id = ? LIMIT 1";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        java.lang.Integer patientId = jdbcTemplate.queryForObject(sql,
+                new Object[] { id }, java.lang.Integer.class);
+
+        return patientId;
+    }
+
 	public void updatePatient(Patient patient) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "UPDATE person\n" + "SET NameLast = ?,\n"

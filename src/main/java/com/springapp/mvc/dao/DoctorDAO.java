@@ -36,9 +36,9 @@ public class DoctorDAO {
 	}
 
 	public Doctor getDoctorById(int id) {
-		String sql = "SELECT person.*, doctor.PersonId FROM doctor \n"
-				+ "left join person\n" + "on doctor.PersonId = person.id\n"
-				+ "where doctor.id = ?;";
+		String sql = "SELECT doctor.id FROM doctor \n"
+                + "left join person\n" + "on doctor.PersonId = person.id\n"
+                + "where doctor.id = ?;";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

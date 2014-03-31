@@ -4,7 +4,7 @@
     <div>Patient: ${patient.nameLast} ${patient.nameFirst}</div>
     <div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>
     <input type="hidden" name="doctorId" value="${doctor.id}">
-    <input type="hidden" name="patientId" value="${patient.personId}">
+    <input type="hidden" name="patientId" value="${patientId}">
     <%--From: <input type="text" class="datepicker"> To: <input type="text" class="datepicker"> <button id="change_date">Change date</button>--%>
     <div>
 

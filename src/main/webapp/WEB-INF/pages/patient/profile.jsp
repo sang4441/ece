@@ -11,7 +11,7 @@
         <a href="/ece/patient/edit_profile/${user.personId}"><button>Edit</button></a>
     </c:when>
     <c:otherwise>
-        <a href="/ece/doctor/dashboard"><button>Dashboard</button></a>
+        <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
     </c:otherwise>
 </c:choose>
 

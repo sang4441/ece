@@ -139,11 +139,13 @@ public class StaffController {
     public ModelAndView createAppointmentTwo(
             @PathVariable int personId) {
         Patient patient = patientDAO.getPatientsByPersonId(personId);
+        int patientID = patientDAO.getPatientsIdByPersonId(personId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
         List<Map<Integer, Object>> schedule = basicService.findScheduleByDoctorId(patient.getDefaultDoc());
         ModelAndView model = new ModelAndView("staff/index");
         model.addObject("schedule", schedule);
         model.addObject("patient", patient);
+        model.addObject("patientId", patientID);
         model.addObject("doctor", doctor);
         model.addObject("content", "create_appointment_form_2");
         return model;
@@ -153,7 +155,6 @@ public class StaffController {
     public String appointmentFormSubmit(HttpServletRequest request,
                                         @RequestParam(value = "time", defaultValue = "") String time,
                                         @ModelAttribute("visit") Visit visit,
-                                        @ModelAttribute("patient") Patient patient,
                                         BindingResult result) throws ParseException {
 
         String str = time;
