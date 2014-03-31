@@ -28,6 +28,22 @@ public class AppointmentDAO {
 		return appointments;
 	}
 
+    public List<Visit> getRecordsByDoctorId(int doctorId){
+
+        String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName\n" +
+                "from visits\n" +
+                "inner join person pe\n" +
+                "on pe.id = visits.patientID\n" +
+                "where doctorId = ?\n" +
+                "order by patientName asc, date desc";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Visit> records = jdbcTemplate.query(sql, new Object[] {doctorId}, new BeanPropertyRowMapper(Visit.class));
+
+        return records;
+    }
+
 	public List<Visit> getAppoinmentsByPatientName(String patientName) {
 		String sql = "SELECT visits.*, CONCAT(person.NameFirst,person.NameLast) as patientName FROM visits \n"
 				+ "left join patients on patients.id = visits.PatientID \n"
