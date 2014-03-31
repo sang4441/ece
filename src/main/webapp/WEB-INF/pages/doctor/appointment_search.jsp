@@ -2,19 +2,14 @@
 
 <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
 
-<form method="post" onsubmit="return checkPassword(this)" action="/ece/patient/edit_profile_action" class="search">
+<form method="post" action="" class="search">
     <h1>Search</h1>
-    <label>Visited On:</label><input type="date" name="date" value="${date}" /><br/>
+    <label>Visited On</label><input type="date" name="date" value="${date}" /><br/>
     <label>Patient Name</label><input type="text" name="patientName" value="${patientName}"/><br/>
     <label>Diagnosis</label><input type="text" name="diagnosis" value="${diagnosis}" /><br/>
     <label>Comment</label><input type="text" name="comment" value="${comment}" /><br/>
     <label>Prescription</label><input type="text" name="prescription" value="${prescription}" /><br/>
     <label>Surgery</label><input type="text" name="surgery" value="${surgery}"/><br/>
-    <label>Search By</label>
-    <select name="searchJoin">
-        <option value="and">AND</option>
-        <option value="or">OR</option>
-    </select><br/>
     <button type="submit">Search</button>
 </form>
 
