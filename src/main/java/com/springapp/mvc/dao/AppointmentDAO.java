@@ -2,6 +2,7 @@ package com.springapp.mvc.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -10,8 +11,11 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.springapp.mvc.model.Visit;
+import com.springapp.mvc.service.FormatService;
 
 public class AppointmentDAO {
+
+	Logger LOG = Logger.getLogger("AppointmentDAO");
 
 	@Autowired
 	DataSource dataSource;
@@ -118,13 +122,14 @@ public class AppointmentDAO {
 	public void insertAppointment(Visit appointment) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String sql = "select * from visits\n" +
-                "where PatientID = ? and DoctorID = ? and dateCode = ? and DATE(Date) = ?";
-        List<Visit> appointments = jdbcTemplate.query(sql, new Object[] { appointment.getPatientId(),
-                appointment.getDoctorId(), appointment.getDateCode(), appointment.getDate()}, new BeanPropertyRowMapper(
-                Visit.class));
+		String sql = "select * from visits\n"
+				+ "where PatientID = ? and DoctorID = ? and dateCode = ? and DATE(Date) = ?";
+		List<Visit> appointments = jdbcTemplate.query(sql, new Object[] {
+				appointment.getPatientId(), appointment.getDoctorId(),
+				appointment.getDateCode(), appointment.getDate() },
+				new BeanPropertyRowMapper(Visit.class));
 
-        sql = "INSERT INTO visits(PatientID, DoctorID, Date, dateCode, Length, Prescription, Diagnosis, Comment, DateModified)"
+		sql = "INSERT INTO visits(PatientID, DoctorID, Date, dateCode, Length, Prescription, Diagnosis, Comment, DateModified)"
 				+ "VALUES (?,\n"
 				+ "?,\n"
 				+ "?,\n"
@@ -142,18 +147,17 @@ public class AppointmentDAO {
 						appointment.getDiagnosis(), appointment.getComment(),
 						appointment.getDate_modified() });
 
-        sql = "select max(id) from visits";
+		sql = "select max(id) from visits";
 
-        java.lang.Integer currentId  = jdbcTemplate.queryForObject(sql,
-                java.lang.Integer.class);
+		java.lang.Integer currentId = jdbcTemplate.queryForObject(sql,
+				java.lang.Integer.class);
 
-        appointment.setInitialID(currentId);
+		appointment.setInitialID(currentId);
 
-        sql = "UPDATE visits SET initialID = ? WHERE id = ?";
+		sql = "UPDATE visits SET initialID = ? WHERE id = ?";
 
-        jdbcTemplate.update(
-                sql,
-                new Object[] { appointment.getInitialID(), appointment.getInitialID() });
+		jdbcTemplate.update(sql, new Object[] { appointment.getInitialID(),
+				appointment.getInitialID() });
 	}
 
 	public void deleteAppointment(Visit appointment) {
@@ -170,31 +174,28 @@ public class AppointmentDAO {
 		String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n"
 				+ "            LEFT JOIN patients on patients.id = visits.PatientID\n"
 				+ "            LEFT JOIN person on person.id = patients.PersonID\n"
-				+ "            WHERE (? = '' OR visits.Date = ?) AND \n "
+				+ "            WHERE (? = '1900-01-01' OR DAY(visits.Date) = DAY(?)) AND \n "
 				+ "					(? LIKE '' OR person.NameFirst LIKE ?) AND \n "
 				+ "					(? LIKE '' OR person.NameLast LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Diagnosis LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Comment LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Prescription LIKE ?) AND \n "
-				+ "					(? LIKE '' OR visits.surgery LIKE ?)";
+				+ "					(? LIKE '' OR visits.Surgery LIKE ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-		List<Visit> appointments = jdbcTemplate.query(sql, new Object[] { date,
-				date, searchString(patientName), searchString(patientName),
-				searchString(patientName), searchString(patientName),
-				searchString(diagnosis), searchString(diagnosis),
-				searchString(comment), searchString(comment),
-				searchString(prescription), searchString(prescription),
-				searchString(surgery), searchString(surgery) },
+		LOG.info(sql);
+		LOG.info("\tdate: " + FormatService.formatDate(date));
+		List<Visit> appointments = jdbcTemplate.query(sql, new Object[] {
+				FormatService.formatDate(date), FormatService.formatDate(date),
+				patientName, FormatService.searchString(patientName),
+				patientName, FormatService.searchString(patientName),
+				diagnosis, FormatService.searchString(diagnosis), comment,
+				FormatService.searchString(comment), prescription,
+				FormatService.searchString(prescription), surgery,
+				FormatService.searchString(surgery) },
 				new BeanPropertyRowMapper(Visit.class));
 
 		return appointments;
-	}
-
-	public String searchString(String query) {
-		// TODO: sanitize inputs
-		return "%" + query + "%";
 	}
 
 	public Visit getAppointment(int appointmentID) {

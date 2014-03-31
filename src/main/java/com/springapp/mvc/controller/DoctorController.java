@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,7 @@ import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Patient;
 import com.springapp.mvc.model.Person;
 import com.springapp.mvc.model.Visit;
+import com.springapp.mvc.service.FormatService;
 
 @Controller
 @RequestMapping("/doctor")
@@ -83,7 +85,7 @@ public class DoctorController {
 	@RequestMapping(value = "/patient/search", method = RequestMethod.POST)
 	public ModelAndView searchPatients(
 			HttpServletRequest request,
-			@RequestParam(value = "date", defaultValue = "") Date date,
+			@RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
 			@RequestParam(value = "patientName", defaultValue = "") String patientName,
 			@RequestParam(value = "patientID", defaultValue = "") int patientID) {
 		HttpSession session = request.getSession(false);
@@ -96,6 +98,9 @@ public class DoctorController {
 		model.addObject("content", "patient_search");
 		model.addObject("user", user);
 		model.addObject("patients", patients);
+		model.addObject("date", FormatService.formatDate(date));
+		model.addObject("patientName", patientName);
+		model.addObject("patientID", patientID);
 		return model;
 	}
 
@@ -103,7 +108,7 @@ public class DoctorController {
 			RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView searchAppointments(
 			HttpServletRequest request,
-			@RequestParam(value = "date", defaultValue = "") Date date,
+			@RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
 			@RequestParam(value = "patientName", defaultValue = "") String patientName,
 			@RequestParam(value = "diagnosis", defaultValue = "") String diagnosis,
 			@RequestParam(value = "comment", defaultValue = "") String comment,
@@ -121,7 +126,8 @@ public class DoctorController {
 		model.addObject("user", user);
 		model.addObject("visits", visits);
 		// search parameters to be returned
-		model.addObject("date", date);
+		model.addObject("date",
+				date == null ? date : FormatService.formatDate(date));
 		model.addObject("patientName", patientName);
 		model.addObject("diagnosis", diagnosis);
 		model.addObject("comment", comment);
