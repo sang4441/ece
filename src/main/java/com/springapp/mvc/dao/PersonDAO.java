@@ -39,4 +39,19 @@ public class PersonDAO {
         Person person  = (Person)jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
         return person;
     }
+
+    public int checkLogin(String username, String password){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "select count(*)\n" +
+                        "from person \n" +
+                        "where username = ? and password = ?";
+
+        int check = jdbcTemplate.queryForInt(sql, new Object[]{username, password});
+
+        return check;
+
+    }
+
 }
