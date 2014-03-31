@@ -78,6 +78,23 @@ public class AppointmentDAO {
 		return appointments;
 	}
 
+    public List<Visit> getAppointmentsByPatientId(int patientId, String today,
+                                                 String lastDay) {
+        String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n"
+                + "            left join patients on patients.id = visits.PatientID\n"
+                + "            left join person on person.id = patients.PersonID\n"
+                + "            where patients.id = ? \n "
+                + "and Date >= ? and Date <= ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Visit> appointments = jdbcTemplate.query(sql, new Object[] {
+                patientId, today, lastDay }, new BeanPropertyRowMapper(
+                Visit.class));
+
+        return appointments;
+    }
+
 	public void updateAppointment(Visit appointment) {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
