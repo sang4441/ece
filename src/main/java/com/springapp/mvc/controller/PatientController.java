@@ -90,8 +90,12 @@ public class PatientController {
         HttpSession session = request.getSession();
         int session_role = ((Person)session.getAttribute("user")).getRoleID();
         Patient patient = patientDAO.getPatientsByPersonId(personId);
+
+        String doctor = doctorDAO.getDefaultDoctorByPersonId(personId);
+
         ModelAndView model = new ModelAndView("patient/index");
         model.addObject("content", "profile");
+        model.addObject("doctor", doctor);
         model.addObject("user", patient);
         model.addObject("role", session_role);
         return model;
