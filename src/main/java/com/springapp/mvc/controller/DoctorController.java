@@ -53,7 +53,8 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
-		List<Patient> patients = patientDAO.getAllPatientsInfoOfDoctor(doc.getId());
+		List<Patient> patients = patientDAO.getAllPatientsInfoOfDoctor(doc
+				.getId());
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("content", "dashboard");
@@ -67,7 +68,7 @@ public class DoctorController {
 			@PathVariable int patientID) {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
-		Patient patient = patientDAO.getPatient(patientID);
+		Patient patient = patientDAO.getPatientsByPatientId(patientID);
 		List<Visit> visits = appointmentDAO
 				.getAppoinmentsByPatientId(patientID);
 
@@ -98,7 +99,8 @@ public class DoctorController {
 		return model;
 	}
 
-	@RequestMapping(value = "/appointment/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/appointment/search", method = {
+			RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView searchAppointments(
 			HttpServletRequest request,
 			@RequestParam(value = "date", defaultValue = "") Date date,
@@ -107,6 +109,7 @@ public class DoctorController {
 			@RequestParam(value = "comment", defaultValue = "") String comment,
 			@RequestParam(value = "prescription", defaultValue = "") String prescription,
 			@RequestParam(value = "surgery", defaultValue = "") String surgery) {
+
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
@@ -117,6 +120,13 @@ public class DoctorController {
 		model.addObject("content", "appointment_search");
 		model.addObject("user", user);
 		model.addObject("visits", visits);
+		// search parameters to be returned
+		model.addObject("date", date);
+		model.addObject("patientName", patientName);
+		model.addObject("diagnosis", diagnosis);
+		model.addObject("comment", comment);
+		model.addObject("prescription", prescription);
+		model.addObject("surgery", surgery);
 		return model;
 	}
 

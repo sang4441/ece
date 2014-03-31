@@ -13,3 +13,14 @@ table,th, td div
 .schedule-filled {
     background-color: lightgray;
 }
+
+form.search label {
+	display: inline-block;
+	width: 150px;
+	text-align: right;
+	padding-right: 15px;
+}
+
+form.search label::after {
+	content: ":";
+}

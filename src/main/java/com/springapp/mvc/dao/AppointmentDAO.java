@@ -28,21 +28,23 @@ public class AppointmentDAO {
 		return appointments;
 	}
 
-    public List<Visit> getRecordsByDoctorId(int doctorId){
+	public List<Visit> getRecordsByDoctorId(int doctorId) {
 
-        String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName\n" +
-                "from visits\n" +
-                "inner join person pe\n" +
-                "on pe.id = visits.patientID\n" +
-                "where doctorId = ?\n" +
-                "order by patientName asc, date desc";
+		String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName\n"
+				+ "from visits\n"
+				+ "inner join person pe\n"
+				+ "on pe.id = visits.patientID\n"
+				+ "where doctorId = ?\n"
+				+ "order by patientName asc, date desc";
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        List<Visit> records = jdbcTemplate.query(sql, new Object[] {doctorId}, new BeanPropertyRowMapper(Visit.class));
+		List<Visit> records = jdbcTemplate.query(sql,
+				new Object[] { doctorId }, new BeanPropertyRowMapper(
+						Visit.class));
 
-        return records;
-    }
+		return records;
+	}
 
 	public List<Visit> getAppoinmentsByPatientName(String patientName) {
 		String sql = "SELECT visits.*, CONCAT(person.NameFirst,person.NameLast) as patientName FROM visits \n"
@@ -75,6 +77,23 @@ public class AppointmentDAO {
 
 		return appointments;
 	}
+
+    public List<Visit> getAppointmentsByPatientId(int patientId, String today,
+                                                 String lastDay) {
+        String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n"
+                + "            left join patients on patients.id = visits.PatientID\n"
+                + "            left join person on person.id = patients.PersonID\n"
+                + "            where patients.id = ? \n "
+                + "and Date >= ? and Date <= ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Visit> appointments = jdbcTemplate.query(sql, new Object[] {
+                patientId, today, lastDay }, new BeanPropertyRowMapper(
+                Visit.class));
+
+        return appointments;
+    }
 
 	public void updateAppointment(Visit appointment) {
 
@@ -154,18 +173,21 @@ public class AppointmentDAO {
 				+ "            WHERE (? = '' OR visits.Date = ?) AND \n "
 				+ "					(? LIKE '' OR person.NameFirst LIKE ?) AND \n "
 				+ "					(? LIKE '' OR person.NameLast LIKE ?) AND \n "
-				+ "					(? LIKE '' OR visits.diagnosis LIKE ?) AND \n "
-				+ "					(? LIKE '' OR visits.comment LIKE ?) AND \n "
-				+ "					(? LIKE '' OR visits.prescription LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Diagnosis LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Comment LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Prescription LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.surgery LIKE ?)";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-		List<Visit> appointments = jdbcTemplate
-				.query(sql, new Object[] { date, searchString(patientName),
-						searchString(diagnosis), searchString(comment),
-						searchString(prescription), searchString(surgery) },
-						new BeanPropertyRowMapper(Visit.class));
+		List<Visit> appointments = jdbcTemplate.query(sql, new Object[] { date,
+				date, searchString(patientName), searchString(patientName),
+				searchString(patientName), searchString(patientName),
+				searchString(diagnosis), searchString(diagnosis),
+				searchString(comment), searchString(comment),
+				searchString(prescription), searchString(prescription),
+				searchString(surgery), searchString(surgery) },
+				new BeanPropertyRowMapper(Visit.class));
 
 		return appointments;
 	}
