@@ -1,5 +1,6 @@
 package com.springapp.mvc.controller;
 
+import com.mysql.jdbc.StringUtils;
 import com.springapp.mvc.dao.AppointmentDAO;
 import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
@@ -161,7 +162,7 @@ public class StaffController {
 //            model.addObject("appointments", appointments);
 //        }
         Visit appointment = appointmentDAO.getAppointment(appointmentId);
-        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(2,appointment.getPatientId());
+        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(1,appointment.getDoctorId());
         Patient patient = patientDAO.getPatientsByPatientId(appointment.getPatientId());
         model.addObject("schedule", schedule);
         model.addObject("appointment", appointment);
@@ -177,7 +178,7 @@ public class StaffController {
         ModelAndView model = new ModelAndView("staff/index");
         Patient patient = patientDAO.getPatientsByPatientId(patientId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
-        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(2,patient.getId());
+        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(1, patient.getDefaultDoc());
         model.addObject("schedule", schedule);
         model.addObject("patient", patient);
         model.addObject("doctor", doctor);
@@ -241,14 +242,21 @@ public class StaffController {
     public String appointmentFormSubmit(HttpServletRequest request,
                                         @RequestParam(value = "time", defaultValue = "") String time,
                                         @RequestParam(value = "type", defaultValue = "") String type,
-                                        @RequestParam(value = "appointmentId", defaultValue = "") int appointmentId,
+                                        @RequestParam(value = "appointmentId", defaultValue = "") String appointmentId,
                                         @ModelAttribute("visit") Visit visit,
                                         BindingResult result) throws ParseException {
 
+
         visit.setDate(basicService.getSchedule(visit, time));
-        appointmentDAO.insertAppointment(visit);
-            return "redirect:/staff/dashboard";
+        if (StringUtils.isNullOrEmpty(appointmentId)) {
+            return "redirect:/staff/see_appointment/" + appointmentDAO.insertAppointment(visit);
+        } else {
+            visit.setId(Integer.parseInt(appointmentId));
+            visit.setInitialID(Integer.parseInt(appointmentId));
+            appointmentDAO.updateAppointment(visit);
         }
+        return "redirect:/staff/see_appointment/" + appointmentId;
+    }
 }
 
 

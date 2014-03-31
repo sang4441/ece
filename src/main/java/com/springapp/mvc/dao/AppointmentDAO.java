@@ -103,15 +103,15 @@ public class AppointmentDAO {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "UPDATE visits\n" + "SET PatientID = ?,\n"
-				+ "DoctorID = ?,\n" + "Date = ?,\n" + "dateCode = ?,\n"
+				+ "Date = ?,\n" + "dateCode = ?,\n"
 				+ "Length = ?,\n" + "Prescription = ?,\n" + "Diagnosis = ?,\n"
-				+ "Comment = ? \n" + "DateModified = ? \n" + "InitialID = ? \n"
+				+ "Comment = ?, \n" + "DateModified = ?, \n" + "InitialID = ? \n"
 				+ "WHERE id= ?";
 
 		jdbcTemplate.update(
 				sql,
-				new Object[] { appointment.getParentID(),
-						appointment.getDoctorId(), appointment.getDate(),
+				new Object[] { appointment.getPatientId(),
+						appointment.getDate(),
 						appointment.getDateCode(), appointment.getLength(),
 						appointment.getPrescription(),
 						appointment.getDiagnosis(), appointment.getComment(),
@@ -119,7 +119,7 @@ public class AppointmentDAO {
 						appointment.getInitialID(), appointment.getId() });
 	}
 
-	public void insertAppointment(Visit appointment) {
+	public int insertAppointment(Visit appointment) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		String sql = "select * from visits\n"
@@ -156,8 +156,11 @@ public class AppointmentDAO {
 
 		sql = "UPDATE visits SET initialID = ? WHERE id = ?";
 
-		jdbcTemplate.update(sql, new Object[] { appointment.getInitialID(),
-				appointment.getInitialID() });
+
+        jdbcTemplate.update(
+                sql,
+                new Object[] { appointment.getInitialID(), appointment.getInitialID() });
+        return appointment.getInitialID();
 	}
 
 	public void deleteAppointment(Visit appointment) {

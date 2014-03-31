@@ -53,9 +53,9 @@ public class PatientDAO {
 
 
 	public Patient getPatientsByPatientId(int id) {
-		String sql = "SELECT * FROM patients " + "inner join person "
-				+ "on patients.PersonId = person.id "
-				+ "where patients.id = ? LIMIT 1";
+		String sql = "SELECT pt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n" +
+                "FROM patients as pt inner join person as pr on pt.PersonId = pr.id \n" +
+                "where pt.id = ? LIMIT 1";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
