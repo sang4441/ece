@@ -97,26 +97,46 @@ public class StaffController {
             @RequestParam(value = "keyword", defaultValue = "") String keyword) {
 
         ModelAndView model = new ModelAndView("staff/index");
-        if (keyword != null) {
+        if (!keyword.equals("")) {
             List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientName(keyword);
             model.addObject("appointments", appointments);
         }
+        model.addObject("content", "search_appointment");
+        return model;
+    }
+
+    @RequestMapping(value="/see_appointment/{appointmentId}", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView seeAppointmentbyId(
+            @PathVariable int appointmentId) {
+
+        ModelAndView model = new ModelAndView("staff/index");
+//        if (!keyword.equals("")) {
+//            List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientName(keyword);
+//            model.addObject("appointments", appointments);
+//        }
+        Visit appointment = appointmentDAO.getAppointment(appointmentId);
+        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(2,appointment.getPatientId());
+        Patient patient = patientDAO.getPatientsByPatientId(appointment.getPatientId());
+        model.addObject("schedule", schedule);
+        model.addObject("appointment", appointment);
+        model.addObject("patient", patient);
         model.addObject("content", "see_appointment");
         return model;
     }
 
-    @RequestMapping(value="/reschedule", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView reschedules(@RequestParam(value = "patientId", defaultValue = "") int patientId) {
+
+    @RequestMapping(value="/reschedule/{patientId}", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView reschedules(@PathVariable int patientId) {
 
         ModelAndView model = new ModelAndView("staff/index");
-        Patient patient = new Patient();
-        patient.setId(patientId);
-//        Doctor doctor = doctorDAO.getDoctorById(pat);
-//        List<Map<Integer, Object>> schedule = basicService.findScheduleByDoctorId(docId);
-//        model.addObject("schedule", schedule);
-//        model.addObject("patient", patient);
-//        model.addObject("doctor", doctor);
+        Patient patient = patientDAO.getPatientsByPatientId(patientId);
+        Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
+        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(2,patient.getId());
+        model.addObject("schedule", schedule);
+        model.addObject("patient", patient);
+        model.addObject("doctor", doctor);
         model.addObject("content", "create_appointment_form_2");
+        model.addObject("type", "reschedule");
         return model;
     }
 
@@ -140,7 +160,9 @@ public class StaffController {
             @PathVariable int personId) {
         Patient patient = patientDAO.getPatientsByPersonId(personId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
-        List<Map<Integer, Object>> schedule = basicService.findScheduleByDoctorId(patient.getDefaultDoc());
+//        List<Visit> visits = appointmentDAO.getAppointmentsByDoctorId(docId, todayString, lastDayString);
+
+        List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(1, doctor.getId());
         ModelAndView model = new ModelAndView("staff/index");
         model.addObject("schedule", schedule);
         model.addObject("patient", patient);
@@ -152,35 +174,13 @@ public class StaffController {
     @RequestMapping(value = "appointment_form_submit", method = RequestMethod.POST)
     public String appointmentFormSubmit(HttpServletRequest request,
                                         @RequestParam(value = "time", defaultValue = "") String time,
+                                        @RequestParam(value = "type", defaultValue = "") String type,
+                                        @RequestParam(value = "appointmentId", defaultValue = "") int appointmentId,
                                         @ModelAttribute("visit") Visit visit,
                                         @ModelAttribute("patient") Patient patient,
                                         BindingResult result) throws ParseException {
 
-        String str = time;
-        List<String> timeList = Arrays.asList(str.split(","));
-        String timeValue;
-        visit.setDateCode(Integer.parseInt(timeList.get(1).toString()));
-        if (timeList.get(1).equals("1")) {timeValue="09:00:00";}
-        else if (timeList.get(1).equals("2")) {timeValue="09:30:00";}
-        else if (timeList.get(1).equals("3")) {timeValue="10:00:00";}
-        else if (timeList.get(1).equals("4")) {timeValue="10:30:00";}
-        else if (timeList.get(1).equals("5")) {timeValue="11:00:00";}
-        else if (timeList.get(1).equals("6")) {timeValue="11:30:00";}
-        else if (timeList.get(1).equals("7")) {timeValue="13:00:00";}
-        else if (timeList.get(1).equals("8")) {timeValue="13:30:00";}
-        else if (timeList.get(1).equals("9")) {timeValue="14:00:00";}
-        else if (timeList.get(1).equals("10")) {timeValue="14:30:00";}
-        else if (timeList.get(1).equals("11")) {timeValue="15:00:00";}
-        else if (timeList.get(1).equals("12")) {timeValue="15:30:00";}
-        else if (timeList.get(1).equals("13")) {timeValue="16:00:00";}
-        else {timeValue="16:30:00";}
-
-//        visit.setDate(timeList.get(0));
-        visit.setDate_modified(new Date());
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-        String dateInString = timeList.get(0) + " " + timeValue;
-        Date date = sdf.parse(dateInString);
-        visit.setDate(date);
+        visit.setDate(basicService.getSchedule(visit, time));
         appointmentDAO.insertAppointment(visit);
             return "redirect:/staff/dashboard";
         }

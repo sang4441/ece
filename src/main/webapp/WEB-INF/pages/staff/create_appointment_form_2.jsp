@@ -1,8 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <form method="post"action="/ece/staff/appointment_form_submit">
-    <h2>Create appointment</h2>
+    <c:choose>
+        <c:when test="${type=='reschedule'}">
+            <h2>Reschedule appointment</h2>
+            <input type="hidden" value="reschedule" name="type">
+        </c:when>
+        <c:otherwise>
+            <h2>Create appointment</h2>
+            <input type="hidden" value="create" name="type">
+        </c:otherwise>
+    </c:choose>
+
     <div>Patient: ${patient.nameLast} ${patient.nameFirst}</div>
     <div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>
+    <input type="hidden" name="id" value="${schedule.id}">
     <input type="hidden" name="doctorId" value="${doctor.id}">
     <input type="hidden" name="patientId" value="${patient.personId}">
     <%--From: <input type="text" class="datepicker"> To: <input type="text" class="datepicker"> <button id="change_date">Change date</button>--%>

@@ -31,10 +31,10 @@ public class PatientDAO {
 		return patients;
 	}
 
-	public Patient getPatient(int id) {
+	public Patient getPatientsByPatientId(int id) {
 		String sql = "SELECT * FROM patients " + "inner join person "
 				+ "on patients.PersonId = person.id "
-				+ "where patient.id = ? LIMIT 1";
+				+ "where patients.id = ? LIMIT 1";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

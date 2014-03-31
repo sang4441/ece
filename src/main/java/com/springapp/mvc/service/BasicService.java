@@ -12,7 +12,7 @@ import java.util.*;
 public class BasicService {
     @Autowired AppointmentDAO appointmentDAO;
 
-    public List<Map<Integer, Object>> findScheduleByDoctorId(int docId, String start, String end) {
+    public List<Map<Integer, Object>> findScheduleByVisit(int type, int idNumber, String start, String end) {
         String todayString;
         String lastDayString;
         int daysSize = 5;
@@ -31,9 +31,12 @@ public class BasicService {
 //        } else {
 //
 //        }
-
-        List<Visit> visits = appointmentDAO.getAppointmentsByDoctorId(docId, todayString, lastDayString);
-
+        List<Visit> visits;
+        if (type == 1) {
+            visits = appointmentDAO.getAppointmentsByDoctorId(idNumber, todayString, lastDayString);
+        } else {
+            visits = appointmentDAO.getAppointmentsByPatientId(idNumber, todayString, lastDayString);
+        }
 
         List<Map<Integer, Object>> visitDailySet = new ArrayList<Map<Integer, Object>>();
 
@@ -69,7 +72,37 @@ public class BasicService {
         }
         return visitDailySet;
     }
-    public List<Map<Integer, Object>> findScheduleByDoctorId(int docId) {
-        return findScheduleByDoctorId(docId, null, null);
+    public Date getSchedule(Visit visit, String time) {
+        List<String> timeList = Arrays.asList(time.split(","));
+        String timeValue;
+        visit.setDateCode(Integer.parseInt(timeList.get(1).toString()));
+        if (timeList.get(1).equals("1")) {timeValue="09:00:00";}
+        else if (timeList.get(1).equals("2")) {timeValue="09:30:00";}
+        else if (timeList.get(1).equals("3")) {timeValue="10:00:00";}
+        else if (timeList.get(1).equals("4")) {timeValue="10:30:00";}
+        else if (timeList.get(1).equals("5")) {timeValue="11:00:00";}
+        else if (timeList.get(1).equals("6")) {timeValue="11:30:00";}
+        else if (timeList.get(1).equals("7")) {timeValue="13:00:00";}
+        else if (timeList.get(1).equals("8")) {timeValue="13:30:00";}
+        else if (timeList.get(1).equals("9")) {timeValue="14:00:00";}
+        else if (timeList.get(1).equals("10")) {timeValue="14:30:00";}
+        else if (timeList.get(1).equals("11")) {timeValue="15:00:00";}
+        else if (timeList.get(1).equals("12")) {timeValue="15:30:00";}
+        else if (timeList.get(1).equals("13")) {timeValue="16:00:00";}
+        else {timeValue="16:30:00";}
+
+//        visit.setDate(timeList.get(0));
+        visit.setDate_modified(new Date());
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+        String dateInString = timeList.get(0) + " " + timeValue;
+        try {
+            Date dates = format.parse(dateInString);
+            return dates;
+        } catch (Exception e) {
+            return new Date();
+        }
+    }
+    public List<Map<Integer, Object>> findScheduleByVisit(int type, int docId) {
+        return findScheduleByVisit(type, docId, null, null);
     }
 }
