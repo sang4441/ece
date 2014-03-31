@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/ece/resources/css/style.css" />
 </head>
 <body>
-<a href="/ece/log_out"><button>logout</button></a>
+<a href="/ece/log_out"><button>Logout</button></a>
 <c:set var="content" value="${content}.jsp"/>
 <jsp:include page="${content}"/>
 </body>
