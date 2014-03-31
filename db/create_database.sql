@@ -47,6 +47,7 @@ CREATE TABLE `visits` (
 `Length` INT NOT NULL DEFAULT 0,
 `Prescription` VARCHAR(200) NULL,
 `Diagnosis` VARCHAR(200) NULL,
+`Surgery` VARCHAR(200) NULL,
 `Comment` VARCHAR(250) NULL,
 `DateModified` DATE NOT NULL,
 `InitialID` INT NOT NULL,

@@ -14,6 +14,7 @@ public class Visit {
 	private int length;
 	private String prescription;
 	private String diagnosis;
+	private String surgery;
 	private int doctorId;
 	private Date date_modified;
 	private String comment;
@@ -133,5 +134,13 @@ public class Visit {
 
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
+	}
+
+	public String getSurgery() {
+		return surgery;
+	}
+
+	public void setSurgery(String surgery) {
+		this.surgery = surgery;
 	}
 }
