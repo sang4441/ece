@@ -70,7 +70,7 @@ public class DoctorController {
 			@PathVariable int patientID) {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
-		Patient patient = patientDAO.getPatient(patientID);
+		Patient patient = patientDAO.getPatientsByPatientId(patientID);
 		List<Visit> visits = appointmentDAO
 				.getAppoinmentsByPatientId(patientID);
 

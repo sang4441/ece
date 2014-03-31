@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="addb41ea-bcd3-424e-97f8-fb9093be0f9f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/profile.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/profile.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ece.iws" />
@@ -72,7 +68,7 @@
       <file leaf-file-name="StaffController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="3555">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2835" max-vertical-offset="3930">
               <caret line="189" column="48" selection-start-line="189" selection-start-column="48" selection-end-line="189" selection-end-column="48" />
               <folding />
             </state>
@@ -82,20 +78,9 @@
       <file leaf-file-name="AppointmentDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2550">
+            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="2970">
               <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-              <folding>
-                <marker date="1396292893000" expanded="true" signature="470:510" placeholder="SELECT * FRO..visits..." />
-                <marker date="1396292893000" expanded="true" signature="818:1054" placeholder="select visit..visits..." />
-                <marker date="1396292893000" expanded="true" signature="818:1112" placeholder="select visit..visits..." />
-                <marker date="1396292893000" expanded="true" signature="1421:1706" placeholder="SELECT visit..visits..." />
-                <marker date="1396292893000" expanded="true" signature="2051:2375" placeholder="SELECT visit..visits..." />
-                <marker date="1396292893000" expanded="true" signature="2743:2998" placeholder="UPDATE visit..." />
-                <marker date="1396292893000" expanded="true" signature="3519:3765" placeholder="INSERT INTO ..." />
-                <marker date="1396292893000" expanded="true" signature="4267:4299" placeholder="DELETE FROM ..." />
-                <marker date="1396292893000" expanded="true" signature="4538:5188" placeholder="SELECT visit..visits..." />
-                <marker date="1396292893000" expanded="true" signature="5716:5994" placeholder="SELECT visit..visits..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,7 +88,7 @@
       <file leaf-file-name="PatientController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="959" max-vertical-offset="1365">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1455" max-vertical-offset="1650">
               <caret line="97" column="31" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="31" />
               <folding />
             </state>
@@ -113,7 +98,7 @@
       <file leaf-file-name="Doctor.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Doctor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+            <state vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="825">
               <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
               <folding />
             </state>
@@ -133,17 +118,17 @@
       <file leaf-file-name="DoctorDAO.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4827586" vertical-offset="1394" max-vertical-offset="1800">
+            <state vertical-scroll-proportion="1.0147784" vertical-offset="1178" max-vertical-offset="1800">
               <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
               <folding>
-                <marker date="1396296650000" expanded="true" signature="630:798" placeholder="select docto..doctor..." />
-                <marker date="1396296650000" expanded="true" signature="1072:1171" placeholder="select id\nf..staff..." />
-                <marker date="1396296650000" expanded="true" signature="1338:1662" placeholder="select docto..doctor..." />
-                <marker date="1396296650000" expanded="true" signature="1876:2015" placeholder="SELECT perso..doctor..." />
-                <marker date="1396296650000" expanded="true" signature="2291:2419" placeholder="select docto..doctor..." />
-                <marker date="1396296650000" expanded="true" signature="2779:2909" placeholder="SELECT docto..doctors..." />
-                <marker date="1396296650000" expanded="true" signature="3264:3358" placeholder="select defau..patients..." />
-                <marker date="1396296650000" expanded="true" signature="3460:3686" placeholder="select CONCA..doctor..." />
+                <marker date="1396296789000" expanded="true" signature="630:798" placeholder="select docto..doctor..." />
+                <marker date="1396296789000" expanded="true" signature="1072:1171" placeholder="select id\nf..staff..." />
+                <marker date="1396296789000" expanded="true" signature="1338:1662" placeholder="select docto..doctor..." />
+                <marker date="1396296789000" expanded="true" signature="1876:2023" placeholder="SELECT docto..doctor..." />
+                <marker date="1396296789000" expanded="true" signature="2299:2427" placeholder="select docto..doctor..." />
+                <marker date="1396296789000" expanded="true" signature="2787:2917" placeholder="SELECT docto..doctors..." />
+                <marker date="1396296789000" expanded="true" signature="3272:3366" placeholder="select defau..patients..." />
+                <marker date="1396296789000" expanded="true" signature="3468:3694" placeholder="select CONCA..doctor..." />
               </folding>
             </state>
           </provider>
@@ -162,25 +147,9 @@
       <file leaf-file-name="PatientDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="964" max-vertical-offset="3270">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="3645">
               <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
-              <folding>
-                <marker date="1396284487000" expanded="true" signature="656:830" placeholder="select patie..patients..." />
-                <marker date="1396284487000" expanded="true" signature="1148:1370" placeholder="select patie..patients..." />
-                <marker date="1396284487000" expanded="true" signature="1644:1769" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396284487000" expanded="true" signature="2100:2391" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396284487000" expanded="true" signature="2744:2868" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396284487000" expanded="true" signature="3209:3430" placeholder="UPDATE perso..." />
-                <marker date="1396284487000" expanded="true" signature="3746:3880" placeholder="UPDATE patie..." />
-                <marker date="1396284487000" expanded="true" signature="4217:4454" placeholder="UPDATE perso..." />
-                <marker date="1396284487000" expanded="true" signature="4831:4989" placeholder="UPDATE patie..." />
-                <marker date="1396284487000" expanded="true" signature="5330:5483" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396284487000" expanded="true" signature="5817:5951" placeholder="SELECT patie..patients..." />
-                <marker date="1396284487000" expanded="true" signature="6259:6456" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396284487000" expanded="true" signature="6840:7008" placeholder="INSERT INTO ..." />
-                <marker date="1396284487000" expanded="true" signature="7304:7363" placeholder="select id fr..person..." />
-                <marker date="1396284487000" expanded="true" signature="7472:7584" placeholder="INSERT INTO ..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -188,7 +157,7 @@
       <file leaf-file-name="review_records.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375" vertical-offset="15" max-vertical-offset="435">
+            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="435">
               <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
               <folding />
             </state>
@@ -304,8 +273,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1040,6 +1009,7 @@
       <workItem from="1396275065012" duration="4976000" />
       <workItem from="1396282643843" duration="1836000" />
       <workItem from="1396284502214" duration="9279000" />
+      <workItem from="1396300800034" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="insert sql, &#10;Visit model changed">
       <created>1395994300820</created>
@@ -1065,11 +1035,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87541000" />
+    <option name="totallyTimeSpent" value="87583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="742" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1085,7 +1055,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986626" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986626" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1093,12 +1062,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25402635" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32095096" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32095096" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991013" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986626" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1419,7 +1389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="210">
           <caret line="8" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1457,7 +1426,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="15" max-vertical-offset="435">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="435">
           <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding />
         </state>
@@ -1475,18 +1444,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2550">
           <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <marker date="1396292893000" expanded="true" signature="470:510" placeholder="SELECT * FRO..visits..." />
-            <marker date="1396292893000" expanded="true" signature="818:1054" placeholder="select visit..visits..." />
-            <marker date="1396292893000" expanded="true" signature="818:1112" placeholder="select visit..visits..." />
-            <marker date="1396292893000" expanded="true" signature="1421:1706" placeholder="SELECT visit..visits..." />
-            <marker date="1396292893000" expanded="true" signature="2051:2375" placeholder="SELECT visit..visits..." />
-            <marker date="1396292893000" expanded="true" signature="2743:2998" placeholder="UPDATE visit..." />
-            <marker date="1396292893000" expanded="true" signature="3519:3765" placeholder="INSERT INTO ..." />
-            <marker date="1396292893000" expanded="true" signature="4267:4299" placeholder="DELETE FROM ..." />
-            <marker date="1396292893000" expanded="true" signature="4538:5188" placeholder="SELECT visit..visits..." />
-            <marker date="1396292893000" expanded="true" signature="5716:5994" placeholder="SELECT visit..visits..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1494,23 +1452,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2247" max-vertical-offset="3270">
           <caret line="85" column="19" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
-          <folding>
-            <marker date="1396284487000" expanded="true" signature="656:830" placeholder="select patie..patients..." />
-            <marker date="1396284487000" expanded="true" signature="1148:1370" placeholder="select patie..patients..." />
-            <marker date="1396284487000" expanded="true" signature="1644:1769" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396284487000" expanded="true" signature="2100:2391" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396284487000" expanded="true" signature="2744:2868" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396284487000" expanded="true" signature="3209:3430" placeholder="UPDATE perso..." />
-            <marker date="1396284487000" expanded="true" signature="3746:3880" placeholder="UPDATE patie..." />
-            <marker date="1396284487000" expanded="true" signature="4217:4454" placeholder="UPDATE perso..." />
-            <marker date="1396284487000" expanded="true" signature="4831:4989" placeholder="UPDATE patie..." />
-            <marker date="1396284487000" expanded="true" signature="5330:5483" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396284487000" expanded="true" signature="5817:5951" placeholder="SELECT patie..patients..." />
-            <marker date="1396284487000" expanded="true" signature="6259:6456" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396284487000" expanded="true" signature="6840:7008" placeholder="INSERT INTO ..." />
-            <marker date="1396284487000" expanded="true" signature="7304:7363" placeholder="select id fr..person..." />
-            <marker date="1396284487000" expanded="true" signature="7472:7584" placeholder="INSERT INTO ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1532,17 +1474,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4827586" vertical-offset="1394" max-vertical-offset="1800">
+        <state vertical-scroll-proportion="1.0147784" vertical-offset="1178" max-vertical-offset="1800">
           <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
           <folding>
-            <marker date="1396296650000" expanded="true" signature="630:798" placeholder="select docto..doctor..." />
-            <marker date="1396296650000" expanded="true" signature="1072:1171" placeholder="select id\nf..staff..." />
-            <marker date="1396296650000" expanded="true" signature="1338:1662" placeholder="select docto..doctor..." />
-            <marker date="1396296650000" expanded="true" signature="1876:2015" placeholder="SELECT perso..doctor..." />
-            <marker date="1396296650000" expanded="true" signature="2291:2419" placeholder="select docto..doctor..." />
-            <marker date="1396296650000" expanded="true" signature="2779:2909" placeholder="SELECT docto..doctors..." />
-            <marker date="1396296650000" expanded="true" signature="3264:3358" placeholder="select defau..patients..." />
-            <marker date="1396296650000" expanded="true" signature="3460:3686" placeholder="select CONCA..doctor..." />
+            <marker date="1396296789000" expanded="true" signature="630:798" placeholder="select docto..doctor..." />
+            <marker date="1396296789000" expanded="true" signature="1072:1171" placeholder="select id\nf..staff..." />
+            <marker date="1396296789000" expanded="true" signature="1338:1662" placeholder="select docto..doctor..." />
+            <marker date="1396296789000" expanded="true" signature="1876:2023" placeholder="SELECT docto..doctor..." />
+            <marker date="1396296789000" expanded="true" signature="2299:2427" placeholder="select docto..doctor..." />
+            <marker date="1396296789000" expanded="true" signature="2787:2917" placeholder="SELECT docto..doctors..." />
+            <marker date="1396296789000" expanded="true" signature="3272:3366" placeholder="select defau..patients..." />
+            <marker date="1396296789000" expanded="true" signature="3468:3694" placeholder="select CONCA..doctor..." />
           </folding>
         </state>
       </provider>

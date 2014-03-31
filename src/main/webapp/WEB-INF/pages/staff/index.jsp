@@ -13,7 +13,7 @@
 <button><a href="/ece/staff/create_patient_form">New patient</a></button>
 <button><a href="/ece/staff/update_patient">Update patient</a></button>
 <button><a href="/ece/staff/review_patient">Review Records</a></button>
-<a href="/ece/log_out"><button>logout</button></a><c:set var="content" value="${content}.jsp"/>
+<a href="/ece/log_out"><button>Logout</button></a><c:set var="content" value="${content}.jsp"/>
 <jsp:include page="${content}"/>
 </body>
 </html>
