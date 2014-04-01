@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<h2>${doctor.nameFirst} ${doctor.nameLast} had ${numPatient} patients this year</h2>
+<h2>${doctor.nameFirst} ${doctor.nameLast}</h2>
 
 <table border="1">
     <tr>
