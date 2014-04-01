@@ -21,6 +21,16 @@ public class Visit {
 	private String comment;
 	private int initialID;
 
+    public int getNumVisit() {
+        return numVisit;
+    }
+
+    public void setNumVisit(int numVisit) {
+        this.numVisit = numVisit;
+    }
+
+    private int numVisit;
+
 	public Visit() {
 
 	}

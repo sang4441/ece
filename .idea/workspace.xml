@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dc332ec-cb14-42a3-bb9f-4775015faecc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/dashboard.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/index.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/review_records.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/error/error500.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/resources/error/error500.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ece.iws" />
@@ -60,7 +68,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" line="241" class="com.springapp.mvc.controller.StaffController" package="com.springapp.mvc.controller">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" line="242" class="com.springapp.mvc.controller.StaffController" package="com.springapp.mvc.controller">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -75,7 +83,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" line="100" class="com.springapp.mvc.dao.AppointmentDAO" package="com.springapp.mvc.dao">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" line="133" class="com.springapp.mvc.dao.AppointmentDAO" package="com.springapp.mvc.dao">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -105,6 +113,36 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java" line="54" class="com.springapp.mvc.controller.FinancialController" package="com.springapp.mvc.controller">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java" line="57" class="com.springapp.mvc.controller.FinancialController" package="com.springapp.mvc.controller">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -115,45 +153,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppointmentService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/AppointmentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="9" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="35" max-vertical-offset="585">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppointmentDAO.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="16" selection-start="4581" selection-end="4581" vertical-scroll-proportion="0.26839826" vertical-offset="1676" max-vertical-offset="3930">
-              <folding>
-                <marker date="1396380320000" expanded="true" signature="602:720" placeholder="SELECT * FRO..visits..." />
-                <marker date="1396380320000" expanded="true" signature="1021:1174" placeholder="SELECT *, vi..visits..." />
-                <marker date="1396380320000" expanded="true" signature="1474:1708" placeholder="select visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="2009:2351" placeholder="SELECT visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="2696:3045" placeholder="SELECT visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="3360:3644" placeholder="SELECT visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="3983:4328" placeholder="SELECT visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="4697:4930" placeholder="UPDATE visit..." />
-                <marker date="1396380320000" expanded="true" signature="5437:5540" placeholder="select * fro..visits..." />
-                <marker date="1396380320000" expanded="true" signature="5781:6027" placeholder="INSERT INTO ..." />
-                <marker date="1396380320000" expanded="true" signature="6405:6431" placeholder="select max(i..visits..." />
-                <marker date="1396380320000" expanded="true" signature="6625:6669" placeholder="UPDATE visit..." />
-                <marker date="1396380320000" expanded="true" signature="6915:6947" placeholder="DELETE FROM ..." />
-                <marker date="1396380320000" expanded="true" signature="7180:8181" placeholder="SELECT visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="8926:9204" placeholder="SELECT visit..visits..." />
-                <marker date="1396380320000" expanded="true" signature="9507:9833" placeholder="SELECT visit..visits..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="StaffController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="390" column="36" selection-start="14811" selection-end="14811" vertical-scroll-proportion="-10.923077" vertical-offset="5566" max-vertical-offset="6030">
+            <state line="317" column="4" selection-start="11786" selection-end="12723" vertical-scroll-proportion="-6.3076925" vertical-offset="4591" max-vertical-offset="6075">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -161,22 +164,49 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="error500.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/error/error500.jsp">
+      <file leaf-file-name="FinancialController.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="32" selection-start="51" selection-end="51" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="105">
+            <state line="57" column="38" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.3326316" vertical-offset="697" max-vertical-offset="1470">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="review_records.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/review_records.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="32" selection-start="953" selection-end="953" vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="555">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/BasicService.java">
+      <file leaf-file-name="index.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="38" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0" vertical-offset="1325" max-vertical-offset="1800">
-              <folding>
-                <element signature="e#1340#1362#0" expanded="true" />
-              </folding>
+            <state line="12" column="20" selection-start="472" selection-end="495" vertical-scroll-proportion="-7.2916665" vertical-offset="5" max-vertical-offset="480">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/dashboard.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="27" selection-start="181" selection-end="181" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="165">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="67" selection-start="519" selection-end="519" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="420">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,8 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/BasicDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointemt.jsp" />
@@ -206,7 +234,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/search_appointment.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/patient_appointment.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
@@ -214,7 +241,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/edit_profile.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Doctor.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_patient_form.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_2.jsp" />
@@ -229,7 +255,16 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/appointment_edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/appointment_search.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/error/error500.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/dashboard.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/review_records.jsp" />
       </list>
     </option>
   </component>
@@ -404,6 +439,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="patient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ece" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ece" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="financial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -691,6 +760,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/error" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/js" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/css" />
@@ -1039,7 +1109,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50961000" />
+    <option name="totallyTimeSpent" value="54170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
@@ -1053,7 +1123,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35430038" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35430038" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -1093,43 +1163,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/dashboard.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="495">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/BasicService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="21" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1215">
-          <folding>
-            <element signature="e#1340#1362#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_1.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="23" selection-start="5654" selection-end="5654" vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="2385">
@@ -1149,13 +1182,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/edit_profile.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="107" column="74" selection-start="3499" selection-end="3499" vertical-scroll-proportion="0.0" vertical-offset="1605" max-vertical-offset="1740">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="25" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="2130">
           <folding />
         </state>
       </provider>
@@ -1219,20 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.081743866" vertical-offset="0" max-vertical-offset="367">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="713" selection-end="713" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="40" selection-start="1657" selection-end="1911" vertical-scroll-proportion="-6.576923" vertical-offset="504" max-vertical-offset="4425">
@@ -1260,13 +1272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_1.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="27" selection-start="472" selection-end="472" vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="86" selection-start="2713" selection-end="2713" vertical-scroll-proportion="-27.5" vertical-offset="270" max-vertical-offset="1065">
@@ -1288,13 +1293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/patient_appointment.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="59" selection-start="126" selection-end="126" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="210">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="24" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="1830">
@@ -1311,18 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Doctor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="26" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
-          <folding>
-            <element signature="e#474#475#0" expanded="false" />
-            <element signature="e#497#498#0" expanded="false" />
-            <element signature="e#540#541#0" expanded="false" />
-            <element signature="e#574#575#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="90" column="29" selection-start="3176" selection-end="3180" vertical-scroll-proportion="-31.26923" vertical-offset="237" max-vertical-offset="1995">
@@ -1335,20 +1321,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_patient_form.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="57" selection-start="1946" selection-end="1946" vertical-scroll-proportion="-8.958333" vertical-offset="715" max-vertical-offset="1335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="7" selection-start="212" selection-end="212" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="435">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="65" selection-start="217" selection-end="217" vertical-scroll-proportion="0.11231101" vertical-offset="8" max-vertical-offset="510">
           <folding />
         </state>
       </provider>
@@ -1395,30 +1367,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_2.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="72" selection-start="626" selection-end="626" vertical-scroll-proportion="6.875" vertical-offset="375" max-vertical-offset="1200">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/search_patient.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="452">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="18" selection-start="2017" selection-end="2100" vertical-scroll-proportion="-9.375" vertical-offset="255" max-vertical-offset="675">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="20" selection-start="472" selection-end="495" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="480">
           <folding />
         </state>
       </provider>
@@ -1433,13 +1384,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/dashboard.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="91" selection-start="917" selection-end="917" vertical-scroll-proportion="-5.34" vertical-offset="108" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/grant_permission.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="452">
           <folding />
         </state>
       </provider>
@@ -1461,9 +1405,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/BasicService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="38" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0" vertical-offset="1325" max-vertical-offset="1800">
-          <folding>
-            <element signature="e#1340#1362#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1481,35 +1423,164 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/patient_appointment.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="390" column="36" selection-start="14811" selection-end="14811" vertical-scroll-proportion="-10.923077" vertical-offset="5566" max-vertical-offset="6030">
+        <state line="3" column="59" selection-start="126" selection-end="126" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="72" selection-start="626" selection-end="626" vertical-scroll-proportion="6.875" vertical-offset="375" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="65" selection-start="217" selection-end="217" vertical-scroll-proportion="-2.1666667" vertical-offset="8" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_1.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="53" selection-start="121" selection-end="146" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="18" selection-start="2017" selection-end="2100" vertical-scroll-proportion="-12.375" vertical-offset="183" max-vertical-offset="675">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Doctor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="26" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="735">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="24" selection-start="635" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1590">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#531#532#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="16" selection-start="4581" selection-end="4581" vertical-scroll-proportion="0.26839826" vertical-offset="1676" max-vertical-offset="3930">
+        <state line="75" column="0" selection-start="2545" selection-end="2545" vertical-scroll-proportion="-5.269231" vertical-offset="823" max-vertical-offset="4245">
           <folding>
-            <marker date="1396380320000" expanded="true" signature="602:720" placeholder="SELECT * FRO..visits..." />
-            <marker date="1396380320000" expanded="true" signature="1021:1174" placeholder="SELECT *, vi..visits..." />
-            <marker date="1396380320000" expanded="true" signature="1474:1708" placeholder="select visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="2009:2351" placeholder="SELECT visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="2696:3045" placeholder="SELECT visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="3360:3644" placeholder="SELECT visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="3983:4328" placeholder="SELECT visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="4697:4930" placeholder="UPDATE visit..." />
-            <marker date="1396380320000" expanded="true" signature="5437:5540" placeholder="select * fro..visits..." />
-            <marker date="1396380320000" expanded="true" signature="5781:6027" placeholder="INSERT INTO ..." />
-            <marker date="1396380320000" expanded="true" signature="6405:6431" placeholder="select max(i..visits..." />
-            <marker date="1396380320000" expanded="true" signature="6625:6669" placeholder="UPDATE visit..." />
-            <marker date="1396380320000" expanded="true" signature="6915:6947" placeholder="DELETE FROM ..." />
-            <marker date="1396380320000" expanded="true" signature="7180:8181" placeholder="SELECT visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="8926:9204" placeholder="SELECT visit..visits..." />
-            <marker date="1396380320000" expanded="true" signature="9507:9833" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT *, vi..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="select visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="select visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="select count..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT count..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="UPDATE visit..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="select * fro..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="select max(i..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="UPDATE visit..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+            <marker date="1396387854000" expanded="true" signature="-1:-1" placeholder="SELECT visit..visits..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="37" selection-start="2772" selection-end="2781" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="1170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="6" selection-start="272" selection-end="272" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="585">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="80" selection-start="210" selection-end="210" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_patient.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="274" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/grant_permission.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="452">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="67" selection-start="519" selection-end="519" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="317" column="4" selection-start="11786" selection-end="12723" vertical-scroll-proportion="-6.3076925" vertical-offset="4591" max-vertical-offset="6075">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/dashboard.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="27" selection-start="181" selection-end="181" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="20" selection-start="472" selection-end="495" vertical-scroll-proportion="-7.2916665" vertical-offset="5" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/review_records.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="32" selection-start="953" selection-end="953" vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="38" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.3326316" vertical-offset="697" max-vertical-offset="1470">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
