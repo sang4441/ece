@@ -38,7 +38,7 @@ public class StaffController {
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
         if(user.getRoleID() != 3){
-            return new ModelAndView("staff/index","content", "../InvalidAccess" );
+            return new ModelAndView("/InvalidAccess" );
         }
         ModelAndView model = new ModelAndView("staff/index");
         model.addObject("user", user);
@@ -47,22 +47,32 @@ public class StaffController {
     }
 
     @RequestMapping(value="/create_patient_form", method = RequestMethod.GET)
-    public ModelAndView createPatient() {
+    public ModelAndView createPatient(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
+
         return new ModelAndView("staff/index", "content", "create_patient_form");
     }
     
     @RequestMapping(value="/update_patient", method = RequestMethod.GET)
-    public ModelAndView updatePatient() {
+    public ModelAndView updatePatient(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
         return new ModelAndView("staff/index", "content", "update_patient");
     }
 
     @RequestMapping(value="/review_patient", method = RequestMethod.GET)
     public ModelAndView reviewPatientRecord(HttpServletRequest request) {
-
-//        return new ModelAndView("staff/index", "content", "review_patient");
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
         int person_id = user.getId();
+
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         //NEED TO ACCESS STAFFDOCTOR
         ModelAndView model = new ModelAndView("staff/index");
@@ -73,7 +83,12 @@ public class StaffController {
     }
 
     @RequestMapping(value="/assign_patient", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView assignPatient() {
+    public ModelAndView assignPatient(HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         // get all the doctors in the system
         List<Doctor> doctors = doctorDAO.getAllDoctors();
@@ -87,7 +102,11 @@ public class StaffController {
     }
 
     @RequestMapping(value="/select_patient/{doctorId}", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView selectPatient(@PathVariable int doctorId) {
+    public ModelAndView selectPatient(HttpServletRequest request, @PathVariable int doctorId) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         // get all the doctors in the system by firstname alphabetically
         List<Patient> patients = patientDAO.getAllPatientsSortedByName();
@@ -104,6 +123,11 @@ public class StaffController {
 
     @RequestMapping(value = "patient_form_submit", method = RequestMethod.POST)
     public String patientFormSubmit(HttpServletRequest request, @ModelAttribute("patient") Patient patient){
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return "redirect:/InvalidAccess";
+
         int personId = patientDAO.insertPatient(patient);
         return "redirect:/patient/profile/"+personId;
         //return "redirect:/staff/dashboard";
@@ -128,7 +152,11 @@ public class StaffController {
 
     @RequestMapping(value="/create_appointment_form_1", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView createAppointmentFirst(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         ModelAndView model = new ModelAndView("staff/index");
         if (keyword != null) {
@@ -140,8 +168,11 @@ public class StaffController {
     }
     @RequestMapping(value="/see_appointment", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView seeAppointment(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword) {
-
+            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
         ModelAndView model = new ModelAndView("staff/index");
         if (!keyword.equals("")) {
             List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientName(keyword);
@@ -153,7 +184,11 @@ public class StaffController {
 
     @RequestMapping(value="/see_appointment/{appointmentId}", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView seeAppointmentbyId(
-            @PathVariable int appointmentId) {
+            @PathVariable int appointmentId, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         ModelAndView model = new ModelAndView("staff/index");
 //        if (!keyword.equals("")) {
@@ -172,7 +207,11 @@ public class StaffController {
 
 
     @RequestMapping(value="/reschedule/{patientId}", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView reschedules(@PathVariable int patientId) {
+    public ModelAndView reschedules(@PathVariable int patientId, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         ModelAndView model = new ModelAndView("staff/index");
         Patient patient = patientDAO.getPatientsByPatientId(patientId);
@@ -189,7 +228,11 @@ public class StaffController {
 
     @RequestMapping(value="/searchPatient", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView searchPatientFirst(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
 
         ModelAndView model = new ModelAndView("staff/index");
         if (keyword != null) {
@@ -204,8 +247,11 @@ public class StaffController {
     // This function retrieves particular patient's info in a editable form
     @RequestMapping(value = "/review_records/{doctorId}", method = RequestMethod.GET)
     public ModelAndView retrieveRecords(HttpServletRequest request,@PathVariable int doctorId) {
-
         HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
+
         int session_role = ((Person)session.getAttribute("user")).getRoleID();
         List<Visit> records = appointmentDAO.getRecordsByDoctorId(doctorId);
         Doctor doctor = doctorDAO.getDoctorById(doctorId);
@@ -221,7 +267,13 @@ public class StaffController {
 
     @RequestMapping(value="/create_appointment_form_2/{personId}", method = RequestMethod.GET)
     public ModelAndView createAppointmentTwo(
-            @PathVariable int personId) {
+            @PathVariable int personId, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return new ModelAndView("/InvalidAccess" );
+
         Patient patient = patientDAO.getPatientsByPersonId(personId);
         int patientID = patientDAO.getPatientsIdByPersonId(personId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
@@ -244,6 +296,11 @@ public class StaffController {
                                         @RequestParam(value = "appointmentId", defaultValue = "") int appointmentId,
                                         @ModelAttribute("visit") Visit visit,
                                         BindingResult result) throws ParseException {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        if(user.getRoleID() != 3)
+            return "redirect:/InvalidAccess";
 
         visit.setDate(basicService.getSchedule(visit, time));
         appointmentDAO.insertAppointment(visit);
