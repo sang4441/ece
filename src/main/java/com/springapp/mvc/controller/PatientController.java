@@ -42,16 +42,23 @@ public class PatientController {
 		HttpSession session = request.getSession();
 		Person user = (Person) session.getAttribute("user");
         int session_role = ((Person) session.getAttribute("user")).getRoleID();
+        int personId = user.getId();
 
+        Patient patient = patientDAO.getPatientsByPersonId(personId);
+        int patientId = patientDAO.getPatientsIdByPersonId(personId);
+        patient.setId(patientId);
         if(session_role != 1){
                 return new ModelAndView("/InvalidAccess");
         }
 
 		List<Visit> appointments = appointmentDAO
-				.getAppoinmentsByPatientId(user.getId());
-		int personId = user.getId();
+				.getAppoinmentsByPatientId(patient.getId());
 
-        Patient patient = patientDAO.getPatientsByPersonId(personId);
+        for (Visit appointment : appointments) {
+            Doctor doctorInfo = doctorDAO.getDoctorInfoById(appointment.getDoctorId());
+            appointment.setDoctorName(doctorInfo.getNameFirst() + " " + doctorInfo.getNameLast());
+        }
+
 		ModelAndView model = new ModelAndView("patient/index");
 		model.addObject("content", "dashboard");
 		model.addObject("user", patient);
@@ -130,9 +137,11 @@ public class PatientController {
         }
 
 		Patient patient = patientDAO.getPatientsByPersonId(personId);
+        int patientId = patientDAO.getPatientsIdByPersonId(personId);
+        patient.setId(patientId);
 		String doctor = doctorDAO.getDefaultDoctorByPersonId(personId);
 
-		List<Visit> visits = appointmentDAO.getAppoinmentsByPatientId(patient
+		List<Visit> visits = appointmentDAO.getRecordsByPatientId(patient
 				.getId());
 
 		ModelAndView model = new ModelAndView("patient/index");
@@ -143,5 +152,40 @@ public class PatientController {
 		model.addObject("visits", visits);
 		return model;
 	}
+    @RequestMapping(value = "/visit_record/{personId}", method = RequestMethod.GET)
+    public ModelAndView visitRecord(HttpServletRequest request,
+                                    @PathVariable int personId) {
+
+        HttpSession session = request.getSession();
+        int session_role = ((Person) session.getAttribute("user")).getRoleID();
+
+        //if user is a patient, check if personId is same
+        if(session_role == 1){
+//            if(session_role==2)
+//                return new ModelAndView("/InvalidAccess");
+            Person user = (Person) session.getAttribute("user");
+            int user_id = user.getId();
+            if(user_id!=personId)
+                return new ModelAndView("/InvalidAccess");
+        }
+
+        Patient patient = patientDAO.getPatientsByPersonId(personId);
+        int patientId = patientDAO.getPatientsIdByPersonId(personId);
+        patient.setId(patientId);
+
+        List<Visit> visits = appointmentDAO.getRecordsByPatientId(patient
+                .getId());
+
+        for (Visit visit : visits) {
+            Doctor doctorInfo = doctorDAO.getDoctorInfoById(visit.getDoctorId());
+            visit.setDoctorName(doctorInfo.getNameFirst() + " " + doctorInfo.getNameLast());
+        }
+        ModelAndView model = new ModelAndView("patient/index");
+        model.addObject("content", "visit_record");
+        model.addObject("user", patient);
+        model.addObject("role", session_role);
+        model.addObject("visits", visits);
+        return model;
+    }
 
 }

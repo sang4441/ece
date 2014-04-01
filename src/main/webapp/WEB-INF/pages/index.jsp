@@ -8,7 +8,7 @@
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
     <script src="/ece/resources/js/bootstrap.min.js"></script>
 </head>
-<a style="color:red">${login}</a>
+
 <body>
     <div class="row">
         <div class="col-md-3 col-md-offset-4">
@@ -18,6 +18,8 @@
                 <div><input class="form-control" type="text" id="username" name="username" placeholder="username" /></div>
                 <div><input class="form-control" type="password" id="password" name="password" placeholder="password"/></div>
                 <button type="submit" class="btn btn-default">login</button>
+                <br/>
+                <div style="color:red">${login}</div>
             </form>
         </div>
     </div>

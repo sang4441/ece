@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h2>edit profile</h2>
+
+<h2>Edit Profile</h2>
 
 <script type="text/javascript">
     function checkPassword(form)

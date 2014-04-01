@@ -11,13 +11,13 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
         <div class="btn-group">
+
             <c:choose>
                 <c:when test="${role==1}">
                     <button class="btn btn-default"><a href="/ece/patient/dashboard">Dashboard (patient)</a></button>
                     <button class="btn btn-default"><a href="/ece/patient/profile/${user.personId}">view profile</a></button>
                     <button class="btn btn-default"><a href="/ece/patient/edit_profile/${user.personId}">edit profile</a></button>
-                    <button class="btn btn-default"><a href="/ece/patient/edit_profile/${user.personId}">view visit</a></button>
-                </c:when>
+                    <button class="btn btn-default"><a href="/ece/patient/visit_record/${user.personId}">view my visit</a></button>                </c:when>
                 <c:when test="${role==3}">
                     <button class="btn btn-default"><a href="/ece/staff/dashboard">Back to staff dashboard</a></button>
                     <button class="btn btn-default"><a href="/ece/patient/profile/${user.personId}">view patient's profile</a></button>
