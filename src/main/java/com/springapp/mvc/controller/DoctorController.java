@@ -84,9 +84,7 @@ public class DoctorController {
 
         Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
         int current_doc_id = current_doc.getId();
-
         int assign_doc = doctorId;
-
         //check if current_doc is defaultdoc?
         //insert
         doctorDAO.insertDoctorPatient(patientId, assign_doc);

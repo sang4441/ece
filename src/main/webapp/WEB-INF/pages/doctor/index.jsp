@@ -7,11 +7,10 @@
     <script src="/ece/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="/ece/log_out"><button>Logout</button></a>
+<a href="/ece/doctor/dashboard"><button>Back to Dashboard</button></a>	
 <a href="/ece/doctor/search_patient"><button>Search Patient</button></a>
 <a href="/ece/doctor/appointment/search"><button>Search Appointment</button></a>
-<a href="/ece/doctor/grant_permission"><button>Grant Permission</button></a>
-<a href="/ece/doctor/revoke_permission"><button>Revoke Permission</button></a>
+<a href="/ece/log_out"><button>Logout</button></a>
 <c:set var="content" value="${content}.jsp"/>
 <jsp:include page="${content}"/>
 </body>
