@@ -22,6 +22,7 @@
     <bean id="patientDAO" class="com.springapp.mvc.dao.PatientDAO" />
     <bean id="personDAO" class="com.springapp.mvc.dao.PersonDAO" />
     <bean id="doctorDAO" class="com.springapp.mvc.dao.DoctorDAO" />
+    <bean id="permissionDAO" class="com.springapp.mvc.dao.PermissionDAO" />
 
     <bean id="accessRights" class="com.springapp.mvc.model.AccessRights" />
     <bean id="doctor" class="com.springapp.mvc.model.Doctor" />
