@@ -104,7 +104,7 @@
             <c:if test="${role==2}">
             <td>${visit.comment}</td>
             </c:if>
-            <td>${visit.date_modified}</td>
+            <td>${visit.dateModified}</td>
             <td>${visit.initialID}</td>
         </tr>
     </c:forEach>

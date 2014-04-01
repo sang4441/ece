@@ -83,7 +83,7 @@ public class BasicService {
         else {timeValue="16:30:00";}
 
 //        visit.setDate(timeList.get(0));
-        visit.setDate_modified(new Date());
+        visit.setDateModified(new Date());
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
         String dateInString = timeList.get(0) + " " + timeValue;
         try {

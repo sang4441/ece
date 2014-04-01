@@ -38,7 +38,7 @@
             <td>${visit.prescription}</td>
             <td>${visit.diagnosis}</td>
             <td>${visit.comment}</td>
-            <td>${visit.date_modified}</td>
+            <td>${visit.dateModified}</td>
             <td>${visit.initialID}</td>
         </tr>
     </c:forEach>
