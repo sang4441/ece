@@ -43,7 +43,7 @@ public class PatientController {
 		Person user = (Person) session.getAttribute("user");
         int session_role = ((Person) session.getAttribute("user")).getRoleID();
 
-        if(session_role != 3){
+        if(session_role != 1){
                 return new ModelAndView("/InvalidAccess");
         }
 
@@ -69,7 +69,7 @@ public class PatientController {
 		int person_id = personId;
 
         //if user is a patient, check if personId is same
-        if(session_role != 3){
+        if(session_role != 1){
 
             if(session_role == 2)
                 return new ModelAndView("/InvalidAccess");
@@ -119,9 +119,9 @@ public class PatientController {
 		int session_role = ((Person) session.getAttribute("user")).getRoleID();
 
         //if user is a patient, check if personId is same
-        if(session_role != 3){
-            if(session_role==2)
-                return new ModelAndView("/InvalidAccess");
+        if(session_role == 1){
+//            if(session_role==2)
+//                return new ModelAndView("/InvalidAccess");
             Person user = (Person) session.getAttribute("user");
             int user_id = user.getId();
             if(user_id!=personId)
