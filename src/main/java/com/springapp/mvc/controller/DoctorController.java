@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springapp.mvc.dao.AppointmentDAO;
 import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
+import com.springapp.mvc.dao.PermissionDAO;
 import com.springapp.mvc.dao.PersonDAO;
 import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Patient;
@@ -48,23 +49,33 @@ public class DoctorController {
 	@Autowired
 	AppointmentService appointmentService;
 
+	@Autowired
+	PermissionDAO permissionDAO;
+
 	@RequestMapping(value = "/{docID}", method = RequestMethod.GET)
 	public String getPatientsOfDoctor(@PathVariable int docID, ModelMap model) {
 		// get all doctors
-		LOG.info("getalldoctors");
-		List<Doctor> doctors = doctorDAO.getAllDoctors();
-		model.addAttribute("doctors", doctors);
-		return "doctor/index";
+		return "redirect:/doctor/dashboard";
 	}
 
 	@RequestMapping(value = "/see_visits/{personID}", method = RequestMethod.GET)
-	public ModelAndView getVisits(@PathVariable int personID) {
+	public ModelAndView getVisits(HttpServletRequest request,
+			@PathVariable int personID) {
 
+		Person user = (Person) request.getSession(false).getAttribute("user");
 		ModelAndView model = new ModelAndView("doctor/index");
-		List<Visit> visits = appointmentDAO.getRecordsByPatientId(personID);
-		Person person = (Person) personDAO.getPersonById(personID);
-		String patient_name = person.getNameFirst() + " "
-				+ person.getNameLast();
+
+		List<Visit> visits = null;
+		Person person = new Person();
+		String patient_name = "";
+
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		if (permissionDAO.hasPermissionForPatient(doc, personID)) {
+			visits = appointmentDAO.getRecordsByPatientId(personID);
+			person = (Person) personDAO.getPersonById(personID);
+			patient_name = person.getNameFirst() + " " + person.getNameLast();
+		}
 
 		model.addObject("visits", visits);
 		model.addObject("patientName", patient_name);
@@ -106,8 +117,10 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
-		List<Patient> patients = patientDAO.searchPatients(patientID,
-				patientName, patientName, date);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		List<Patient> patients = patientDAO.searchPatientsOfDoctor(doc,
+				patientID, patientName, patientName, date);
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("content", "patient_search");
@@ -133,8 +146,10 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
-		List<Visit> visits = appointmentDAO.searchAppointments(date,
-				patientName, diagnosis, comment, prescription, surgery);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		List<Visit> visits = appointmentDAO.searchAppointmentsOfDoctor(doc,
+				date, patientName, diagnosis, comment, prescription, surgery);
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("content", "appointment_search");
@@ -157,8 +172,12 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
-		Visit visit = appointmentID == 0 ? new Visit() : appointmentDAO
-				.getAppointment(appointmentID);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		Visit visit = appointmentID != 0
+				&& permissionDAO
+						.hasPermissionForAppointment(doc, appointmentID) ? appointmentDAO
+				.getAppointment(appointmentID) : new Visit();
 
 		List<Visit> visits = appointmentDAO.getRelatedAppointments(visit
 				.getInitialID());
@@ -176,9 +195,11 @@ public class DoctorController {
 			@PathVariable int patientID) {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
 
-		Patient patient = patientID == 0 ? new Patient() : patientDAO
-				.getPatientsByPatientId(patientID);
+		Patient patient = patientID != 0
+				&& permissionDAO.hasPermissionForPatient(doc, patientID) ? patientDAO
+				.getPatientsByPatientId(patientID) : new Patient();
 
 		String patientName = patient.getNameFirst() + " "
 				+ patient.getNameLast();
@@ -200,9 +221,11 @@ public class DoctorController {
 			@PathVariable int appointmentID) {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
 
-		// TODO:
-		Visit visit = appointmentDAO.getAppointment(appointmentID);
+		Visit visit = permissionDAO.hasPermissionForAppointment(doc,
+				appointmentID) ? appointmentDAO.getAppointment(appointmentID)
+				: new Visit();
 		List<Visit> visits = appointmentDAO.getRelatedAppointments(visit
 				.getInitialID());
 
@@ -217,9 +240,11 @@ public class DoctorController {
 	@RequestMapping(value = "/appointment/{appointmentID}", method = RequestMethod.POST)
 	public String updateAppointment(HttpServletRequest request,
 			@ModelAttribute Visit visit) {
-
-		return "redirect:/doctor/appointment/"
-				+ appointmentService.updateAppointment(visit).getId();
+		Person user = (Person) request.getSession(false).getAttribute("user");
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+		return permissionDAO.hasPermissionForPatient(doc, visit.getPatientId()) ? "redirect:/doctor/appointment/"
+				+ appointmentService.updateAppointment(visit).getId()
+				: "redirect:/doctor/dashboard";
 	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
@@ -243,11 +268,12 @@ public class DoctorController {
 			@ModelAttribute Visit visit) {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
+		if (user.getRoleID() != 2) {
+			return "redirect:/";
+		}
 
-		visit = appointmentService.insertAppointment(visit);
-
-		// TODO: check if id is auto updated or if we have to search it again
-		return "redirect:/appointment/" + visit.getId();
+		return "redirect:/appointment/"
+				+ appointmentService.insertAppointment(visit).getId();
 	}
 
 	@RequestMapping(value = "/search_patient", method = RequestMethod.GET)
