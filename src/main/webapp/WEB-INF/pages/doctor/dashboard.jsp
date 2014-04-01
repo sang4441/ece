@@ -24,7 +24,7 @@
             <td>${patient.SIN}</td>
             <td>${patient.currentHealth}</td>
             <%--<td><a href="/ece/doctor/see_visits/${patient.id}"><button>view patient's record</button></a></td>--%>
-            <td><a href="/ece/patient/profile/${patient.personId}"><button>view patient's record</button></a></td>
+            <td><a href="/ece/doctor/patient/${patient.id}"><button>view patient's record</button></a></td>
         </tr>
     </c:forEach>
 </table>

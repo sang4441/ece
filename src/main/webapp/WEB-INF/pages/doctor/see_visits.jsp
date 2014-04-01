@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h1>Records</h1>
+<h1>Records for ${patientName}</h1>
 <table>
     <tr>
         <th>id</th>

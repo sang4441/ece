@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.springapp.mvc.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,8 @@ public class DoctorController {
 
 	@Autowired
 	AppointmentDAO appointmentDAO;
+    @Autowired
+    PersonDAO personDAO;
 
 	@RequestMapping(value = "/{docID}", method = RequestMethod.GET)
 	public String getPatientsOfDoctor(@PathVariable int docID, ModelMap model) {
@@ -53,23 +56,26 @@ public class DoctorController {
 	@RequestMapping(value = "/see_visits/{personID}", method = RequestMethod.GET)
 	public ModelAndView getVisits(@PathVariable int personID) {
 
-		ModelAndView model = new ModelAndView("doctor/index");
-		List<Visit> visits = appointmentDAO.getRecordsByPatientId(personID);
+        ModelAndView model = new ModelAndView("doctor/index");
+        List<Visit> visits = appointmentDAO.getRecordsByPatientId(personID);
+        Person person = (Person) personDAO.getPersonById(personID);
+        String patient_name = person.getNameFirst()+" "+person.getNameLast();
 
-		model.addObject("visits", visits);
-		model.addObject("content", "see_visits");
+        model.addObject("visits", visits);
+        model.addObject("patientName", patient_name);
+        model.addObject("content", "see_visits");
 
-		return model;
+        return model;
 
-	}
+    }
 
-	@RequestMapping(value = "/grant_permission", method = RequestMethod.GET)
-	public ModelAndView grantPermission(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Person user = (Person) session.getAttribute("user");
+    @RequestMapping(value="/grant_permission", method = RequestMethod.GET)
+    public ModelAndView grantPermission(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
 
-		return new ModelAndView("doctor/index", "content", "grant_permission");
-	}
+        return new ModelAndView("doctor/index", "content", "grant_permission");
+    }
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView dashboard(HttpServletRequest request) {
@@ -187,10 +193,13 @@ public class DoctorController {
 		Patient patient = patientID == 0 ? new Patient() : patientDAO
 				.getPatientsByPatientId(patientID);
 
+        String patientName = patient.getNameFirst() + " " + patient.getNameLast();
+
 		List<Visit> visits = appointmentDAO
 				.getAppoinmentsByPatientId(patientID);
 
 		ModelAndView model = new ModelAndView("doctor/index");
+        model.addObject("patientName", patientName);
 		model.addObject("content", "patient");
 		model.addObject("user", user);
 		model.addObject("patient", patient);
