@@ -85,7 +85,7 @@ public class PatientController {
             if(user_id!=personId)
                 return new ModelAndView("/InvalidAccess");
         }
-        if(session_role == 2)
+        if(session_role == 2 || session_role == 4)
             return new ModelAndView("/InvalidAccess");
 
 		List<Doctor> doctors = doctorDAO.getAllDoctors();
@@ -108,7 +108,7 @@ public class PatientController {
 		Person user = (Person) session.getAttribute("user");
 		if (user.getRoleID() == 1) {
 			patientDAO.updatePatient(patient);
-		} else if(user.getRoleID() == 2) {
+		} else if(user.getRoleID() == 2 || user.getRoleID() == 4) {
             return "redirect:/InvalidAccess";
         } else {
 			patientDAO.updatePatientAsStaff(patient);
@@ -128,13 +128,13 @@ public class PatientController {
 
         //if user is a patient, check if personId is same
         if(session_role == 1){
-//            if(session_role==2)
-//                return new ModelAndView("/InvalidAccess");
             Person user = (Person) session.getAttribute("user");
             int user_id = user.getId();
             if(user_id!=personId)
                 return new ModelAndView("/InvalidAccess");
         }
+        if(session_role==2 || session_role == 4)
+            return new ModelAndView("/InvalidAccess");
 
 		Patient patient = patientDAO.getPatientsByPersonId(personId);
         int patientId = patientDAO.getPatientsIdByPersonId(personId);
@@ -161,13 +161,13 @@ public class PatientController {
 
         //if user is a patient, check if personId is same
         if(session_role == 1){
-//            if(session_role==2)
-//                return new ModelAndView("/InvalidAccess");
             Person user = (Person) session.getAttribute("user");
             int user_id = user.getId();
             if(user_id!=personId)
                 return new ModelAndView("/InvalidAccess");
         }
+        if(session_role==2 || session_role== 4)
+            return new ModelAndView("/InvalidAccess");
 
         Patient patient = patientDAO.getPatientsByPersonId(personId);
         int patientId = patientDAO.getPatientsIdByPersonId(personId);
