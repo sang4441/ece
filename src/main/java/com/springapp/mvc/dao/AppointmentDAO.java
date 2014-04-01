@@ -250,9 +250,12 @@ public class AppointmentDAO {
 	}
 
 	public List<Visit> getRelatedAppointments(int initialID) {
-		String sql = "SELECT visits.*, CONCAT(person.NameLast,', ',person.NameFirst) as patientName FROM visits \n"
+		String sql = "SELECT visits.*, CONCAT(person.NameLast,', ',person.NameFirst) as patientName,\n"
+				+ "			   CONCAT(personDoc.NameLast,', ',personDoc.NameFirst) as doctorName FROM visits \n"
 				+ "            left join patients on patients.id = visits.PatientID\n"
 				+ "            left join person on person.id = patients.PersonID\n"
+				+ "			   left join doctor on doctor.id = visits.DoctorID\n"
+				+ "			   left join person as personDoc ON personDoc.id = doctor.PersonID\n"
 				+ "            where visits.InitialID = ?\n"
 				+ "			   order by visits.id DESC";
 
