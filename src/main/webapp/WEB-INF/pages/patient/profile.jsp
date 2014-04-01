@@ -1,19 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <h2>Patient profile</h2>
 
-<c:choose>
-    <c:when test="${role==1}">
-        <%--<a href="/ece/patient/dashboard"><button>Back to Dashboard</button></a>--%>
-        <%--<a href="/ece/patient/edit_profile/${user.personId}"><button>Edit my profile</button></a>--%>
-    </c:when>
-    <c:when test="${role==3}">
-        <a href="/ece/staff/dashboard"><button>Back to staff dashboard</button></a>
-        <a href="/ece/patient/edit_profile/${user.personId}"><button>Edit</button></a>
-    </c:when>
-    <c:otherwise>
-        <a href="/ece/doctor/dashboard"><button>Back to doctor dashboard</button></a>
-    </c:otherwise>
-</c:choose>
+
 
 <form method="post" action="patient_form_submit">
     <table>

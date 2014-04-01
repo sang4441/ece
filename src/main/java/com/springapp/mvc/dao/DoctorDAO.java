@@ -60,9 +60,11 @@ public class DoctorDAO {
 
 
 	public Doctor getDoctorById(int id) {
-		String sql = "SELECT * FROM doctor \n"
-                + "left join person\n" + "on doctor.PersonId = person.id\n"
-                + "where doctor.id = ?;";
+		String sql = "  SELECT dt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n" +
+                "                FROM doctor as dt \n" +
+                "                inner join person as pr \n" +
+                "                on dt.PersonId = pr.id \n" +
+                "                where dt.id = ? LIMIT 1";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

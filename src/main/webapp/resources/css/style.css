@@ -2,8 +2,17 @@ table
 {
     border-collapse:collapse;
 }
-table,th, td div
+.schedule-table table, td div
 {
+    border: 1px solid black;
+    height: 25px;
+}
+.schedule-table table, td {
+    /*border: 1px solid black;*/
+}
+table,th, td
+{
+    padding: 5px;
     height: 25px;
     border: 1px solid black;
 }

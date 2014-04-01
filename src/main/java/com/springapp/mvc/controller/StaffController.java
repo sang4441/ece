@@ -50,10 +50,14 @@ public class StaffController {
     public ModelAndView createPatient(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
+        List<Doctor> doctors = doctorDAO.getAllDoctors();
         if(user.getRoleID() != 3)
             return new ModelAndView("/InvalidAccess" );
 
-        return new ModelAndView("staff/index", "content", "create_patient_form");
+        ModelAndView model = new ModelAndView("staff/index");
+        model.addObject("content", "create_patient_form");
+        model.addObject("doctors", doctors);
+        return model;
     }
     
     @RequestMapping(value="/update_patient", method = RequestMethod.GET)
@@ -213,10 +217,11 @@ public class StaffController {
         Visit appointment = appointmentDAO.getAppointment(appointmentId);
         List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(1,appointment.getDoctorId());
         Patient patient = patientDAO.getPatientsByPatientId(appointment.getPatientId());
+        long dateDiff = FormatService.findDiffDays(new Date(), appointment.getDate());
         model.addObject("schedule", schedule);
         model.addObject("appointment", appointment);
         model.addObject("patient", patient);
-        model.addObject("dayDiff", FormatService.findDiffDays(new Date(), appointment.getDate()));
+        model.addObject("dayDiff", dateDiff);
         model.addObject("content", "see_appointment");
         return model;
     }
