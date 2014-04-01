@@ -1,20 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
 
-<form method="post" action="" class="search">
-    <h1>Search</h1>
-    <label>Visited On</label><input type="date" name="date" value="${date}" /><br/>
-    <label>Patient Name</label><input type="text" name="patientName" value="${patientName}"/><br/>
-    <label>Diagnosis</label><input type="text" name="diagnosis" value="${diagnosis}" /><br/>
-    <label>Comment</label><input type="text" name="comment" value="${comment}" /><br/>
-    <label>Prescription</label><input type="text" name="prescription" value="${prescription}" /><br/>
-    <label>Surgery</label><input type="text" name="surgery" value="${surgery}"/><br/>
-    <button type="submit">Search</button>
-</form>
+<article class="info">
+	<h1>Appointment</h1>
+	<label>Date</label>${visit.date}<br/>
+	<label>Length</label>${visit.length }<br/>
+	<label>Prescription</label>${visit.prescription}<br/>
+	<label>Diagnosis</label>${visit.diagnosis }<br/>
+	<label>Surgery</label>${visit.surgery }<br/>
+	<label>Comment</label>${visit.comment}<br/>
+	<a href="/ece/doctor/appointment/${visit.id}/edit">edit</a>
+</article>
 
-<h1>Visit Results</h1>
+<h1>Past Visits</h1>
 <table>
     <tr>
         <th>Visit ID</th>
@@ -30,7 +31,7 @@
     </tr>
     <c:forEach items="${visits}" var="visit" >
         <tr class="${visit.id == visit.initialID ? 'parent' : 'child'}">
-            <td><a href="/ece/doctor/appointment/${visit.id}" title='edit appointment'>${visit.id}</a></td>
+            <td><a href="/ece/doctor/appointment/${visit.id}" title='appointment'>${visit.id}</a></td>
             <td>${visit.doctorName}</td>
             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${visit.date}"/></td>
             <td>${visit.dateCode}</td>

@@ -10,6 +10,6 @@
 </form>
 <ol>
 <c:forEach items="${patients}" var="patient" >
-    <li><div><a href="/ece/doctor/see_visits/${patient.id}">${patient.nameFirst} ${patient.nameLast}</a></div></li>
+    <li><div><a href="/ece/doctor/patient/${patient.id}">${patient.nameFirst} ${patient.nameLast}</a></div></li>
 </c:forEach>
 </ol>
