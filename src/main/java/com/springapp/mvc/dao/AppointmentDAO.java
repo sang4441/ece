@@ -178,6 +178,8 @@ public class AppointmentDAO {
 				+ "		CONCAT(personDoc.NameLast,', ',personDoc.NameFirst) as doctorName \n"
 				+ "FROM visits \n"
 				+ "            LEFT JOIN patients on patients.id = visits.PatientID\n"
+				+ "			   LEFT JOIN doctor on doctor.id = visits.DoctorID\n"
+				+ "			   LEFT JOIN person personDoc on personDoc.id = doctor.PersonID\n"
 				+ "            LEFT JOIN person on person.id = patients.PersonID\n"
 				+ "			   LEFT JOIN doctor on visits.DoctorID = doctor.id\n"
 				+ "			   LEFT JOIN person personDoc ON personDoc.id = doctor.PersonID\n"
@@ -219,5 +221,21 @@ public class AppointmentDAO {
 						Visit.class));
 
 		return visit;
+	}
+
+	public List<Visit> getRelatedAppointments(int initialID) {
+		String sql = "SELECT visits.*, CONCAT(person.NameLast,', ',person.NameFirst) as patientName FROM visits \n"
+				+ "            left join patients on patients.id = visits.PatientID\n"
+				+ "            left join person on person.id = patients.PersonID\n"
+				+ "            where visits.InitialID = ?\n"
+				+ "			   order by visits.id DESC";
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		List<Visit> appointments = jdbcTemplate.query(sql,
+				new Object[] { initialID }, new BeanPropertyRowMapper(
+						Visit.class));
+
+		return appointments;
 	}
 }
