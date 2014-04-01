@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
         <div class="btn-group">
-        <button class="btn btn-default"><a href="/ece/doctor/dashboard">Back to Dashboard</a>	</button>
+        <button class="btn btn-default"><a href="/ece/doctor/dashboard">Back to Dashboard</a></button>
         <button class="btn btn-default"><a href="/ece/doctor/search_patient">Search Patient</a></button>
         <button class="btn btn-default"><a href="/ece/doctor/appointment/search">Search Appointment</a></button>
         <button class="btn btn-default"><a href="/ece/log_out">Logout</a></button>

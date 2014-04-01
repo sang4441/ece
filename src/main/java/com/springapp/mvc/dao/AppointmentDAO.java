@@ -34,6 +34,19 @@ public class AppointmentDAO {
 		return appointments;
 	}
 
+	public List<Visit> getAppoinmentsByPatientIdFull(int patientId) {
+		String sql = "SELECT * FROM visits where PatientID = ?\n"
+				+ "ORDER BY InitialID DESC, DateModified DESC";
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		List<Visit> appointments = jdbcTemplate.query(sql,
+				new Object[] { patientId }, new BeanPropertyRowMapper(
+						Visit.class));
+
+		return appointments;
+	}
+
 	public List<Visit> getRecordsByPatientId(int patientId) {
 		String sql = "SELECT *, visits.dateModified as dateModified FROM visits\n"
 				+ "where PatientID = ? and dateModified is not NULL\n"
@@ -50,39 +63,37 @@ public class AppointmentDAO {
 
 	public List<Visit> getRecordsByDoctorId(int doctorId) {
 
-		String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName, numberofvisit as numVisit \n" +
-                "\t\t\t\tfrom visits\n" +
-                "\t\t\t\tinner join person as pe on pe.id = visits.patientID\n" +
-                "\t\t\t\tinner join \n" +
-                "\t\t\t\t(select count(patientId) as numberofvisit, pe.id as personId\n" +
-                "\t\t\t\tfrom visits\n" +
-                "\t\t\t\tinner join person pe\n" +
-                "\t\t\t\ton pe.id = visits.patientID\n" +
-                "\t\t\t\twhere doctorId = ?\n" +
-                "\t\t\t\tgroup by visits.patientID) as tmp\n" +
-                "\t\t\t\ton tmp.personID = pe.id\n" +
-                "\t\t\t\twhere doctorId = ?\n" +
-                "\t\t\t\torder by patientName asc, date desc";
+		String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName, numberofvisit as numVisit \n"
+				+ "\t\t\t\tfrom visits\n"
+				+ "\t\t\t\tinner join person as pe on pe.id = visits.patientID\n"
+				+ "\t\t\t\tinner join \n"
+				+ "\t\t\t\t(select count(patientId) as numberofvisit, pe.id as personId\n"
+				+ "\t\t\t\tfrom visits\n"
+				+ "\t\t\t\tinner join person pe\n"
+				+ "\t\t\t\ton pe.id = visits.patientID\n"
+				+ "\t\t\t\twhere doctorId = ?\n"
+				+ "\t\t\t\tgroup by visits.patientID) as tmp\n"
+				+ "\t\t\t\ton tmp.personID = pe.id\n"
+				+ "\t\t\t\twhere doctorId = ?\n"
+				+ "\t\t\t\torder by patientName asc, date desc";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-		List<Visit> records = jdbcTemplate.query(sql,
-				new Object[] { doctorId, doctorId }, new BeanPropertyRowMapper(
-						Visit.class));
+		List<Visit> records = jdbcTemplate.query(sql, new Object[] { doctorId,
+				doctorId }, new BeanPropertyRowMapper(Visit.class));
 
 		return records;
 	}
 
-    public String getNumOfPatientByDoctorId(int doctorId) {
-        String sql = "SELECT count(distinct patientId) FROM visits \n" +
-                "where doctorId = ?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+	public String getNumOfPatientByDoctorId(int doctorId) {
+		String sql = "SELECT count(distinct patientId) FROM visits \n"
+				+ "where doctorId = ?";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String number = jdbcTemplate.queryForObject(sql,
-                new Object[] { doctorId },  String.class);
-        return number;
-    }
-
+		String number = jdbcTemplate.queryForObject(sql,
+				new Object[] { doctorId }, String.class);
+		return number;
+	}
 
 	public List<Visit> getAppoinmentsByPatientName(String patientName) {
 		String sql = "SELECT visits.*, CONCAT(person.NameFirst,person.NameLast) as patientName FROM visits \n"
