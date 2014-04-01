@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <a href="/ece/doctor/patient/${patient.id}/grant_permission"><button class="btn btn-default">Grant Permission</button></a>
 <a href="/ece/doctor/patient/${patient.id}/revoke_permission"><button class="btn btn-default">Revoke Permission</button></a>
 
