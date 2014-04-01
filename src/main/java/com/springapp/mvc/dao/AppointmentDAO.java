@@ -160,7 +160,7 @@ public class AppointmentDAO {
 				sql,
 				new Object[] { appointment.getPatientId(),
 						appointment.getDate(), appointment.getDateCode(),
-						appointment.getLength(), appointment.getPrescription(),
+						"30", appointment.getPrescription(),
 						appointment.getDiagnosis(), appointment.getComment(),
 						appointment.getDateModified(),
 						appointment.getInitialID(), appointment.getId() });
@@ -190,7 +190,7 @@ public class AppointmentDAO {
 				sql,
 				new Object[] { appointment.getPatientId(),
 						appointment.getDoctorId(), appointment.getDate(),
-						appointment.getDateCode(), appointment.getLength(),
+						appointment.getDateCode(), "30",
 						appointment.getPrescription(),
 						appointment.getDiagnosis(), appointment.getComment(),
 						appointment.getDateModified(),
