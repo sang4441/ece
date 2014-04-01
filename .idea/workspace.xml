@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dc332ec-cb14-42a3-bb9f-4775015faecc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/dashboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/dashboard.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ece.iws" />
@@ -199,7 +198,7 @@
       <file leaf-file-name="patient.jsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="93" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0990099" vertical-offset="0" max-vertical-offset="660">
+            <state line="1" column="0" selection-start="64" selection-end="64" vertical-scroll-proportion="0.04950495" vertical-offset="0" max-vertical-offset="645">
               <folding />
             </state>
           </provider>
@@ -1122,7 +1121,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55846000" />
+    <option name="totallyTimeSpent" value="55932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
@@ -1589,7 +1588,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="93" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0990099" vertical-offset="0" max-vertical-offset="660">
+        <state line="1" column="0" selection-start="64" selection-end="64" vertical-scroll-proportion="0.04950495" vertical-offset="0" max-vertical-offset="645">
           <folding />
         </state>
       </provider>
