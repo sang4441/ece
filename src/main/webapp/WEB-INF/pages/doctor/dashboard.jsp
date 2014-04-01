@@ -13,7 +13,7 @@
         <td>Health Card</td>
         <td>SIN</td>
         <td>Current Health</td>
-        <td>Patient Profile</td>
+        <td>Patient Record</td>
     </tr>
     <c:forEach items="${patients}" var="patient" >
         <tr>
@@ -23,6 +23,7 @@
             <td>${patient.healthCard}</td>
             <td>${patient.SIN}</td>
             <td>${patient.currentHealth}</td>
+            <%--<td><a href="/ece/doctor/see_visits/${patient.id}"><button>view patient's record</button></a></td>--%>
             <td><a href="/ece/patient/profile/${patient.personId}"><button>view patient's record</button></a></td>
         </tr>
     </c:forEach>

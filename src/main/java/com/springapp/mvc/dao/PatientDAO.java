@@ -162,7 +162,7 @@ public class PatientDAO {
     }
 
 	public List<Patient> searchPatientByKeyword(String keyword) {
-		String sql = "SELECT * FROM patients \n" + "left join person\n"
+		String sql = "SELECT person.*, patients.* FROM patients \n" + "left join person\n"
 				+ "on patients.PersonId = person.id\n"
 				+ "where CONCAT(person.NameFirst,person.NameLast) like ?;";
 
@@ -173,6 +173,54 @@ public class PatientDAO {
 
 		return patients;
 	}
+
+    public List<Patient> searchPatientById(String keyword) {
+        String sql = "SELECT person.*, patients.* FROM patients \n" + "left join person\n"
+                + "on patients.PersonId = person.id\n"
+                + "where patients.id like ?;";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Patient> patients = jdbcTemplate.query(sql, new Object[] {
+                keyword }, new BeanPropertyRowMapper(Patient.class));
+
+        return patients;
+    }
+
+    public List<Patient> searchPatientByDate(String keyword) {
+        String sql = "select max(date) as Date, patientId, person.nameFirst, person.nameLast\n" +
+                "from visits\n" +
+                "inner join patients\n" +
+                "on patients.id = visits.patientID\n" +
+                "inner join person \n" +
+                "on person.id = patients.personID\n" +
+                "where visits.date LIKE ?" +
+                "group by patientId \n";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Patient> patients = jdbcTemplate.query(sql, new Object[] { "%"
+                + keyword + "%" }, new BeanPropertyRowMapper(Patient.class));
+
+        return patients;
+    }
+
+//    public List<Patient> searchPatientByManyKeyword(String keyword) {
+//        String sql = "select visits.date, person.NameFirst, person.NameLast,patients.* from patients\n" + "left join person\n"
+//                + "on patients.PersonId = person.id\n" +
+//                    "inner join visits\n" +
+//                    "on visits.patientID = patients.id\n"
+//                + "where CONCAT(person.NameFirst,person.NameLast) like ?\n" +
+//                    "OR patients.id LIKE ?\n" +
+//                    "OR visits.date LIKE ?;";
+//
+//        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+//
+//        List<Patient> patients = jdbcTemplate.query(sql, new Object[] { "%"
+//                + keyword + "%" , keyword, "%"+keyword+"%"}, new BeanPropertyRowMapper(Patient.class));
+//
+//        return patients;
+//    }
 
 	@ModelAttribute("patientsOfDoctor")
 	public List<Patient> getAllPatientsOfDoctor(int id) {
@@ -189,13 +237,28 @@ public class PatientDAO {
 	}
 
     public List<Patient> getAllPatientsInfoOfDoctor(int id) {
-        String sql = "SELECT * " + "FROM patients "
+        String sql = "SELECT *" + "FROM patients "
                 + "INNER JOIN PatientDoctor dp ON dp.PatientID = patients.id "
                 + "INNER JOIN person p ON p.id = patients.PersonID WHERE dp.DoctorID = ?";
         LOG.info(sql);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
         List<Patient> patients = jdbcTemplate.query(sql, new Object[] { id },
+                new BeanPropertyRowMapper(Patient.class));
+
+        return patients;
+    }
+
+    public List<Patient> getAllPatientsOfDefaultDoctor(int doctor_id) {
+        String sql = "select person.*, patients.*\n" +
+                        "from patients\n" +
+                        "inner join person\n" +
+                        "on person.id = patients.personID\n" +
+                        "where defaultDoc = 1\n";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Patient> patients = jdbcTemplate.query(sql, new Object[] { doctor_id },
                 new BeanPropertyRowMapper(Patient.class));
 
         return patients;
