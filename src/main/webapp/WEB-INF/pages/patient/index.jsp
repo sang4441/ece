@@ -14,7 +14,7 @@
             <button class="btn btn-default"><a href="/ece/patient/dashboard">Dashboard</a></button>
             <button class="btn btn-default"><a href="/ece/patient/profile/${user.personId}">view my profile</a></button>
             <button class="btn btn-default"><a href="/ece/patient/edit_profile/${user.personId}">edit my profile</a></button>
-            <button class="btn btn-default"><a href="/ece/patient/edit_profile/${user.personId}">view my visit</a></button>
+            <button class="btn btn-default"><a href="/ece/patient/visit_record/${user.personId}">view my visit</a></button>
         </div>
         <a href="/ece/log_out"><button class="btn btn-default">Logout</button></a>
         <c:set var="content" value="${content}.jsp"/>

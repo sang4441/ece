@@ -72,6 +72,19 @@ public class DoctorDAO {
 		return doctor;
 	}
 
+    public Doctor getDoctorInfoById(int id) {
+        String sql = "SELECT pt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n" +
+                "FROM doctor as pt inner join person as pr on pt.PersonId = pr.id\n" +
+                "where pt.id = ? LIMIT 1";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        Doctor doctor = (Doctor) jdbcTemplate.queryForObject(sql,
+                new Object[] { id }, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctor;
+    }
+
 	public Doctor getDoctorByPersonID(int id) {
 		String sql = "select doctor.id FROM doctor " + "inner join person "
 				+ "on doctor.PersonId = person.id "

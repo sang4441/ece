@@ -4,25 +4,19 @@
 
 <h2>Patient Dashboard for ${user.nameFirst}</h2>
 
-<table>
+<table border="1">
     <tr>
-        <td>Id</td>
-        <td>Date</td>
-        <td>Time</td>
-        <td>Length</td>
-        <td>Doctor</td>
-        <td>Prescription</td>
-        <td>Diagnosis</td>
+        <th style="padding:5"></th>
+        <th style="padding:5">Date</th>
+        <th style="padding:5">Time</th>
+        <th style="padding:5">Doctor</th>
     </tr>
-    <c:forEach items="${appointments}" var="appointment" >
+    <c:forEach items="${appointments}" var="appointment" varStatus="counter">
         <tr>
-            <td align="right">${appointment.id}</td>
-            <td> <fmt:formatDate type="date" dateStyle="long" value="${appointment.date}" /> </td>
-            <td> <fmt:formatDate type="time" timeStyle="short" value="${appointment.date}" /> </td>
-            <td align="right">${appointment.length}</td>
-            <td align="right">${appointment.doctorId}</td>
-            <td>${appointment.prescription}</td>
-            <td>${appointment.diagnosis}</td>
+            <td align="right" style="padding:5">${counter.count}</td>
+            <td style="padding:5"> <fmt:formatDate type="date" dateStyle="long" value="${appointment.date}" /> </td>
+            <td style="padding:5"> <fmt:formatDate type="time" timeStyle="short" value="${appointment.date}" /> </td>
+            <td align="right" style="padding:5">${appointment.doctorName}</td>
         </tr>
     </c:forEach>
 </table>

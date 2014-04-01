@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h2>edit profile</h2>
+<h2>Edit Profile</h2>
 <c:choose>
     <c:when test="${role==3}">
         <a href="/ece/staff/dashboard"><button>go back to staff dashboard</button></a>
