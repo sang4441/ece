@@ -2,7 +2,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
 
 <form method="post" action="/ece/doctor/appointment/${visit.id}">
     <h1>Appointment</h1>
@@ -13,7 +12,7 @@
     <label>Diagnosis</label><form:input path="visit.diagnosis" /><br/>
     <label>Surgery</label><form:input path="visit.surgery" /><br/>
     <label>Comment</label><form:input path="visit.comment" /><br/>
-    <button type="submit">Submit</button>
+    <button class="btn btn-default" type="submit">Submit</button>
     <form:hidden path="visit.id"/>
     <form:hidden path="visit.patientId" />
     <form:hidden path="visit.date" />

@@ -23,7 +23,7 @@
             <td>${patient.healthCard}</td>
             <td>${patient.SIN}</td>
             <td>${patient.currentHealth}</td>
-            <td><a href="/ece/doctor/patient/${patient.id}"><button>view patient's record</button></a></td>
+            <td><a href="/ece/doctor/patient/${patient.id}"><button class="btn btn-default">view patient's record</button></a></td>
         </tr>
     </c:forEach>
 </table>

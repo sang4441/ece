@@ -7,11 +7,20 @@
     <script src="/ece/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="/ece/log_out"><button>Logout</button></a>
-<a href="/ece/doctor/search_patient"><button>Search Patient</button></a>
-<a href="/ece/doctor/appointment/search"><button>Search Appointment</button></a>
-<a href="/ece/doctor/grant_permission"><button>Grant Permission</button></a>
-<c:set var="content" value="${content}.jsp"/>
-<jsp:include page="${content}"/>
+<div class="row">
+    <div class="col-md-10 col-md-offset-2">
+        <div class="btn-group">
+            <button class="btn btn-default"><a href="/ece/doctor/dashboard">Doctor's dashboard</a></button>
+            <button class="btn btn-default"><a href="/ece/doctor/search_patient">Search Patient</a></button>
+            <button class="btn btn-default"><a href="/ece/doctor/appointment/search">Search Appointment</a></button>
+            <button class="btn btn-default"><a href="/ece/doctor/grant_permission">Grant Permission</a></button>
+
+        </div>
+        <button class="btn btn-default"><a href="/ece/log_out">Logout</a></button>
+
+        <c:set var="content" value="${content}.jsp"/>
+        <jsp:include page="${content}"/>
+    </div>
+</div>
 </body>
 </html>

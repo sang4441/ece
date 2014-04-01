@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
 
 <form method="post" action="" class="search">
     <h1>Search</h1>
@@ -11,7 +10,7 @@
     <label>Comment</label><input type="text" name="comment" value="${comment}" /><br/>
     <label>Prescription</label><input type="text" name="prescription" value="${prescription}" /><br/>
     <label>Surgery</label><input type="text" name="surgery" value="${surgery}"/><br/>
-    <button type="submit">Search</button>
+    <button class="btn btn-default" type="submit">Search</button>
 </form>
 
 <h1>Visit Results</h1>
