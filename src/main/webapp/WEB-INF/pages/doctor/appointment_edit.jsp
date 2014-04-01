@@ -1,20 +1,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
 
-<form method="post" action="" class="search">
-    <h1>Search</h1>
-    <label>Visited On</label><input type="date" name="date" value="${date}" /><br/>
-    <label>Patient Name</label><input type="text" name="patientName" value="${patientName}"/><br/>
-    <label>Diagnosis</label><input type="text" name="diagnosis" value="${diagnosis}" /><br/>
-    <label>Comment</label><input type="text" name="comment" value="${comment}" /><br/>
-    <label>Prescription</label><input type="text" name="prescription" value="${prescription}" /><br/>
-    <label>Surgery</label><input type="text" name="surgery" value="${surgery}"/><br/>
-    <button type="submit">Search</button>
+<form method="post" action="../">
+    <h1>Appointment</h1>
+    <label>Patient Name</label>${visit.patientName}<br/>
+    <label>Date</label>${visit.date}<br/>
+    <label>Length</label>${visit.length }<br/>
+    <label>Prescription</label><form:input path="visit.prescription" /><br/>
+    <label>Diagnosis</label><form:input path="visit.diagnosis" /><br/>
+    <label>Surgery</label><form:input path="visit.surgery" /><br/>
+    <label>Comment</label><form:input path="visit.comment" /><br/>
+    <button type="submit">Submit</button>
+    <form:hidden path="visit.id"/>
+    <form:hidden path="visit.patientId" />
+    <form:hidden path="visit.date" />
+    <form:hidden path="visit.length" />
+    <form:hidden path="visit.parentID" />
+    <form:hidden path="visit.doctorId" />
+    <form:hidden path="visit.initialID" />
 </form>
 
-<h1>Visit Results</h1>
+<h1>Past Visits</h1>
 <table>
     <tr>
         <th>Visit ID</th>
