@@ -14,14 +14,14 @@ table,th, td div
     background-color: lightgray;
 }
 
-form label {
+form label, .info label {
 	display: inline-block;
 	width: 150px;
 	text-align: right;
 	padding-right: 15px;
 }
 
-form label::after {
+form label::after, info label::after {
 	content: ":";
 }
 

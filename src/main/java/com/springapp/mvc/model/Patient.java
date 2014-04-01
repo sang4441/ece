@@ -8,16 +8,13 @@ package com.springapp.mvc.model;
  * 
  * @author Wojciech Golab
  */
-public class Patient extends Person{
+public class Patient extends Person {
 	private int id;
 	private int personId;
 	private int defaultDoc;
 	private String healthCard;
 	private int SIN;
 	private String currentHealth;
-
-	/** Relations */
-	private Person person;
 
 	public int getId() {
 		return id;
@@ -66,5 +63,4 @@ public class Patient extends Person{
 	public void setCurrentHealth(String currentHealth) {
 		this.currentHealth = currentHealth;
 	}
-
 }
