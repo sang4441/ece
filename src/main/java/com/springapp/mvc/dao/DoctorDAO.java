@@ -60,7 +60,7 @@ public class DoctorDAO {
 
 
 	public Doctor getDoctorById(int id) {
-		String sql = "SELECT doctor.id FROM doctor \n"
+		String sql = "SELECT * FROM doctor \n"
                 + "left join person\n" + "on doctor.PersonId = person.id\n"
                 + "where doctor.id = ?;";
 

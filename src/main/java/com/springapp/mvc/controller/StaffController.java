@@ -161,7 +161,7 @@ public class StaffController {
             return new ModelAndView("/InvalidAccess" );
 
         ModelAndView model = new ModelAndView("staff/index");
-        if (keyword != null) {
+        if (!keyword.equals("")) {
             List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
             model.addObject("patients", patients);
         }
