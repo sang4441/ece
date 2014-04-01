@@ -17,7 +17,7 @@
 <table>
     <tr>
         <th>Visit ID</th>
-        <th>Doctor Name</th>
+        <th>Patient Name</th>
         <th>Date</th>
         <th>Date Code</th>
         <th>Length (min)</th>
@@ -30,7 +30,7 @@
     <c:forEach items="${visits}" var="visit" >
         <tr class="${visit.id == visit.initialID ? 'parent' : 'child'}">
             <td><a href="/ece/doctor/appointment/${visit.id}" title='edit appointment'>${visit.id}</a></td>
-            <td>${visit.doctorName}</td>
+            <td>${visit.patientName}</td>
             <td><fmt:formatDate pattern="yyyy-MM-dd" value="${visit.date}"/></td>
             <td>${visit.dateCode}</td>
             <td>${visit.length}</td>
