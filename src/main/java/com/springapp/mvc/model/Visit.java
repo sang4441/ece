@@ -7,6 +7,7 @@ public class Visit {
 	private int id;
 	private int patientId;
 	private String patientName;
+	private String doctorName;
 	private long dayCode;
 	private int dateCode;
 	private int parentID;
@@ -142,5 +143,13 @@ public class Visit {
 
 	public void setSurgery(String surgery) {
 		this.surgery = surgery;
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
 }

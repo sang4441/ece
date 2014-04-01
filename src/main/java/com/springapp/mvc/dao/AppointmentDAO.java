@@ -82,36 +82,36 @@ public class AppointmentDAO {
 		return appointments;
 	}
 
-    public List<Visit> getAppointmentsByPatientId(int patientId, String today,
-                                                 String lastDay) {
-        String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n"
-                + "            left join patients on patients.id = visits.PatientID\n"
-                + "            left join person on person.id = patients.PersonID\n"
-                + "            where patients.id = ? \n "
-                + "and Date >= ? and Date <= ?";
+	public List<Visit> getAppointmentsByPatientId(int patientId, String today,
+			String lastDay) {
+		String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n"
+				+ "            left join patients on patients.id = visits.PatientID\n"
+				+ "            left join person on person.id = patients.PersonID\n"
+				+ "            where patients.id = ? \n "
+				+ "and Date >= ? and Date <= ?";
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        List<Visit> appointments = jdbcTemplate.query(sql, new Object[] {
-                patientId, today, lastDay }, new BeanPropertyRowMapper(
-                Visit.class));
+		List<Visit> appointments = jdbcTemplate.query(sql, new Object[] {
+				patientId, today, lastDay }, new BeanPropertyRowMapper(
+				Visit.class));
 
-        return appointments;
-    }
+		return appointments;
+	}
 
 	public void updateAppointment(Visit appointment) {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "UPDATE visits\n" + "SET PatientID = ?,\n"
-				+ "DoctorID = ?,\n" + "Date = ?,\n" + "dateCode = ?,\n"
+				+ "Date = ?,\n" + "dateCode = ?,\n"
 				+ "Length = ?,\n" + "Prescription = ?,\n" + "Diagnosis = ?,\n"
-				+ "Comment = ? \n" + "DateModified = ? \n" + "InitialID = ? \n"
+				+ "Comment = ?, \n" + "DateModified = ?, \n" + "InitialID = ? \n"
 				+ "WHERE id= ?";
 
 		jdbcTemplate.update(
 				sql,
-				new Object[] { appointment.getParentID(),
-						appointment.getDoctorId(), appointment.getDate(),
+				new Object[] { appointment.getPatientId(),
+						appointment.getDate(),
 						appointment.getDateCode(), appointment.getLength(),
 						appointment.getPrescription(),
 						appointment.getDiagnosis(), appointment.getComment(),
@@ -119,7 +119,7 @@ public class AppointmentDAO {
 						appointment.getInitialID(), appointment.getId() });
 	}
 
-	public void insertAppointment(Visit appointment) {
+	public int insertAppointment(Visit appointment) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		String sql = "select * from visits\n"
@@ -156,8 +156,11 @@ public class AppointmentDAO {
 
 		sql = "UPDATE visits SET initialID = ? WHERE id = ?";
 
-		jdbcTemplate.update(sql, new Object[] { appointment.getInitialID(),
-				appointment.getInitialID() });
+
+        jdbcTemplate.update(
+                sql,
+                new Object[] { appointment.getInitialID(), appointment.getInitialID() });
+        return appointment.getInitialID();
 	}
 
 	public void deleteAppointment(Visit appointment) {
@@ -171,16 +174,23 @@ public class AppointmentDAO {
 	public List<Visit> searchAppointments(Date date, String patientName,
 			String diagnosis, String comment, String prescription,
 			String surgery) {
-		String sql = "SELECT visits.*, CONCAT(person.NameFirst,' ',person.NameLast) as patientName FROM visits \n"
+		String sql = "SELECT visits.*, CONCAT(person.NameLast,', ',person.NameFirst) as patientName, \n"
+				+ "		CONCAT(personDoc.NameLast,', ',personDoc.NameFirst) as doctorName \n"
+				+ "FROM visits \n"
 				+ "            LEFT JOIN patients on patients.id = visits.PatientID\n"
+				+ "			   LEFT JOIN doctor on doctor.id = visits.DoctorID\n"
+				+ "			   LEFT JOIN person personDoc on personDoc.id = doctor.PersonID\n"
 				+ "            LEFT JOIN person on person.id = patients.PersonID\n"
+				+ "			   LEFT JOIN doctor on visits.DoctorID = doctor.id\n"
+				+ "			   LEFT JOIN person personDoc ON personDoc.id = doctor.PersonID\n"
 				+ "            WHERE (? = '1900-01-01' OR DAY(visits.Date) = DAY(?)) AND \n "
 				+ "					(? LIKE '' OR person.NameFirst LIKE ?) AND \n "
 				+ "					(? LIKE '' OR person.NameLast LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Diagnosis LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Comment LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Prescription LIKE ?) AND \n "
-				+ "					(? LIKE '' OR visits.Surgery LIKE ?)";
+				+ "					(? LIKE '' OR visits.Surgery LIKE ?)\n"
+				+ "			   ORDER BY visits.InitialID DESC, visits.DateModified DESC";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		LOG.info(sql);
@@ -211,5 +221,21 @@ public class AppointmentDAO {
 						Visit.class));
 
 		return visit;
+	}
+
+	public List<Visit> getRelatedAppointments(int initialID) {
+		String sql = "SELECT visits.*, CONCAT(person.NameLast,', ',person.NameFirst) as patientName FROM visits \n"
+				+ "            left join patients on patients.id = visits.PatientID\n"
+				+ "            left join person on person.id = patients.PersonID\n"
+				+ "            where visits.InitialID = ?\n"
+				+ "			   order by visits.id DESC";
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		List<Visit> appointments = jdbcTemplate.query(sql,
+				new Object[] { initialID }, new BeanPropertyRowMapper(
+						Visit.class));
+
+		return appointments;
 	}
 }

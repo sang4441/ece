@@ -10,7 +10,7 @@
     <%--<div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>--%>
     <input type="hidden" name="appointmentId" value="${appointment.id}">
     <%--<input type="hidden" name="doctorId" value="${doctor.id}">--%>
-    <input type="hidden" name="patientId" value="${patient.personId}">
+    <input type="hidden" name="patientId" value="${patient.id}">
     <div>
         <table>
             <td>

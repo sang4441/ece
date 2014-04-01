@@ -158,16 +158,20 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
+		// TODO:
 		Visit visit = appointmentDAO.getAppointment(appointmentID);
+		List<Visit> visits = appointmentDAO.getRelatedAppointments(visit
+				.getInitialID());
 
 		ModelAndView model = new ModelAndView("doctor/index");
-		model.addObject("content", "edit_appointment");
+		model.addObject("content", "appointment_edit");
 		model.addObject("user", user);
 		model.addObject("visit", visit);
+		model.addObject("visits", visits);
 		return model;
 	}
 
-	@RequestMapping(value = "/appointment/{appointmentID}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/appointment/{appointmentID}", method = RequestMethod.POST)
 	public String updateAppointment(HttpServletRequest request,
 			@ModelAttribute Visit visit) {
 		HttpSession session = request.getSession(false);

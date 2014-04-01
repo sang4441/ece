@@ -86,7 +86,9 @@
         <th>Length (min)</th>
         <th>Prescription</th>
         <th>Diagnosis</th>
+        <c:if test="${role==2}">
         <th>Comment</th>
+        </c:if>
         <th>Date Modified</th>
         <th>Initial ID</th>
     </tr>
@@ -99,7 +101,9 @@
             <td>${visit.length}</td>
             <td>${visit.prescription}</td>
             <td>${visit.diagnosis}</td>
+            <c:if test="${role==2}">
             <td>${visit.comment}</td>
+            </c:if>
             <td>${visit.date_modified}</td>
             <td>${visit.initialID}</td>
         </tr>
