@@ -32,6 +32,20 @@ public class AppointmentDAO {
 		return appointments;
 	}
 
+    public List<Visit> getRecordsByPatientId(int patientId) {
+        String sql = "SELECT *, visits.dateModified as date_modified FROM visits\n" +
+                "where PatientID = ? and dateModified is not NULL\n" +
+                "order by dateModified desc";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Visit> appointments = jdbcTemplate.query(sql,
+                new Object[] { patientId }, new BeanPropertyRowMapper(
+                        Visit.class));
+
+        return appointments;
+    }
+
 	public List<Visit> getRecordsByDoctorId(int doctorId) {
 
 		String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName\n"
@@ -179,8 +193,6 @@ public class AppointmentDAO {
 				+ "		CONCAT(personDoc.NameLast,', ',personDoc.NameFirst) as doctorName \n"
 				+ "FROM visits \n"
 				+ "            LEFT JOIN patients on patients.id = visits.PatientID\n"
-				+ "			   LEFT JOIN doctor on doctor.id = visits.DoctorID\n"
-				+ "			   LEFT JOIN person personDoc on personDoc.id = doctor.PersonID\n"
 				+ "            LEFT JOIN person on person.id = patients.PersonID\n"
 				+ "			   LEFT JOIN doctor on visits.DoctorID = doctor.id\n"
 				+ "			   LEFT JOIN person personDoc ON personDoc.id = doctor.PersonID\n"
