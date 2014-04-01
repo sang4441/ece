@@ -14,13 +14,17 @@ table,th, td div
     background-color: lightgray;
 }
 
-form.search label {
+form label {
 	display: inline-block;
 	width: 150px;
 	text-align: right;
 	padding-right: 15px;
 }
 
-form.search label::after {
+form label::after {
 	content: ":";
+}
+
+tr.child.collapse {
+	display: none;
 }

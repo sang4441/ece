@@ -41,6 +41,12 @@ public class PatientController {
 		// get all patients
 		HttpSession session = request.getSession();
 		Person user = (Person) session.getAttribute("user");
+        int session_role = ((Person) session.getAttribute("user")).getRoleID();
+
+        if(session_role != 1){
+                return new ModelAndView("/InvalidAccess");
+        }
+
 		List<Visit> appointments = appointmentDAO
 				.getAppoinmentsByPatientId(user.getId());
 		int personId = user.getId();
@@ -62,6 +68,18 @@ public class PatientController {
 		int session_role = ((Person) session.getAttribute("user")).getRoleID();
 		int person_id = personId;
 
+        //if user is a patient, check if personId is same
+        if(session_role != 1){
+
+            if(session_role == 2)
+                return new ModelAndView("/InvalidAccess");
+
+            Person user = (Person) session.getAttribute("user");
+            int user_id = user.getId();
+            if(user_id!=personId)
+                return new ModelAndView("/InvalidAccess");
+        }
+
 		List<Doctor> doctors = doctorDAO.getAllDoctors();
 		Patient patient = patientDAO.getPatientsByPersonId(personId);
 
@@ -82,7 +100,9 @@ public class PatientController {
 		Person user = (Person) session.getAttribute("user");
 		if (user.getRoleID() == 1) {
 			patientDAO.updatePatient(patient);
-		} else {
+		} else if(user.getRoleID() == 2) {
+            return "redirect:/InvalidAccess";
+        } else {
 			patientDAO.updatePatientAsStaff(patient);
 		}
 
@@ -97,6 +117,17 @@ public class PatientController {
 
 		HttpSession session = request.getSession();
 		int session_role = ((Person) session.getAttribute("user")).getRoleID();
+
+        //if user is a patient, check if personId is same
+        if(session_role == 1){
+//            if(session_role==2)
+//                return new ModelAndView("/InvalidAccess");
+            Person user = (Person) session.getAttribute("user");
+            int user_id = user.getId();
+            if(user_id!=personId)
+                return new ModelAndView("/InvalidAccess");
+        }
+
 		Patient patient = patientDAO.getPatientsByPersonId(personId);
 		String doctor = doctorDAO.getDefaultDoctorByPersonId(personId);
 

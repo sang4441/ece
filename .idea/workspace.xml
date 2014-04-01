@@ -2,22 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dc332ec-cb14-42a3-bb9f-4775015faecc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/error/error404.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/patient_appointment.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/appointment_edit.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/BasicService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/BasicService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/FormatService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/FormatService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/InvalidAccess.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/InvalidAccess.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_2.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/create_appointment_form_2.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/search_appointment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/search_appointment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/appointment_search.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/appointment_search.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/dashboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/dashboard.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/profile.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/patient/profile.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/style.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ece.iws" />
@@ -74,7 +70,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" line="196" class="com.springapp.mvc.controller.StaffController" package="com.springapp.mvc.controller">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" line="199" class="com.springapp.mvc.controller.StaffController" package="com.springapp.mvc.controller">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -132,7 +128,7 @@
       <file leaf-file-name="StaffController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="204" column="0" selection-start="8845" selection-end="8845" vertical-scroll-proportion="0.33333334" vertical-offset="2946" max-vertical-offset="4440">
+            <state line="253" column="0" selection-start="11362" selection-end="11362" vertical-scroll-proportion="0.33333334" vertical-offset="3681" max-vertical-offset="5325">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,21 +139,21 @@
       <file leaf-file-name="AppointmentDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="212" column="57" selection-start="7867" selection-end="7881" vertical-scroll-proportion="0.0" vertical-offset="2777" max-vertical-offset="3210">
+            <state line="235" column="57" selection-start="8809" selection-end="8809" vertical-scroll-proportion="0.0" vertical-offset="3122" max-vertical-offset="3555">
               <folding>
-                <marker date="1396321200000" expanded="true" signature="602:642" placeholder="SELECT * FRO..visits..." />
-                <marker date="1396321200000" expanded="true" signature="942:1176" placeholder="select visit..visits..." />
-                <marker date="1396321200000" expanded="true" signature="1477:1762" placeholder="SELECT visit..visits..." />
-                <marker date="1396321200000" expanded="true" signature="2107:2431" placeholder="SELECT visit..visits..." />
-                <marker date="1396321200000" expanded="true" signature="2838:3206" placeholder="SELECT visit..visits..." />
-                <marker date="1396321200000" expanded="true" signature="3620:3857" placeholder="UPDATE visit..." />
-                <marker date="1396321200000" expanded="true" signature="4352:4455" placeholder="select * fro..visits..." />
-                <marker date="1396321200000" expanded="true" signature="4696:4922" placeholder="INSERT INTO ..." />
-                <marker date="1396321200000" expanded="true" signature="5268:5294" placeholder="select max(i..visits..." />
-                <marker date="1396321200000" expanded="true" signature="5443:5487" placeholder="UPDATE visit..." />
-                <marker date="1396321200000" expanded="true" signature="5808:5840" placeholder="DELETE FROM ..." />
-                <marker date="1396321200000" expanded="true" signature="6072:6742" placeholder="SELECT visit..visits..." />
-                <marker date="1396321200000" expanded="true" signature="7487:7765" placeholder="SELECT visit..visits..." />
+                <marker date="1396322844000" expanded="true" signature="602:642" placeholder="SELECT * FRO..visits..." />
+                <marker date="1396322844000" expanded="true" signature="942:1176" placeholder="select visit..visits..." />
+                <marker date="1396322844000" expanded="true" signature="1477:1762" placeholder="SELECT visit..visits..." />
+                <marker date="1396322844000" expanded="true" signature="2107:2431" placeholder="SELECT visit..visits..." />
+                <marker date="1396322844000" expanded="true" signature="2789:3115" placeholder="SELECT visit..visits..." />
+                <marker date="1396322844000" expanded="true" signature="3752:3897" placeholder="UPDATE visit..." />
+                <marker date="1396322844000" expanded="true" signature="4555:4740" placeholder="select * fro..visits..." />
+                <marker date="1396322844000" expanded="true" signature="4756:5400" placeholder="INSERT INTO ..." />
+                <marker date="1396322844000" expanded="true" signature="5767:5793" placeholder="select max(i..visits..." />
+                <marker date="1396322844000" expanded="true" signature="6118:6162" placeholder="UPDATE visit..." />
+                <marker date="1396322844000" expanded="true" signature="6936:6968" placeholder="DELETE FROM ..." />
+                <marker date="1396322844000" expanded="true" signature="7331:7764" placeholder="SELECT visit..visits..." />
+                <marker date="1396322844000" expanded="true" signature="8477:8695" placeholder="SELECT visit..visits..." />
               </folding>
             </state>
           </provider>
@@ -235,8 +231,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/search_appointment.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/patient_appointment.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/see_appointment.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
       </list>
     </option>
   </component>
@@ -1042,12 +1038,12 @@
       <workItem from="1395993912195" duration="1809000" />
       <workItem from="1395995725730" duration="151000" />
       <workItem from="1395995879009" duration="8010000" />
-      <workItem from="1396288406314" duration="27457000" />
+      <workItem from="1396288406314" duration="28156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37458000" />
+    <option name="totallyTimeSpent" value="38157000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="22" width="1440" height="874" extended-state="6" />
@@ -1476,21 +1472,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="212" column="57" selection-start="7867" selection-end="7881" vertical-scroll-proportion="0.0" vertical-offset="2777" max-vertical-offset="3210">
+        <state line="235" column="57" selection-start="8809" selection-end="8809" vertical-scroll-proportion="0.0" vertical-offset="3122" max-vertical-offset="3555">
           <folding>
-            <marker date="1396321200000" expanded="true" signature="602:642" placeholder="SELECT * FRO..visits..." />
-            <marker date="1396321200000" expanded="true" signature="942:1176" placeholder="select visit..visits..." />
-            <marker date="1396321200000" expanded="true" signature="1477:1762" placeholder="SELECT visit..visits..." />
-            <marker date="1396321200000" expanded="true" signature="2107:2431" placeholder="SELECT visit..visits..." />
-            <marker date="1396321200000" expanded="true" signature="2838:3206" placeholder="SELECT visit..visits..." />
-            <marker date="1396321200000" expanded="true" signature="3620:3857" placeholder="UPDATE visit..." />
-            <marker date="1396321200000" expanded="true" signature="4352:4455" placeholder="select * fro..visits..." />
-            <marker date="1396321200000" expanded="true" signature="4696:4922" placeholder="INSERT INTO ..." />
-            <marker date="1396321200000" expanded="true" signature="5268:5294" placeholder="select max(i..visits..." />
-            <marker date="1396321200000" expanded="true" signature="5443:5487" placeholder="UPDATE visit..." />
-            <marker date="1396321200000" expanded="true" signature="5808:5840" placeholder="DELETE FROM ..." />
-            <marker date="1396321200000" expanded="true" signature="6072:6742" placeholder="SELECT visit..visits..." />
-            <marker date="1396321200000" expanded="true" signature="7487:7765" placeholder="SELECT visit..visits..." />
+            <marker date="1396322844000" expanded="true" signature="602:642" placeholder="SELECT * FRO..visits..." />
+            <marker date="1396322844000" expanded="true" signature="942:1176" placeholder="select visit..visits..." />
+            <marker date="1396322844000" expanded="true" signature="1477:1762" placeholder="SELECT visit..visits..." />
+            <marker date="1396322844000" expanded="true" signature="2107:2431" placeholder="SELECT visit..visits..." />
+            <marker date="1396322844000" expanded="true" signature="2789:3115" placeholder="SELECT visit..visits..." />
+            <marker date="1396322844000" expanded="true" signature="3752:3897" placeholder="UPDATE visit..." />
+            <marker date="1396322844000" expanded="true" signature="4555:4740" placeholder="select * fro..visits..." />
+            <marker date="1396322844000" expanded="true" signature="4756:5400" placeholder="INSERT INTO ..." />
+            <marker date="1396322844000" expanded="true" signature="5767:5793" placeholder="select max(i..visits..." />
+            <marker date="1396322844000" expanded="true" signature="6118:6162" placeholder="UPDATE visit..." />
+            <marker date="1396322844000" expanded="true" signature="6936:6968" placeholder="DELETE FROM ..." />
+            <marker date="1396322844000" expanded="true" signature="7331:7764" placeholder="SELECT visit..visits..." />
+            <marker date="1396322844000" expanded="true" signature="8477:8695" placeholder="SELECT visit..visits..." />
           </folding>
         </state>
       </provider>
@@ -1511,7 +1507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="204" column="0" selection-start="8845" selection-end="8845" vertical-scroll-proportion="0.33333334" vertical-offset="2946" max-vertical-offset="4440">
+        <state line="253" column="0" selection-start="11362" selection-end="11362" vertical-scroll-proportion="0.33333334" vertical-offset="3681" max-vertical-offset="5325">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
