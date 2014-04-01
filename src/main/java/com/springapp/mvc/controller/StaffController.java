@@ -383,13 +383,13 @@ public class StaffController {
 			return "redirect:/InvalidAccess";
 
 		visit.setDate(basicService.getSchedule(visit, time));
-
 		if (StringUtils.isNullOrEmpty(appointmentId)) {
-			return "redirect:/staff/see_appointment/"
-					+ appointmentService.insertAppointment(visit).getId();
-		} else {
 			return "redirect:/staff/appointment_schedule/"
-					+ appointmentService.updateAppointment(visit).getId();
+					+ appointmentDAO.insertAppointment(visit);
+		} else {
+            visit.setId(Integer.parseInt(appointmentId));
+            appointmentDAO.updateAppointment(visit);
+            return "redirect:/staff/appointment_schedule/" + appointmentId;
 		}
 
 	}
