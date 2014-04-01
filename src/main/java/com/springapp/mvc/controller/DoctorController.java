@@ -50,6 +50,27 @@ public class DoctorController {
 		return "doctor/index";
 	}
 
+    @RequestMapping(value = "/see_visits/{personID}", method = RequestMethod.GET)
+    public ModelAndView getVisits(@PathVariable int personID) {
+
+        ModelAndView model = new ModelAndView("doctor/index");
+        List<Visit> visits = appointmentDAO.getRecordsByPatientId(personID);
+
+        model.addObject("visits", visits);
+        model.addObject("content", "see_visits");
+
+        return model;
+
+    }
+
+    @RequestMapping(value="/grant_permission", method = RequestMethod.GET)
+    public ModelAndView grantPermission(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+
+        return new ModelAndView("doctor/index", "content", "grant_permission");
+    }
+
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView dashboard(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -193,4 +214,68 @@ public class DoctorController {
 		// TODO: check if id is auto updated or if we have to search it again
 		return "redirect:/appointment/" + visit.getId();
 	}
+
+    @RequestMapping(value="/search_patient", method = RequestMethod.GET)
+    public ModelAndView searchPatientFirst(
+            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        return new ModelAndView("doctor/index", "content", "search_patient");
+    }
+
+    @RequestMapping(value="/grant_permission", method = RequestMethod.POST)
+    public ModelAndView insertPatientDoctor(
+            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+
+        //list of patient whose defaultdoc it this user
+        List<Patient> patients = patientDAO.getAllPatientsOfDefaultDoctor(user.getId());
+
+
+
+
+
+
+        return new ModelAndView("doctor/index", "content", "search_patient");
+    }
+
+    @RequestMapping(value="/search_patient", method = RequestMethod.POST)
+    public ModelAndView getPatients(@RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request, @RequestParam(value= "searchCriteria", defaultValue="") String searchCriteria) {
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+
+//        if(user.getRoleID() != 3)
+//            return new ModelAndView("/InvalidAccess" );
+
+        ModelAndView model = new ModelAndView("doctor/index");
+
+        if(searchCriteria.equals("patientName")){
+
+            List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
+            model.addObject("patients", patients);
+        }
+        else if(searchCriteria.equals("patientId")){
+
+            List<Patient> patients = patientDAO.searchPatientById(keyword);
+            model.addObject("patients", patients);
+        }
+        else if(searchCriteria.equals("LastVisit")){
+
+
+            //TODO: LAST VISIT...
+
+            List<Patient> patients = patientDAO.searchPatientByDate(keyword);
+            model.addObject("patients", patients);
+        }
+
+        else{
+            //NULL SearchCriteria should be BANNED
+        }
+
+        model.addObject("content", "search_patient");
+
+        return model;
+    }
+
 }
