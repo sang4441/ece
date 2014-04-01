@@ -4,7 +4,6 @@ public class Doctor extends Person{
 
 	private int person_id;
 
-
 	public Doctor() {
 
 	}

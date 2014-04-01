@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.springapp.mvc.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,8 @@ public class DoctorController {
 
 	@Autowired
 	AppointmentDAO appointmentDAO;
+    @Autowired
+    PersonDAO personDAO;
 
 	@RequestMapping(value = "/{docID}", method = RequestMethod.GET)
 	public String getPatientsOfDoctor(@PathVariable int docID, ModelMap model) {
@@ -50,13 +53,16 @@ public class DoctorController {
 		return "doctor/index";
 	}
 
-    @RequestMapping(value = "/see_visits/{personID}", method = RequestMethod.GET)
-    public ModelAndView getVisits(@PathVariable int personID) {
+	@RequestMapping(value = "/see_visits/{personID}", method = RequestMethod.GET)
+	public ModelAndView getVisits(@PathVariable int personID) {
 
         ModelAndView model = new ModelAndView("doctor/index");
         List<Visit> visits = appointmentDAO.getRecordsByPatientId(personID);
+        Person person = (Person) personDAO.getPersonById(personID);
+        String patient_name = person.getNameFirst()+" "+person.getNameLast();
 
         model.addObject("visits", visits);
+        model.addObject("patientName", patient_name);
         model.addObject("content", "see_visits");
 
         return model;
@@ -86,22 +92,23 @@ public class DoctorController {
 		return model;
 	}
 
-	@RequestMapping(value = "/patient/{patientID}", method = RequestMethod.GET)
-	public ModelAndView patientRecords(HttpServletRequest request,
-			@PathVariable int patientID) {
-		HttpSession session = request.getSession(false);
-		Person user = (Person) session.getAttribute("user");
-		Patient patient = patientDAO.getPatientsByPatientId(patientID);
-		List<Visit> visits = appointmentDAO
-				.getAppoinmentsByPatientId(patientID);
-
-		ModelAndView model = new ModelAndView("doctor/index");
-		model.addObject("content", "patient_records");
-		model.addObject("user", user);
-		model.addObject("patient", patient);
-		model.addObject("visits", visits);
-		return model;
-	}
+	// @RequestMapping(value = "/patient/{patientID}", method =
+	// RequestMethod.GET)
+	// public ModelAndView patientRecords(HttpServletRequest request,
+	// @PathVariable int patientID) {
+	// HttpSession session = request.getSession(false);
+	// Person user = (Person) session.getAttribute("user");
+	// Patient patient = patientDAO.getPatientsByPatientId(patientID);
+	// List<Visit> visits = appointmentDAO
+	// .getAppoinmentsByPatientId(patientID);
+	//
+	// ModelAndView model = new ModelAndView("doctor/index");
+	// model.addObject("content", "patient_records");
+	// model.addObject("user", user);
+	// model.addObject("patient", patient);
+	// model.addObject("visits", visits);
+	// return model;
+	// }
 
 	@RequestMapping(value = "/patient/search", method = RequestMethod.POST)
 	public ModelAndView searchPatients(
@@ -166,10 +173,37 @@ public class DoctorController {
 		Visit visit = appointmentID == 0 ? new Visit() : appointmentDAO
 				.getAppointment(appointmentID);
 
+		List<Visit> visits = appointmentDAO.getAppoinmentsByPatientId(visit
+				.getPatientId());
+
 		ModelAndView model = new ModelAndView("doctor/index");
-		model.addObject("content", "view_appointment");
+		model.addObject("content", "appointment");
 		model.addObject("user", user);
 		model.addObject("visit", visit);
+		model.addObject("visits", visits);
+		return model;
+	}
+
+	@RequestMapping(value = "/patient/{patientID}", method = RequestMethod.GET)
+	public ModelAndView viewPatient(HttpServletRequest request,
+			@PathVariable int patientID) {
+		HttpSession session = request.getSession(false);
+		Person user = (Person) session.getAttribute("user");
+
+		Patient patient = patientID == 0 ? new Patient() : patientDAO
+				.getPatientsByPatientId(patientID);
+
+        String patientName = patient.getNameFirst() + " " + patient.getNameLast();
+
+		List<Visit> visits = appointmentDAO
+				.getAppoinmentsByPatientId(patientID);
+
+		ModelAndView model = new ModelAndView("doctor/index");
+        model.addObject("patientName", patientName);
+		model.addObject("content", "patient");
+		model.addObject("user", user);
+		model.addObject("patient", patient);
+		model.addObject("visits", visits);
 		return model;
 	}
 
@@ -215,67 +249,65 @@ public class DoctorController {
 		return "redirect:/appointment/" + visit.getId();
 	}
 
-    @RequestMapping(value="/search_patient", method = RequestMethod.GET)
-    public ModelAndView searchPatientFirst(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
-        return new ModelAndView("doctor/index", "content", "search_patient");
-    }
+	@RequestMapping(value = "/search_patient", method = RequestMethod.GET)
+	public ModelAndView searchPatientFirst(
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Person user = (Person) session.getAttribute("user");
+		return new ModelAndView("doctor/index", "content", "search_patient");
+	}
 
-    @RequestMapping(value="/grant_permission", method = RequestMethod.POST)
-    public ModelAndView insertPatientDoctor(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
+	@RequestMapping(value = "/grant_permission", method = RequestMethod.POST)
+	public ModelAndView insertPatientDoctor(
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Person user = (Person) session.getAttribute("user");
 
-        //list of patient whose defaultdoc it this user
-        List<Patient> patients = patientDAO.getAllPatientsOfDefaultDoctor(user.getId());
+		// list of patient whose defaultdoc it this user
+		List<Patient> patients = patientDAO.getAllPatientsOfDefaultDoctor(user
+				.getId());
 
+		return new ModelAndView("doctor/index", "content", "search_patient");
+	}
 
+	@RequestMapping(value = "/search_patient", method = RequestMethod.POST)
+	public ModelAndView getPatients(
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			HttpServletRequest request,
+			@RequestParam(value = "searchCriteria", defaultValue = "") String searchCriteria) {
+		HttpSession session = request.getSession();
+		Person user = (Person) session.getAttribute("user");
 
+		// if(user.getRoleID() != 3)
+		// return new ModelAndView("/InvalidAccess" );
 
+		ModelAndView model = new ModelAndView("doctor/index");
 
+		if (searchCriteria.equals("patientName")) {
 
-        return new ModelAndView("doctor/index", "content", "search_patient");
-    }
+			List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
+			model.addObject("patients", patients);
+		} else if (searchCriteria.equals("patientId")) {
 
-    @RequestMapping(value="/search_patient", method = RequestMethod.POST)
-    public ModelAndView getPatients(@RequestParam(value = "keyword", defaultValue = "") String keyword, HttpServletRequest request, @RequestParam(value= "searchCriteria", defaultValue="") String searchCriteria) {
-        HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
+			List<Patient> patients = patientDAO.searchPatientById(keyword);
+			model.addObject("patients", patients);
+		} else if (searchCriteria.equals("LastVisit")) {
 
-//        if(user.getRoleID() != 3)
-//            return new ModelAndView("/InvalidAccess" );
+			// TODO: LAST VISIT...
 
-        ModelAndView model = new ModelAndView("doctor/index");
+			List<Patient> patients = patientDAO.searchPatientByDate(keyword);
+			model.addObject("patients", patients);
+		}
 
-        if(searchCriteria.equals("patientName")){
+		else {
+			// NULL SearchCriteria should be BANNED
+		}
 
-            List<Patient> patients = patientDAO.searchPatientByKeyword(keyword);
-            model.addObject("patients", patients);
-        }
-        else if(searchCriteria.equals("patientId")){
+		model.addObject("content", "search_patient");
 
-            List<Patient> patients = patientDAO.searchPatientById(keyword);
-            model.addObject("patients", patients);
-        }
-        else if(searchCriteria.equals("LastVisit")){
-
-
-            //TODO: LAST VISIT...
-
-            List<Patient> patients = patientDAO.searchPatientByDate(keyword);
-            model.addObject("patients", patients);
-        }
-
-        else{
-            //NULL SearchCriteria should be BANNED
-        }
-
-        model.addObject("content", "search_patient");
-
-        return model;
-    }
+		return model;
+	}
 
 }

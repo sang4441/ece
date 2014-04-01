@@ -1,16 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <h2>Edit Profile</h2>
-<c:choose>
-    <c:when test="${role==3}">
-        <a href="/ece/staff/dashboard"><button>go back to staff dashboard</button></a>
-    </c:when>
-    <c:when test="${role==1}">
-        <%--<a href="/ece/patient/profile/${user.personId}"><button>back to my profile</button></a>--%>
-    </c:when>
-    <c:otherwise>
-        <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
-    </c:otherwise>
-</c:choose>
 
 <script type="text/javascript">
     function checkPassword(form)
@@ -121,6 +111,6 @@
             <td><input type="text" name="currentHealth" value="${user.currentHealth}"></td>
         </tr>
     </table>
-    <input type="hidden" name="personId" value="${user.personId}"></input>
-    <div><input type="submit" value="submit"></div>
+    <input type="hidden" name="personId" value="${user.personId}">
+    <div><input class="btn btn-default" type="submit" value="submit"></div>
 </form>

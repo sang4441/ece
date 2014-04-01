@@ -69,7 +69,7 @@ public class AppointmentDAO {
 				+ "left join patients on patients.id = visits.PatientID \n"
 				+ "left join person \n"
 				+ "on patients.PersonId = person.id \n"
-				+ "where CONCAT(person.NameFirst,person.NameLast) like ? and DateModified IS NULL;";
+				+ "where CONCAT(person.NameFirst,person.NameLast) like ? and DateModified IS NULL order by person.id, visits.date;";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

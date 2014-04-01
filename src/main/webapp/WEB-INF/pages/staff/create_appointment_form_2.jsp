@@ -11,13 +11,13 @@
         </c:otherwise>
     </c:choose>
 
-    <div>Patient: ${patient.nameLast} ${patient.nameFirst}</div>
-    <div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>
+    <div><h3>Patient: ${patient.nameLast} ${patient.nameFirst}</h3></div>
+    <div><h3>Default Doctor: ${doctor.nameLast} ${doctor.nameFirst}</h3></div>
     <%--<input type="hidden" name="id" value="${schedule.id}">--%>
     <input type="hidden" name="doctorId" value="${doctor.id}">
     <input type="hidden" name="patientId" value="${patientId}">
     <%--From: <input type="text" class="datepicker"> To: <input type="text" class="datepicker"> <button id="change_date">Change date</button>--%>
-    <div>
+    <div class="schedule-table">
 
         <table>
             <td>

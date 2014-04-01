@@ -57,7 +57,14 @@
         </tr>
         <tr>
             <td>Default Doctor</td>
-            <td><input type="number" name="defaultDoc" min="1" required></td>
+            <td>
+                <select type="number" name="defaultDoc" min="1" required>
+                    <c:forEach items="${doctors}" var="doctor" >
+                        <option value="${doctor.id}">Dr. ${doctor.nameLast}</option>
+                    </c:forEach>
+                </select>
+            </td>
+            <%--<td><input type="number" name="defaultDoc" min="1" required></td>--%>
         </tr>
         <tr>
             <td>Health Card</td>
@@ -72,5 +79,5 @@
             <td><input type="text" name="currentHealth"></td>
         </tr>
     </table>
-    <div><input type="submit" value="submit"></div>
+    <div><input class="btn btn-default" type="submit" value="submit"></div>
 </form>

@@ -6,7 +6,7 @@
     <%--<button id="search">Search</button>--%>
 <%--<form method="post" action="reschedule">--%>
     <c:forEach items="${appointments}" var="appointment" >
-        <a href="/ece/staff/see_appointment/${appointment.patientId}"><div>${appointment.patientName} ${appointment.date}</div></a>
+        <a href="/ece/staff/appointment_schedule/${appointment.id}"><div>${appointment.patientName} ${appointment.date}</div></a>
     </c:forEach>
     <%--<button type="hidden" name="patientId" value="${app}">--%>
     <%--<button id="reschedule">Reschedule</button>--%>

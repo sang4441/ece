@@ -63,6 +63,8 @@ public class PatientController {
 		model.addObject("content", "dashboard");
 		model.addObject("user", patient);
 		model.addObject("appointments", appointments);
+		model.addObject("personId", personId);
+        model.addObject("role", session_role);
 		return model;
 	}
 
@@ -76,16 +78,15 @@ public class PatientController {
 		int person_id = personId;
 
         //if user is a patient, check if personId is same
-        if(session_role != 1){
-
-            if(session_role == 2)
-                return new ModelAndView("/InvalidAccess");
+        if(session_role == 1){
 
             Person user = (Person) session.getAttribute("user");
             int user_id = user.getId();
             if(user_id!=personId)
                 return new ModelAndView("/InvalidAccess");
         }
+        if(session_role == 2)
+            return new ModelAndView("/InvalidAccess");
 
 		List<Doctor> doctors = doctorDAO.getAllDoctors();
 		Patient patient = patientDAO.getPatientsByPersonId(personId);
