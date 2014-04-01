@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="addb41ea-bcd3-424e-97f8-fb9093be0f9f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PermissionDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/dashboard.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/index.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/review_records.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ece.iws" />
@@ -72,8 +82,8 @@
       <file leaf-file-name="AppointmentDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="4140">
-              <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="4980">
+              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -82,31 +92,34 @@
       <file leaf-file-name="PatientDAO.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35885167" vertical-offset="0" max-vertical-offset="4425">
-              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.32296652" vertical-offset="0" max-vertical-offset="4455">
+              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding>
-                <marker date="1396369162000" expanded="true" signature="656:830" placeholder="select patie..patients..." />
-                <marker date="1396369162000" expanded="true" signature="1148:1370" placeholder="select patie..patients..." />
-                <marker date="1396369162000" expanded="true" signature="1657:1911" placeholder="SELECT pt.*,..patients..." />
-                <marker date="1396369162000" expanded="true" signature="2242:2533" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396369162000" expanded="true" signature="2886:3010" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396369162000" expanded="true" signature="3300:3458" placeholder="SELECT patie..patients..." />
-                <marker date="1396369162000" expanded="true" signature="3819:4040" placeholder="UPDATE perso..." />
-                <marker date="1396369162000" expanded="true" signature="4356:4490" placeholder="UPDATE patie..." />
-                <marker date="1396369162000" expanded="true" signature="4827:5064" placeholder="UPDATE perso..." />
-                <marker date="1396369162000" expanded="true" signature="5441:5599" placeholder="UPDATE patie..." />
-                <marker date="1396369162000" expanded="true" signature="5940:6112" placeholder="SELECT perso..patients..." />
-                <marker date="1396369162000" expanded="true" signature="6421:6588" placeholder="SELECT perso..patients..." />
-                <marker date="1396369162000" expanded="true" signature="6920:7304" placeholder="select max(d..." />
-                <marker date="1396369162000" expanded="true" signature="7661:8085" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396369162000" expanded="true" signature="7661:7869" placeholder="SELECT * FRO..patients..." />
-                <marker date="1396369162000" expanded="true" signature="7661:8105" placeholder="select visit..patients..." />
-                <marker date="1396369162000" expanded="true" signature="8514:8648" placeholder="SELECT patie..patients..." />
-                <marker date="1396369162000" expanded="true" signature="8956:9152" placeholder="SELECT *FROM..patients..." />
-                <marker date="1396369162000" expanded="true" signature="9509:9742" placeholder="select perso..patients..." />
-                <marker date="1396369162000" expanded="true" signature="10113:10281" placeholder="INSERT INTO ..." />
-                <marker date="1396369162000" expanded="true" signature="10577:10636" placeholder="select id fr..person..." />
-                <marker date="1396369162000" expanded="true" signature="10745:10857" placeholder="INSERT INTO ..." />
+                <marker date="1396392455000" expanded="true" signature="695:829" placeholder="select patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="1136:1306" placeholder="select patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="1558:1798" placeholder="SELECT pt.*,..patients..." />
+                <marker date="1396392455000" expanded="true" signature="1558:1788" placeholder="SELECT pt.*,..patients..." />
+                <marker date="1396392455000" expanded="true" signature="2119:3227" placeholder="SELECT * FRO..patients..." />
+                <marker date="1396392455000" expanded="true" signature="2119:2410" placeholder="SELECT * FRO..patients..." />
+                <marker date="1396392455000" expanded="true" signature="2831:3227" placeholder="SELECT * FRO..patients..." />
+                <marker date="1396392455000" expanded="true" signature="3593:3717" placeholder="SELECT * FRO..patients..." />
+                <marker date="1396392455000" expanded="true" signature="3998:4132" placeholder="SELECT patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="4004:4144" placeholder="SELECT patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="4460:4681" placeholder="UPDATE perso..." />
+                <marker date="1396392455000" expanded="true" signature="4997:5131" placeholder="UPDATE patie..." />
+                <marker date="1396392455000" expanded="true" signature="5453:5654" placeholder="UPDATE perso..." />
+                <marker date="1396392455000" expanded="true" signature="5947:6081" placeholder="UPDATE patie..." />
+                <marker date="1396392455000" expanded="true" signature="5953:6093" placeholder="UPDATE patie..." />
+                <marker date="1396392455000" expanded="true" signature="6353:6525" placeholder="SELECT perso..patients..." />
+                <marker date="1396392455000" expanded="true" signature="6825:6968" placeholder="SELECT perso..patients..." />
+                <marker date="1396392455000" expanded="true" signature="7265:7561" placeholder="select max(d..." />
+                <marker date="1396392455000" expanded="true" signature="7897:8031" placeholder="SELECT patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="8330:8630" placeholder="SELECT patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="8939:9244" placeholder="select patie..patients..." />
+                <marker date="1396392455000" expanded="true" signature="9144:9294" placeholder="select perso..patients..." />
+                <marker date="1396392455000" expanded="true" signature="9589:9757" placeholder="INSERT INTO ..." />
+                <marker date="1396392455000" expanded="true" signature="10053:10112" placeholder="select id fr..person..." />
+                <marker date="1396392455000" expanded="true" signature="10221:10333" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
@@ -115,28 +128,10 @@
       <file leaf-file-name="DoctorDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="3540">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="3390">
+              <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
               <folding>
-                <marker date="1396385132000" expanded="true" signature="630:798" placeholder="select docto..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="1072:1171" placeholder="select id\nf..staff..." />
-                <marker date="1396385132000" expanded="true" signature="1338:1662" placeholder="select docto..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="1878:2240" placeholder="SELECT dt.*,..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="2266:2518" placeholder="select docto..PatientDoctor..." />
-                <marker date="1396385132000" expanded="true" signature="2522:2773" placeholder="SELECT pt.*,..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="2865:2982" placeholder="SELECT perso..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="3081:3209" placeholder="select docto..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="3276:3740" placeholder="SELECT *\nFR..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="3569:3699" placeholder="SELECT docto..doctors..." />
-                <marker date="1396385132000" expanded="true" signature="4059:4163" placeholder="insert into ..." />
-                <marker date="1396385132000" expanded="true" signature="4399:4483" placeholder="DELETE from ..." />
-                <marker date="1396385132000" expanded="true" signature="4714:5054" placeholder="select docto..PatientDoctor..." />
-                <marker date="1396385132000" expanded="true" signature="5383:5741" placeholder="select docto..PatientDoctor..." />
-                <marker date="1396385132000" expanded="true" signature="5996:6186" placeholder="SELECT perso..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="6551:7153" placeholder="SELECT perso..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="6772:7077" placeholder="SELECT docto..doctor..." />
-                <marker date="1396385132000" expanded="true" signature="7568:7662" placeholder="select defau..patients..." />
-                <marker date="1396385132000" expanded="true" signature="7764:7990" placeholder="select CONCA..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="630:675" placeholder="select docto..doctor..." />
               </folding>
             </state>
           </provider>
@@ -145,9 +140,12 @@
       <file leaf-file-name="DoctorController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1339" max-vertical-offset="6540">
-              <caret line="135" column="47" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1549" max-vertical-offset="7215">
+              <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+              <folding>
+                <marker date="1396392972000" expanded="true" signature="7165:7267" placeholder="@{...}" />
+                <marker date="1396392972000" expanded="true" signature="17359:18196" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,8 +173,8 @@
       <file leaf-file-name="StaffController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5595">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="5640">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -271,7 +269,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/see_visits.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/grant_permission.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/search_patient.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/patient.jsp" />
@@ -280,6 +277,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" />
       </list>
     </option>
   </component>
@@ -1077,7 +1075,7 @@
       <workItem from="1396282643843" duration="1836000" />
       <workItem from="1396284502214" duration="9279000" />
       <workItem from="1396302743366" duration="43666000" />
-      <workItem from="1396387263752" duration="3180000" />
+      <workItem from="1396387263752" duration="4664000" />
     </task>
     <task id="LOCAL-00001" summary="insert sql, &#10;Visit model changed">
       <created>1395994300820</created>
@@ -1107,7 +1105,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134387000" />
+    <option name="totallyTimeSpent" value="135871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="742" extended-state="6" />
@@ -1171,10 +1169,6 @@
     <breakpoint-manager>
       <option name="time" value="30" />
     </breakpoint-manager>
-  </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -1473,8 +1467,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="3975">
-          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="4980">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1508,28 +1502,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1125" max-vertical-offset="3375">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="3390">
+          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding>
-            <marker date="1396385132000" expanded="true" signature="630:798" placeholder="select docto..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="1072:1171" placeholder="select id\nf..staff..." />
-            <marker date="1396385132000" expanded="true" signature="1338:1662" placeholder="select docto..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="1878:2240" placeholder="SELECT dt.*,..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="2266:2518" placeholder="select docto..PatientDoctor..." />
-            <marker date="1396385132000" expanded="true" signature="2522:2773" placeholder="SELECT pt.*,..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="2865:2982" placeholder="SELECT perso..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="3081:3209" placeholder="select docto..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="3276:3740" placeholder="SELECT *\nFR..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="3569:3699" placeholder="SELECT docto..doctors..." />
-            <marker date="1396385132000" expanded="true" signature="4059:4163" placeholder="insert into ..." />
-            <marker date="1396385132000" expanded="true" signature="4399:4483" placeholder="DELETE from ..." />
-            <marker date="1396385132000" expanded="true" signature="4714:5054" placeholder="select docto..PatientDoctor..." />
-            <marker date="1396385132000" expanded="true" signature="5383:5741" placeholder="select docto..PatientDoctor..." />
-            <marker date="1396385132000" expanded="true" signature="5996:6186" placeholder="SELECT perso..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="6551:7153" placeholder="SELECT perso..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="6772:7077" placeholder="SELECT docto..doctor..." />
-            <marker date="1396385132000" expanded="true" signature="7568:7662" placeholder="select defau..patients..." />
-            <marker date="1396385132000" expanded="true" signature="7764:7990" placeholder="select CONCA..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="630:675" placeholder="select docto..doctor..." />
           </folding>
         </state>
       </provider>
@@ -1544,9 +1520,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1339" max-vertical-offset="6540">
-          <caret line="135" column="47" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1549" max-vertical-offset="7215">
+          <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+          <folding>
+            <marker date="1396392972000" expanded="true" signature="7165:7267" placeholder="@{...}" />
+            <marker date="1396392972000" expanded="true" signature="17359:18196" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1560,121 +1539,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5595">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="5640">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35885167" vertical-offset="0" max-vertical-offset="4425">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.32296652" vertical-offset="0" max-vertical-offset="4455">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
           <folding>
-            <marker date="1396369162000" expanded="true" signature="656:830" placeholder="select patie..patients..." />
-            <marker date="1396369162000" expanded="true" signature="1148:1370" placeholder="select patie..patients..." />
-            <marker date="1396369162000" expanded="true" signature="1657:1911" placeholder="SELECT pt.*,..patients..." />
-            <marker date="1396369162000" expanded="true" signature="2242:2533" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396369162000" expanded="true" signature="2886:3010" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396369162000" expanded="true" signature="3300:3458" placeholder="SELECT patie..patients..." />
-            <marker date="1396369162000" expanded="true" signature="3819:4040" placeholder="UPDATE perso..." />
-            <marker date="1396369162000" expanded="true" signature="4356:4490" placeholder="UPDATE patie..." />
-            <marker date="1396369162000" expanded="true" signature="4827:5064" placeholder="UPDATE perso..." />
-            <marker date="1396369162000" expanded="true" signature="5441:5599" placeholder="UPDATE patie..." />
-            <marker date="1396369162000" expanded="true" signature="5940:6112" placeholder="SELECT perso..patients..." />
-            <marker date="1396369162000" expanded="true" signature="6421:6588" placeholder="SELECT perso..patients..." />
-            <marker date="1396369162000" expanded="true" signature="6920:7304" placeholder="select max(d..." />
-            <marker date="1396369162000" expanded="true" signature="7661:8085" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396369162000" expanded="true" signature="7661:7869" placeholder="SELECT * FRO..patients..." />
-            <marker date="1396369162000" expanded="true" signature="7661:8105" placeholder="select visit..patients..." />
-            <marker date="1396369162000" expanded="true" signature="8514:8648" placeholder="SELECT patie..patients..." />
-            <marker date="1396369162000" expanded="true" signature="8956:9152" placeholder="SELECT *FROM..patients..." />
-            <marker date="1396369162000" expanded="true" signature="9509:9742" placeholder="select perso..patients..." />
-            <marker date="1396369162000" expanded="true" signature="10113:10281" placeholder="INSERT INTO ..." />
-            <marker date="1396369162000" expanded="true" signature="10577:10636" placeholder="select id fr..person..." />
-            <marker date="1396369162000" expanded="true" signature="10745:10857" placeholder="INSERT INTO ..." />
+            <marker date="1396392455000" expanded="true" signature="695:829" placeholder="select patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="1136:1306" placeholder="select patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="1558:1798" placeholder="SELECT pt.*,..patients..." />
+            <marker date="1396392455000" expanded="true" signature="1558:1788" placeholder="SELECT pt.*,..patients..." />
+            <marker date="1396392455000" expanded="true" signature="2119:3227" placeholder="SELECT * FRO..patients..." />
+            <marker date="1396392455000" expanded="true" signature="2119:2410" placeholder="SELECT * FRO..patients..." />
+            <marker date="1396392455000" expanded="true" signature="2831:3227" placeholder="SELECT * FRO..patients..." />
+            <marker date="1396392455000" expanded="true" signature="3593:3717" placeholder="SELECT * FRO..patients..." />
+            <marker date="1396392455000" expanded="true" signature="3998:4132" placeholder="SELECT patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="4004:4144" placeholder="SELECT patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="4460:4681" placeholder="UPDATE perso..." />
+            <marker date="1396392455000" expanded="true" signature="4997:5131" placeholder="UPDATE patie..." />
+            <marker date="1396392455000" expanded="true" signature="5453:5654" placeholder="UPDATE perso..." />
+            <marker date="1396392455000" expanded="true" signature="5947:6081" placeholder="UPDATE patie..." />
+            <marker date="1396392455000" expanded="true" signature="5953:6093" placeholder="UPDATE patie..." />
+            <marker date="1396392455000" expanded="true" signature="6353:6525" placeholder="SELECT perso..patients..." />
+            <marker date="1396392455000" expanded="true" signature="6825:6968" placeholder="SELECT perso..patients..." />
+            <marker date="1396392455000" expanded="true" signature="7265:7561" placeholder="select max(d..." />
+            <marker date="1396392455000" expanded="true" signature="7897:8031" placeholder="SELECT patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="8330:8630" placeholder="SELECT patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="8939:9244" placeholder="select patie..patients..." />
+            <marker date="1396392455000" expanded="true" signature="9144:9294" placeholder="select perso..patients..." />
+            <marker date="1396392455000" expanded="true" signature="9589:9757" placeholder="INSERT INTO ..." />
+            <marker date="1396392455000" expanded="true" signature="10053:10112" placeholder="select id fr..person..." />
+            <marker date="1396392455000" expanded="true" signature="10221:10333" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>ece:war</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Web</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.6</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>ece</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
 
