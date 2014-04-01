@@ -4,6 +4,7 @@
 
 <h2>Patient Dashboard for ${user.nameFirst}</h2>
 
+<h3>${user.nameFirst}' Appointments</h3>
 <table border="1">
     <tr>
         <th style="padding:5"></th>

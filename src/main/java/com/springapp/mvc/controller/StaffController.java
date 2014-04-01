@@ -254,6 +254,8 @@ public class StaffController {
 				.getPatientId());
 		long dateDiff = FormatService.findDiffDays(new Date(),
 				appointment.getDate());
+        Doctor doctor = doctorDAO.getDoctorById(appointment.getDoctorId());
+        model.addObject("doctor", doctor);
 		model.addObject("schedule", schedule);
 		model.addObject("appointment", appointment);
 		model.addObject("patient", patient);

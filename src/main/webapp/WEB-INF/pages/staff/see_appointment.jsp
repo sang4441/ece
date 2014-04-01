@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <form method="post"action="/ece/staff/appointment_form_submit">
-    <div><h4>Patient: ${patient.nameLast} ${patient.nameFirst}</h4></div>
+    <div><h3>Patient: ${patient.nameLast} ${patient.nameFirst}</h3></div>
+    <div><h3>Default Doctor: ${doctor.nameLast} ${doctor.nameFirst}</h3></div>
     <input type="hidden" name="appointmentId" value="${appointment.id}">
     <input type="hidden" name="patientId" value="${patient.id}">
     <div>
