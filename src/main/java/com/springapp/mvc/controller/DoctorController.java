@@ -465,8 +465,6 @@ public class DoctorController {
 			model.addObject("patients", patients);
 		} else if (searchCriteria.equals("LastVisit")) {
 
-			// TODO: LAST VISIT...
-
 			List<Patient> patients = patientDAO.searchPatientByDate(keyword);
 			model.addObject("patients", patients);
 		}

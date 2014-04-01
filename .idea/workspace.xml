@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="addb41ea-bcd3-424e-97f8-fb9093be0f9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FinancialController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PermissionDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/dashboard.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/financial/review_records.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/AppointmentDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Visit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/dashboard.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/staff/review_records.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ece.iws" />
@@ -89,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PatientDAO.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PatientDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32296652" vertical-offset="0" max-vertical-offset="4455">
-              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2936" max-vertical-offset="4455">
+              <caret line="215" column="43" selection-start-line="215" selection-start-column="43" selection-end-line="215" selection-end-column="43" />
               <folding>
                 <marker date="1396392455000" expanded="true" signature="695:829" placeholder="select patie..patients..." />
                 <marker date="1396392455000" expanded="true" signature="1136:1306" placeholder="select patie..patients..." />
@@ -128,24 +115,37 @@
       <file leaf-file-name="DoctorDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="3390">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1545" max-vertical-offset="3225">
               <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
               <folding>
                 <marker date="1396392455000" expanded="true" signature="630:675" placeholder="select docto..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="630:758" placeholder="select docto..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="1024:1075" placeholder="select id\nf..staff..." />
+                <marker date="1396392455000" expanded="true" signature="1227:1471" placeholder="select docto..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="1684:1998" placeholder="SELECT dt.*,..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="2271:2498" placeholder="SELECT pt.*,..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="2773:2901" placeholder="select docto..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="3302:3432" placeholder="SELECT docto..doctors..." />
+                <marker date="1396392455000" expanded="true" signature="3778:3854" placeholder="insert into ..." />
+                <marker date="1396392455000" expanded="true" signature="4070:4142" placeholder="DELETE from ..." />
+                <marker date="1396392455000" expanded="true" signature="4353:4613" placeholder="select docto..PatientDoctor..." />
+                <marker date="1396392455000" expanded="true" signature="4927:5205" placeholder="select docto..PatientDoctor..." />
+                <marker date="1396392455000" expanded="true" signature="5443:5609" placeholder="SELECT perso..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="5935:6377" placeholder="SELECT perso..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="6084:6313" placeholder="SELECT docto..doctor..." />
+                <marker date="1396392455000" expanded="true" signature="6749:6815" placeholder="select defau..patients..." />
+                <marker date="1396392455000" expanded="true" signature="6910:7080" placeholder="select CONCA..doctor..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DoctorController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DoctorController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1549" max-vertical-offset="7215">
-              <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
-              <folding>
-                <marker date="1396392972000" expanded="true" signature="7165:7267" placeholder="@{...}" />
-                <marker date="1396392972000" expanded="true" signature="17359:18196" placeholder="{...}" />
-              </folding>
+            <state vertical-scroll-proportion="0.68677497" vertical-offset="6349" max-vertical-offset="6870">
+              <caret line="471" column="14" selection-start-line="471" selection-start-column="14" selection-end-line="471" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,8 +173,8 @@
       <file leaf-file-name="StaffController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="5640">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="5640">
+              <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -275,9 +275,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PersonDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/doctor/revoke_permission.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/PatientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java" />
       </list>
     </option>
   </component>
@@ -1075,7 +1075,7 @@
       <workItem from="1396282643843" duration="1836000" />
       <workItem from="1396284502214" duration="9279000" />
       <workItem from="1396302743366" duration="43666000" />
-      <workItem from="1396387263752" duration="4664000" />
+      <workItem from="1396387263752" duration="5742000" />
     </task>
     <task id="LOCAL-00001" summary="insert sql, &#10;Visit model changed">
       <created>1395994300820</created>
@@ -1105,7 +1105,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135871000" />
+    <option name="totallyTimeSpent" value="136949000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="742" extended-state="6" />
@@ -1500,16 +1500,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="3390">
-          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding>
-            <marker date="1396392455000" expanded="true" signature="630:675" placeholder="select docto..doctor..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar!/javax/servlet/http/HttpServletRequest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.52" vertical-offset="547" max-vertical-offset="1035">
@@ -1518,13 +1508,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/DoctorDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1549" max-vertical-offset="7215">
-          <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="3390">
+          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding>
-            <marker date="1396392972000" expanded="true" signature="7165:7267" placeholder="@{...}" />
-            <marker date="1396392972000" expanded="true" signature="17359:18196" placeholder="{...}" />
+            <marker date="1396392455000" expanded="true" signature="630:675" placeholder="select docto..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="630:758" placeholder="select docto..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="1024:1075" placeholder="select id\nf..staff..." />
+            <marker date="1396392455000" expanded="true" signature="1227:1471" placeholder="select docto..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="1684:1998" placeholder="SELECT dt.*,..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="2271:2498" placeholder="SELECT pt.*,..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="2773:2901" placeholder="select docto..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="3302:3432" placeholder="SELECT docto..doctors..." />
+            <marker date="1396392455000" expanded="true" signature="3778:3854" placeholder="insert into ..." />
+            <marker date="1396392455000" expanded="true" signature="4070:4142" placeholder="DELETE from ..." />
+            <marker date="1396392455000" expanded="true" signature="4353:4613" placeholder="select docto..PatientDoctor..." />
+            <marker date="1396392455000" expanded="true" signature="4927:5205" placeholder="select docto..PatientDoctor..." />
+            <marker date="1396392455000" expanded="true" signature="5443:5609" placeholder="SELECT perso..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="5935:6377" placeholder="SELECT perso..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="6084:6313" placeholder="SELECT docto..doctor..." />
+            <marker date="1396392455000" expanded="true" signature="6749:6815" placeholder="select defau..patients..." />
+            <marker date="1396392455000" expanded="true" signature="6910:7080" placeholder="select CONCA..doctor..." />
           </folding>
         </state>
       </provider>
@@ -1539,16 +1544,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StaffController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="5640">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="5640">
+          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/dao/PatientDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32296652" vertical-offset="0" max-vertical-offset="4455">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2936" max-vertical-offset="4455">
+          <caret line="215" column="43" selection-start-line="215" selection-start-column="43" selection-end-line="215" selection-end-column="43" />
           <folding>
             <marker date="1396392455000" expanded="true" signature="695:829" placeholder="select patie..patients..." />
             <marker date="1396392455000" expanded="true" signature="1136:1306" placeholder="select patie..patients..." />
@@ -1576,6 +1581,14 @@
             <marker date="1396392455000" expanded="true" signature="10053:10112" placeholder="select id fr..person..." />
             <marker date="1396392455000" expanded="true" signature="10221:10333" placeholder="INSERT INTO ..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/DoctorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68677497" vertical-offset="6349" max-vertical-offset="6870">
+          <caret line="471" column="14" selection-start-line="471" selection-start-column="14" selection-end-line="471" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
