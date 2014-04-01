@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<a href="/ece/doctor/patient/${patient.id}/grant_permission"><button>Grant Permission</button></a>
+<a href="/ece/doctor/patient/${patient.id}/revoke_permission"><button>Revoke Permission</button></a>
 <article class="info">
 <h1>Records for ${patientName}</h1>
 <table>
@@ -27,3 +29,10 @@
         </tr>
     </c:forEach>
 </table>
+
+<h1> Doctors with Permission</h1>
+<ol>
+<c:forEach items="${doctors}" var="doctor" >
+    <li>${doctor.nameFirst} ${doctor.nameLast}</li>
+</c:forEach>
+</ol>

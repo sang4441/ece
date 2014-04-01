@@ -69,12 +69,98 @@ public class DoctorController {
 
     }
 
-    @RequestMapping(value="/grant_permission", method = RequestMethod.GET)
-    public ModelAndView grantPermission(HttpServletRequest request) {
+
+    @RequestMapping(value="/patient/{patientId}/search_doctor", method = RequestMethod.POST)
+    public ModelAndView searchDoctors(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword,
+                                      @PathVariable int patientId) {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
+        int current_doc_id = current_doc.getId();
+
+        List<Doctor> doctors = doctorDAO.searchDoctorsForGrantByKeyword(patientId, keyword);
+        ModelAndView model = new ModelAndView("doctor/index");
+        model.addObject("doctors", doctors);
+        model.addObject("content", "grant_permission");
+        return model;
+    }
+
+    @RequestMapping(value="/patient/{patientId}/insertPatientDoctor/{doctorId}", method = RequestMethod.GET)
+    public String insertPatientDoctor(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword,
+                                      @PathVariable int doctorId, @PathVariable int patientId) {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+
+        Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
+        int current_doc_id = current_doc.getId();
+
+        int assign_doc = doctorId;
+
+        //check if current_doc is defaultdoc?
+        //insert
+        doctorDAO.insertDoctorPatient(patientId, assign_doc);
+
+        return "redirect:/doctor/patient/"+patientId;
+    }
+
+    @RequestMapping(value="/patient/{patientId}/deletePatientDoctor/{doctorId}", method = RequestMethod.GET)
+    public String deletePatientDoctor(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword,
+                                      @PathVariable int doctorId, @PathVariable int patientId) {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+
+        Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
+        int current_doc_id = current_doc.getId();
+        int assign_doc = doctorId;
+
+        Patient patient = patientDAO.getPatientsByPatientId(patientId);
+
+        if(patient.getDefaultDoc() == assign_doc){
+            System.out.println("AVOID DELETE DEFAULTDOC WORK...");
+            return "redirect:/InvalidAccess";
+        }
+
+        //check if current_doc is defaultdoc?
+        if(patient.getDefaultDoc()!=current_doc_id) {
+            System.out.println("AVOID WRONG DOC WORK...");
+            return "redirect:/InvalidAccess";
+        }
+
+        //delete
+        doctorDAO.deleteDoctorPatient(patientId, assign_doc);
+
+        return "redirect:/doctor/patient/"+patientId;
+    }
+    @RequestMapping(value="/patient/{patientId}/grant_permission", method = RequestMethod.GET)
+    public ModelAndView grantPermission(HttpServletRequest request, @PathVariable int patientId) {
+
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
 
         return new ModelAndView("doctor/index", "content", "grant_permission");
+
+    }
+
+    @RequestMapping(value="/patient/{patientId}/revoke_permission", method = RequestMethod.GET)
+    public ModelAndView revokePermission(HttpServletRequest request, @PathVariable int patientId) {
+
+        HttpSession session = request.getSession();
+        Person user = (Person)session.getAttribute("user");
+        Patient patient= patientDAO.getPatientsByPatientId(patientId);
+        int default_doc_id = patient.getDefaultDoc();
+
+        List<Doctor> doctors = doctorDAO.getDoctorsForRevokePatient(patientId, default_doc_id);
+
+        ModelAndView model = new ModelAndView("doctor/index");
+        model.addObject("doctors", doctors);
+        model.addObject("content","revoke_permission");
+        return model;
+
+//        return new ModelAndView("doctor/index", "content", "grant_permission");
+
     }
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
@@ -195,11 +281,14 @@ public class DoctorController {
 
         String patientName = patient.getNameFirst() + " " + patient.getNameLast();
 
+        List <Person> doctors = personDAO.getDoctorsAsPersonForPatient(patientID);
+
 		List<Visit> visits = appointmentDAO
 				.getAppoinmentsByPatientId(patientID);
 
 		ModelAndView model = new ModelAndView("doctor/index");
         model.addObject("patientName", patientName);
+        model.addObject("doctors", doctors);
 		model.addObject("content", "patient");
 		model.addObject("user", user);
 		model.addObject("patient", patient);

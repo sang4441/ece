@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Patient;
 import com.springapp.mvc.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,23 @@ public class PersonDAO {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         Person person  = (Person)jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Person.class));
         return person;
+    }
+
+    public List<Person> getDoctorsAsPersonForPatient(int patientId){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "select person.*\n" +
+                "from PatientDoctor\n" +
+                "inner join doctor \n" +
+                "on doctor.id = PatientDoctor.doctorID\n" +
+                "inner join person\n" +
+                "on person.id = doctor.personID\n" +
+                "where PatientID = ?";
+
+        List<Person> doctors = jdbcTemplate.query(sql, new Object[]{patientId}, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctors;
     }
 
     public int checkLogin(String username, String password){

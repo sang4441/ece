@@ -100,6 +100,96 @@ public class DoctorDAO {
 		return doctors;
 	}
 
+    public void insertDoctorPatient(int patientId, int doctorId){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "insert into PatientDoctor(PatientID, DoctorID)\n" +
+                "values(?\n" +
+                ", ?)";
+
+        jdbcTemplate.update(sql, new Object[]{patientId, doctorId});
+    }
+
+    public void deleteDoctorPatient(int patientId, int doctorId){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "DELETE from PatientDoctor\n" +
+                "where patientID = ? and doctorID = ?";
+
+        jdbcTemplate.update(sql, new Object[]{patientId, doctorId});
+    }
+
+    public List<Doctor> getDoctorsForPatient(int patientId){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "select doctor.*, person.nameFirst, person.nameLast\n" +
+                "from PatientDoctor\n" +
+                "inner join doctor\n" +
+                "on doctor.id = PatientDoctor.doctorID\n" +
+                "inner join person\n" +
+                "on person.id = doctor.personID\n" +
+                "where PatientDoctor.patientID = ?";
+
+        List<Doctor> doctors = jdbcTemplate.query(sql, new Object[]{patientId}, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctors;
+    }
+
+    public List<Doctor> getDoctorsForRevokePatient(int patientId, int doctorId){
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String sql = "select doctor.*, person.nameFirst, person.nameLast\n" +
+                "from PatientDoctor\n" +
+                "inner join doctor\n" +
+                "on doctor.id = PatientDoctor.doctorID\n" +
+                "inner join person\n" +
+                "on person.id = doctor.personID\n" +
+                "where PatientDoctor.patientID = ? and doctor.id !=?";
+
+        List<Doctor> doctors = jdbcTemplate.query(sql, new Object[]{patientId, doctorId}, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctors;
+    }
+
+    public List<Doctor> searchDoctorsByKeyword(String keyword) {
+        String sql = "SELECT person.*, doctor.* FROM doctor \n" + "left join person\n"
+                + "on doctor.PersonId = person.id\n"
+                + "where CONCAT(person.NameFirst,person.NameLast) like ?;";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Doctor> doctors = jdbcTemplate.query(sql, new Object[] { "%"
+                + keyword + "%" }, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctors;
+    }
+
+    public List<Doctor> searchDoctorsForGrantByKeyword(int patientId, String keyword) {
+        String sql = "SELECT person.*, doctor.*\n" +
+                "FROM doctor\n" +
+                "left join person\n" +
+                "on doctor.PersonId = person.id\n" +
+                "where doctor.id not in (\n" +
+                "SELECT doctor.id\n" +
+                "FROM doctor\n" +
+                "left join person\n" +
+                "on doctor.PersonId = person.id\n" +
+                "inner join PatientDoctor\n" +
+                "on PatientDoctor.doctorID = doctor.id\n" +
+                "where PatientDoctor.patientID = ?\n" +
+                ") and CONCAT(person.NameFirst,person.NameLast) LIKE ?";
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Doctor> doctors = jdbcTemplate.query(sql, new Object[] { patientId, "%"
+                + keyword + "%" }, new BeanPropertyRowMapper(Doctor.class));
+
+        return doctors;
+    }
 
     public String getDefaultDoctorByPersonId(int personId){
 
