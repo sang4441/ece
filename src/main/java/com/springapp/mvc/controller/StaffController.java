@@ -6,6 +6,7 @@ import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
 import com.springapp.mvc.dao.PersonDAO;
 import com.springapp.mvc.service.BasicService;
+import com.springapp.mvc.service.FormatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,12 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="/staff")
@@ -152,7 +151,20 @@ public class StaffController {
         return model;
     }
 
-    @RequestMapping(value="/see_appointment/{appointmentId}", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value="/see_appointment/{patientId}", method = {RequestMethod.GET})
+    public ModelAndView seeAppointmentGet(
+            @PathVariable(value = "patientId") int patientId) {
+
+        ModelAndView model = new ModelAndView("staff/index");
+        List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientId(patientId);
+        Patient patient = patientDAO.getPatientsByPatientId(patientId);
+        model.addObject("appointments", appointments);
+        model.addObject("patient", patient);
+        model.addObject("content", "patient_appointment");
+        return model;
+    }
+
+    @RequestMapping(value="/appointment_schedule/{appointmentId}", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView seeAppointmentbyId(
             @PathVariable int appointmentId) {
 
@@ -167,6 +179,7 @@ public class StaffController {
         model.addObject("schedule", schedule);
         model.addObject("appointment", appointment);
         model.addObject("patient", patient);
+        model.addObject("dayDiff", FormatService.findDiffDays(new Date(), appointment.getDate()));
         model.addObject("content", "see_appointment");
         return model;
     }
@@ -187,6 +200,14 @@ public class StaffController {
         return model;
     }
 
+    @RequestMapping(value="/appointment_delete/{appointmentId}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String appointmentDelete(@PathVariable int appointmentId) {
+        Visit apmt = appointmentDAO.getAppointment(appointmentId);
+        appointmentDAO.deleteAppointment(appointmentId);
+        ModelAndView model = new ModelAndView("staff/index");
+        model.addObject("content", "create_appointment_form_2");
+        return "redirect:/staff/see_appointment/" + apmt.getPatientId();
+    }
 
     @RequestMapping(value="/searchPatient", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView searchPatientFirst(
@@ -227,13 +248,18 @@ public class StaffController {
         int patientID = patientDAO.getPatientsIdByPersonId(personId);
         Doctor doctor = doctorDAO.getDoctorById(patient.getDefaultDoc());
 //        List<Visit> visits = appointmentDAO.getAppointmentsByDoctorId(docId, todayString, lastDayString);
-
+        List<Visit> appointments = appointmentDAO.getAppoinmentsByPatientId(patientID);
+//        List<Long> dateDiffList = new ArrayList<Long>();
+//        for (Visit appointment : appointments) {
+//            dateDiffList.add(FormatService.findDiffDays(new Date(), appointment.getDate()));
+//        }
         List<Map<Integer, Object>> schedule = basicService.findScheduleByVisit(1, doctor.getId());
         ModelAndView model = new ModelAndView("staff/index");
         model.addObject("schedule", schedule);
         model.addObject("patient", patient);
         model.addObject("patientId", patientID);
         model.addObject("doctor", doctor);
+//        model.addObject("dateDiffList", dateDiffList);
         model.addObject("content", "create_appointment_form_2");
         return model;
     }
@@ -255,7 +281,7 @@ public class StaffController {
             visit.setInitialID(Integer.parseInt(appointmentId));
             appointmentDAO.updateAppointment(visit);
         }
-        return "redirect:/staff/see_appointment/" + appointmentId;
+        return "redirect:/staff/appointment_schedule/" + appointmentId;
     }
 }
 

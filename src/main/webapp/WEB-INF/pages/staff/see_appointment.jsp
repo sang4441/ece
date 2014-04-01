@@ -1,15 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h2>See appointment</h2>
-<%--<form method="post" action="see_appointment">--%>
-    <%--Search patient: <input type="text" name="keyword"/>--%>
-<%--</form>--%>
-
 <form method="post"action="/ece/staff/appointment_form_submit">
-    <div>Reschedule date ${appointment.date} to:</div>
-    <div>Patient: ${patient.nameLast} ${patient.nameFirst}</div>
-    <%--<div>Doctor: ${doctor.nameLast} ${doctor.nameFirst}</div>--%>
+    <div><h4>Patient: ${patient.nameLast} ${patient.nameFirst}</h4></div>
     <input type="hidden" name="appointmentId" value="${appointment.id}">
-    <%--<input type="hidden" name="doctorId" value="${doctor.id}">--%>
     <input type="hidden" name="patientId" value="${patient.id}">
     <div>
         <table>
@@ -40,7 +32,7 @@
                                 <div class="schedule-filled"></div>
                             </c:when>
                             <c:when test="${slot.key == '0'}">
-                                <div class="schedule-open">${slot.value}</div>
+                                <div class="schedule-open schedule-header">${slot.value}</div>
                             </c:when>
                             <c:otherwise>
                                 <div class="schedule-open"><input type="radio" name="time" value="${slot.value},${slot.key}"></div>
@@ -51,14 +43,24 @@
             </c:forEach>
         </table>
     </div>
-
-    <button id="reschedule">Reschedule</button>
-    <button>Delete</button>
+    <button id="reschedule" class="btn btn-default" type="submit" disabled>Reschedule</button>
 </form>
-<script>
+<button id="delete" class="btn btn-default">Delete</button>
 
-    $('#reschedule').click(function() {
-        window.location.href = "/ece/staff/reschedule/" + $('input[type="radio"]:checked').val();
-//        $.get( "/ece/staff/reschedule/" + $('input[type="radio"]:checked').val());
-    })
+<script>
+    $( document ).ready(function() {
+        $( ".schedule-header").eq(${dayDiff}).nextAll().eq(${appointment.dateCode}-1).css("background", "yellow");
+//        $('#reschedule').click(function() {
+//            window.location.href = "/ece/staff/reschedule/" + $('input[type="radio"]:checked').val();
+//        });
+
+        $('input[type="radio"]').click(function() {
+            $('#reschedule').removeAttr('disabled');
+        })
+
+
+        $('#delete').click(function() {
+            window.location.href = "/ece/staff/appointment_delete/" + ${appointment.id};
+        });
+    });
 </script>

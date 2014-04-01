@@ -147,6 +147,7 @@ public class AppointmentDAO {
 						appointment.getDiagnosis(), appointment.getComment(),
 						appointment.getDate_modified() });
 
+
 		sql = "select max(id) from visits";
 
 		java.lang.Integer currentId = jdbcTemplate.queryForObject(sql,
@@ -160,15 +161,15 @@ public class AppointmentDAO {
         jdbcTemplate.update(
                 sql,
                 new Object[] { appointment.getInitialID(), appointment.getInitialID() });
-        return appointment.getInitialID();
+        return appointment.getPatientId();
 	}
 
-	public void deleteAppointment(Visit appointment) {
+	public void deleteAppointment(int appointmentId) {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String sql = "DELETE FROM visits\n WHERE id= ?";
 
-		jdbcTemplate.update(sql, new Object[] { appointment.getId() });
+		jdbcTemplate.update(sql, new Object[] { appointmentId});
 	}
 
 	public List<Visit> searchAppointments(Date date, String patientName,

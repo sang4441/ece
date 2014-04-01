@@ -62,13 +62,13 @@
     <%--<div>Prescription: <input type="text" name="prescription"></div>--%>
     <%--<div>Diagnosis: <input type="text" name="diagnosis"></div>--%>
     <%--<div>Comment: <textarea name="comment"></textarea></div>--%>
-    <input type="submit" value="submit">
+    <input class="btn btn-default" type="submit" value="submit">
 </form>
 <script>
-    $(function() {
-        $(".datepicker" ).datepicker();
-//        $("#change_date").click(function() {
-//            $.get( "test.php", { name: "John", time: "2pm" } );
-//        })
-    });
+    <%--$( document ).ready(function() {--%>
+    <%--<c:forEach items="${dateDiffList}" var="dateDiff" >--%>
+
+    <%--</c:forEach>--%>
+        <%--$( ".schedule-header").eq(${dayDiff}).nextAll().eq(${appointment.dateCode}-1).css("background", "yellow");--%>
+    <%--});--%>
 </script>

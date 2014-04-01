@@ -19,4 +19,14 @@ public class FormatService {
 		return df.format(date);
 	}
 
+    public static long findDiffDays(Date start, Date last) {
+        Date startDate = start;
+        Date endDate = last;
+        long startTime = startDate.getTime();
+        long endTime = endDate.getTime();
+        long diffTime = endTime - startTime;
+        long diffDays = (long) Math.ceil(diffTime / (1000.0 * 60.0 * 60.0 * 24.0));
+        return diffDays;
+    }
+
 }

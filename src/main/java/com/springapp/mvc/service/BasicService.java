@@ -15,7 +15,7 @@ public class BasicService {
     public List<Map<Integer, Object>> findScheduleByVisit(int type, int idNumber, String start, String end) {
         String todayString;
         String lastDayString;
-        int daysSize = 5;
+        int daysSize = 7;
         Date now = new Date();
         Calendar today = Calendar.getInstance();
         Calendar lastDay = Calendar.getInstance();
@@ -25,12 +25,7 @@ public class BasicService {
         DateFormat myDate = new SimpleDateFormat("yyyy/MM/dd");
         todayString = myDate.format(today.getTime());
         lastDayString = myDate.format(lastDay.getTime());
-//        if (start == null || end == null) {
-//            todayString = start;
-//            lastDayString = end;
-//        } else {
-//
-//        }
+
         List<Visit> visits;
         if (type == 1) {
             visits = appointmentDAO.getAppointmentsByDoctorId(idNumber, todayString, lastDayString);
@@ -43,11 +38,7 @@ public class BasicService {
         for (Visit visit : visits) {
             Date startDate = today.getTime();
             Date endDate = visit.getDate();
-            long startTime = startDate.getTime();
-            long endTime = endDate.getTime();
-            long diffTime = endTime - startTime;
-            long diffDays = (long) Math.ceil(diffTime / (1000.0 * 60.0 * 60.0 * 24.0));
-            visit.setDayCode(diffDays);
+            visit.setDayCode(FormatService.findDiffDays(startDate, endDate));
         }
 
         for (int i = 0; i < daysSize; i++) {
