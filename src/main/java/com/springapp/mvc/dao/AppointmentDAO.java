@@ -21,7 +21,7 @@ public class AppointmentDAO {
 	DataSource dataSource;
 
 	public List<Visit> getAppoinmentsByPatientId(int patientId) {
-		String sql = "SELECT * FROM visits where PatientID = ?";
+		String sql = "SELECT * FROM visits where PatientID = ? and DateModified IS NULL";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -55,7 +55,7 @@ public class AppointmentDAO {
 				+ "left join patients on patients.id = visits.PatientID \n"
 				+ "left join person \n"
 				+ "on patients.PersonId = person.id \n"
-				+ "where CONCAT(person.NameFirst,person.NameLast) like ?;";
+				+ "where CONCAT(person.NameFirst,person.NameLast) like ? and DateModified IS NULL;";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -71,7 +71,7 @@ public class AppointmentDAO {
 				+ "            left join patients on patients.id = visits.PatientID\n"
 				+ "            left join person on person.id = patients.PersonID\n"
 				+ "            where visits.DoctorID = ? \n "
-				+ "and Date >= ? and Date <= ?";
+				+ "and Date >= ? and Date <= ? and DateModified IS NULL";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -88,7 +88,7 @@ public class AppointmentDAO {
 				+ "            left join patients on patients.id = visits.PatientID\n"
 				+ "            left join person on person.id = patients.PersonID\n"
 				+ "            where patients.id = ? \n "
-				+ "and Date >= ? and Date <= ?";
+				+ "and Date >= ? and Date <= ? and DateModified IS NULL";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -189,7 +189,7 @@ public class AppointmentDAO {
 				+ "					(? LIKE '' OR person.NameLast LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Diagnosis LIKE ?) AND \n "
 				+ "					(? LIKE '' OR visits.Comment LIKE ?) AND \n "
-				+ "					(? LIKE '' OR visits.Prescription LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Prescription LIKE ?) and DateModified IS NULL AND \n "
 				+ "					(? LIKE '' OR visits.Surgery LIKE ?)\n"
 				+ "			   ORDER BY visits.InitialID DESC, visits.DateModified DESC";
 

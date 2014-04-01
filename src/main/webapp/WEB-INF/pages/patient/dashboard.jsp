@@ -4,7 +4,6 @@
 
 <h2>Patient Dashboard for ${user.nameFirst}</h2>
 
-<a href="/ece/patient/profile/${personId}"><button>view my profile</button></a>
 <table>
     <tr>
         <td>Id</td>

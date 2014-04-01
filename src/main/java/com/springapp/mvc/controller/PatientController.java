@@ -51,9 +51,10 @@ public class PatientController {
 				.getAppoinmentsByPatientId(user.getId());
 		int personId = user.getId();
 
+        Patient patient = patientDAO.getPatientsByPersonId(personId);
 		ModelAndView model = new ModelAndView("patient/index");
 		model.addObject("content", "dashboard");
-		model.addObject("user", user);
+		model.addObject("user", patient);
 		model.addObject("appointments", appointments);
 		model.addObject("personId", personId);
 		return model;

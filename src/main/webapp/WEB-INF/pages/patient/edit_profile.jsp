@@ -5,7 +5,7 @@
         <a href="/ece/staff/dashboard"><button>go back to staff dashboard</button></a>
     </c:when>
     <c:when test="${role==1}">
-        <a href="/ece/patient/profile/${user.personId}"><button>back to my profile</button></a>
+        <%--<a href="/ece/patient/profile/${user.personId}"><button>back to my profile</button></a>--%>
     </c:when>
     <c:otherwise>
         <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>

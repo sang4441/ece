@@ -3,8 +3,8 @@
 
 <c:choose>
     <c:when test="${role==1}">
-        <a href="/ece/patient/dashboard"><button>Back to Dashboard</button></a>
-        <a href="/ece/patient/edit_profile/${user.personId}"><button>Edit my profile</button></a>
+        <%--<a href="/ece/patient/dashboard"><button>Back to Dashboard</button></a>--%>
+        <%--<a href="/ece/patient/edit_profile/${user.personId}"><button>Edit my profile</button></a>--%>
     </c:when>
     <c:when test="${role==3}">
         <a href="/ece/staff/dashboard"><button>Back to staff dashboard</button></a>
