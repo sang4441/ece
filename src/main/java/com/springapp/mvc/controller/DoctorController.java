@@ -319,12 +319,15 @@ public class DoctorController {
 		String patientName = patient.getNameFirst() + " "
 				+ patient.getNameLast();
 
+        List <Person> doctors = personDAO.getDoctorsAsPersonForPatient(patientID);
+
 		List<Visit> visits = appointmentDAO
 				.getAppoinmentsByPatientId(patientID);
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("patientName", patientName);
 		model.addObject("content", "patient");
+        model.addObject("doctors", doctors);
 		model.addObject("user", user);
 		model.addObject("patient", patient);
 		model.addObject("visits", visits);
@@ -464,8 +467,6 @@ public class DoctorController {
 			List<Patient> patients = patientDAO.searchPatientById(keyword);
 			model.addObject("patients", patients);
 		} else if (searchCriteria.equals("LastVisit")) {
-
-			// TODO: LAST VISIT...
 
 			List<Patient> patients = patientDAO.searchPatientByDate(keyword);
 			model.addObject("patients", patients);
