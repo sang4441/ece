@@ -49,7 +49,8 @@ public class StaffController {
 	AppointmentService appointmentService;
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView getAllPatients(HttpServletRequest request) {
+	public ModelAndView getAllPatients(HttpServletRequest request,
+                                       @RequestParam(value = "doctorName", defaultValue = "") String doctorName) {
 		// get all patients
 		HttpSession session = request.getSession();
 		Person user = (Person) session.getAttribute("user");
@@ -325,12 +326,14 @@ public class StaffController {
 
 		int session_role = ((Person) session.getAttribute("user")).getRoleID();
 		List<Visit> records = appointmentDAO.getRecordsByDoctorId(doctorId);
+        String numberOfPatient = appointmentDAO.getNumOfPatientByDoctorId(doctorId);
 		Doctor doctor = doctorDAO.getDoctorById(doctorId);
 
 		ModelAndView model = new ModelAndView("staff/index");
 		model.addObject("content", "review_records");
 		model.addObject("records", records);
 		model.addObject("doctor", doctor);
+        model.addObject("numPatient", numberOfPatient);
 		model.addObject("role", session_role);
 		return model;
 	}

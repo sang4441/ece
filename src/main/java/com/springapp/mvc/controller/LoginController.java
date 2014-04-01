@@ -66,8 +66,10 @@ public class LoginController {
                     role = "patient";
                 } else if (user.getRoleID() == 2) {
                     role = "doctor";
-                } else {
+                } else if (user.getRoleID() == 3) {
                     role = "staff";
+                } else {
+                    role = "financial";
                 }
                 // get homepage
             }

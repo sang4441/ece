@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.springapp.mvc.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springapp.mvc.dao.AppointmentDAO;
 import com.springapp.mvc.dao.DoctorDAO;
 import com.springapp.mvc.dao.PatientDAO;
+import com.springapp.mvc.dao.PermissionDAO;
 import com.springapp.mvc.dao.PersonDAO;
 import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Patient;
@@ -49,6 +49,9 @@ public class DoctorController {
 	@Autowired
 	AppointmentService appointmentService;
 
+	@Autowired
+	PermissionDAO permissionDAO;
+
 	@RequestMapping(value = "/{docID}", method = RequestMethod.GET)
 	public String getPatientsOfDoctor(HttpServletRequest request,@PathVariable int docID, ModelMap model) {
 
@@ -65,30 +68,32 @@ public class DoctorController {
 		return "doctor/index";
 	}
 
+	@RequestMapping(value = "/patient/{patientId}/search_doctor", method = RequestMethod.POST)
+	public ModelAndView searchDoctors(HttpServletRequest request,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			@PathVariable int patientId) {
 
-    @RequestMapping(value="/patient/{patientId}/search_doctor", method = RequestMethod.POST)
-    public ModelAndView searchDoctors(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword,
-                                      @PathVariable int patientId) {
-
-        HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
+		HttpSession session = request.getSession();
+		Person user = (Person) session.getAttribute("user");
+ 
         int session_role = ((Person) session.getAttribute("user")).getRoleID();
         if(session_role != 2){
             return new ModelAndView("/InvalidAccess");
         }
         Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
         int current_doc_id = current_doc.getId();
+		List<Doctor> doctors = doctorDAO.searchDoctorsForGrantByKeyword(
+				patientId, keyword);
+		ModelAndView model = new ModelAndView("doctor/index");
+		model.addObject("doctors", doctors);
+		model.addObject("content", "grant_permission");
+		return model;
+	}
 
-        List<Doctor> doctors = doctorDAO.searchDoctorsForGrantByKeyword(patientId, keyword);
-        ModelAndView model = new ModelAndView("doctor/index");
-        model.addObject("doctors", doctors);
-        model.addObject("content", "grant_permission");
-        return model;
-    }
-
-    @RequestMapping(value="/patient/{patientId}/insertPatientDoctor/{doctorId}", method = RequestMethod.GET)
-    public String insertPatientDoctor(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword,
-                                      @PathVariable int doctorId, @PathVariable int patientId) {
+	@RequestMapping(value = "/patient/{patientId}/insertPatientDoctor/{doctorId}", method = RequestMethod.GET)
+	public String insertPatientDoctor(HttpServletRequest request,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			@PathVariable int doctorId, @PathVariable int patientId) {
 
         HttpSession session = request.getSession();
         Person user = (Person)session.getAttribute("user");
@@ -96,24 +101,24 @@ public class DoctorController {
         if(session_role != 2){
             return "redirect:/InvalidAccess";
         }
+		Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
+		int current_doc_id = current_doc.getId();
+		int assign_doc = doctorId;
+		// check if current_doc is defaultdoc?
+		// insert
+		doctorDAO.insertDoctorPatient(patientId, assign_doc);
 
-        Doctor current_doc = doctorDAO.getDoctorByPersonID(user.getId());
-        int current_doc_id = current_doc.getId();
-        int assign_doc = doctorId;
-        //check if current_doc is defaultdoc?
-        //insert
-        doctorDAO.insertDoctorPatient(patientId, assign_doc);
+		return "redirect:/doctor/patient/" + patientId;
+	}
 
-        return "redirect:/doctor/patient/"+patientId;
-    }
+	@RequestMapping(value = "/patient/{patientId}/deletePatientDoctor/{doctorId}", method = RequestMethod.GET)
+	public String deletePatientDoctor(HttpServletRequest request,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword,
+			@PathVariable int doctorId, @PathVariable int patientId) {
 
-    @RequestMapping(value="/patient/{patientId}/deletePatientDoctor/{doctorId}", method = RequestMethod.GET)
-    public String deletePatientDoctor(HttpServletRequest request, @RequestParam(value = "keyword", defaultValue = "") String keyword,
-                                      @PathVariable int doctorId, @PathVariable int patientId) {
+		HttpSession session = request.getSession();
+		Person user = (Person) session.getAttribute("user");
 
-
-        HttpSession session = request.getSession();
-        Person user = (Person)session.getAttribute("user");
         int session_role = ((Person) session.getAttribute("user")).getRoleID();
         if(session_role != 2){
             return "redirect:/InvalidAccess";
@@ -150,12 +155,13 @@ public class DoctorController {
             return new ModelAndView("/InvalidAccess");
         }
 
-        return new ModelAndView("doctor/index", "content", "grant_permission");
+		return new ModelAndView("doctor/index", "content", "grant_permission");
 
-    }
+	}
 
-    @RequestMapping(value="/patient/{patientId}/revoke_permission", method = RequestMethod.GET)
-    public ModelAndView revokePermission(HttpServletRequest request, @PathVariable int patientId) {
+	@RequestMapping(value = "/patient/{patientId}/revoke_permission", method = RequestMethod.GET)
+	public ModelAndView revokePermission(HttpServletRequest request,
+			@PathVariable int patientId) {
 
 
         HttpSession session = request.getSession();
@@ -210,8 +216,10 @@ public class DoctorController {
         }
 		Person user = (Person) session.getAttribute("user");
 
-		List<Patient> patients = patientDAO.searchPatients(patientID,
-				patientName, patientName, date);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		List<Patient> patients = patientDAO.searchPatientsOfDoctor(doc,
+				patientID, patientName, patientName, date);
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("content", "patient_search");
@@ -241,8 +249,10 @@ public class DoctorController {
         }
 		Person user = (Person) session.getAttribute("user");
 
-		List<Visit> visits = appointmentDAO.searchAppointments(date,
-				patientName, diagnosis, comment, prescription, surgery);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		List<Visit> visits = appointmentDAO.searchAppointmentsOfDoctor(doc,
+				date, patientName, diagnosis, comment, prescription, surgery);
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("content", "appointment_search");
@@ -269,8 +279,12 @@ public class DoctorController {
         }
 		Person user = (Person) session.getAttribute("user");
 
-		Visit visit = appointmentID == 0 ? new Visit() : appointmentDAO
-				.getAppointment(appointmentID);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+
+		Visit visit = appointmentID != 0
+				&& permissionDAO
+						.hasPermissionForAppointment(doc, appointmentID) ? appointmentDAO
+				.getAppointment(appointmentID) : new Visit();
 
 		List<Visit> visits = appointmentDAO.getRelatedAppointments(visit
 				.getInitialID());
@@ -293,22 +307,23 @@ public class DoctorController {
             return new ModelAndView("/InvalidAccess");
         }
 		Person user = (Person) session.getAttribute("user");
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
 
-		Patient patient = patientID == 0 ? new Patient() : patientDAO
-				.getPatientsByPatientId(patientID);
+		if (!permissionDAO.hasPermissionForPatient(doc, patientID)) {
+			return new ModelAndView("redirect:/");
+		}
+
+		Patient patient = patientID != 0 ? patientDAO
+				.getPatientsByPatientId(patientID) : new Patient();
 
 		String patientName = patient.getNameFirst() + " "
 				+ patient.getNameLast();
-
-        List <Person> doctors = personDAO.getDoctorsAsPersonForPatient(patientID);
 
 		List<Visit> visits = appointmentDAO
 				.getAppoinmentsByPatientId(patientID);
 
 		ModelAndView model = new ModelAndView("doctor/index");
 		model.addObject("patientName", patientName);
-        model.addObject("patientName", patientName);
-        model.addObject("doctors", doctors);
 		model.addObject("content", "patient");
 		model.addObject("user", user);
 		model.addObject("patient", patient);
@@ -325,8 +340,12 @@ public class DoctorController {
             return new ModelAndView("/InvalidAccess");
         }
 		Person user = (Person) session.getAttribute("user");
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
 
-		// TODO:
+		if (!permissionDAO.hasPermissionForAppointment(doc, appointmentID)) {
+			return new ModelAndView("redirect:/");
+		}
+
 		Visit visit = appointmentDAO.getAppointment(appointmentID);
 		List<Visit> visits = appointmentDAO.getRelatedAppointments(visit
 				.getInitialID());
@@ -342,7 +361,11 @@ public class DoctorController {
 	@RequestMapping(value = "/appointment/{appointmentID}", method = RequestMethod.POST)
 	public String updateAppointment(HttpServletRequest request,
 			@ModelAttribute Visit visit) {
-
+		Person user = (Person) request.getSession(false).getAttribute("user");
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+		if (!permissionDAO.hasPermissionForPatient(doc, visit.getPatientId())) {
+			return "redirect:/";
+		}
 		return "redirect:/doctor/appointment/"
 				+ appointmentService.updateAppointment(visit).getId();
 	}
@@ -376,11 +399,12 @@ public class DoctorController {
             return "redirect:/InvalidAccess";
         }
 		Person user = (Person) session.getAttribute("user");
+		if (user.getRoleID() != 2) {
+			return "redirect:/";
+		}
 
-		visit = appointmentService.insertAppointment(visit);
-
-		// TODO: check if id is auto updated or if we have to search it again
-		return "redirect:/appointment/" + visit.getId();
+		return "redirect:/appointment/"
+				+ appointmentService.insertAppointment(visit).getId();
 	}
 
 	@RequestMapping(value = "/search_patient", method = RequestMethod.GET)

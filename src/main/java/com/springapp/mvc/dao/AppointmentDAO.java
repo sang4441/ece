@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Visit;
 import com.springapp.mvc.service.FormatService;
 
@@ -49,21 +50,39 @@ public class AppointmentDAO {
 
 	public List<Visit> getRecordsByDoctorId(int doctorId) {
 
-		String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName\n"
-				+ "from visits\n"
-				+ "inner join person pe\n"
-				+ "on pe.id = visits.patientID\n"
-				+ "where doctorId = ?\n"
-				+ "order by patientName asc, date desc";
+		String sql = "select visits.*, CONCAT(pe.NameFirst,' ',pe.NameLast) as patientName, numberofvisit as numVisit \n" +
+                "\t\t\t\tfrom visits\n" +
+                "\t\t\t\tinner join person as pe on pe.id = visits.patientID\n" +
+                "\t\t\t\tinner join \n" +
+                "\t\t\t\t(select count(patientId) as numberofvisit, pe.id as personId\n" +
+                "\t\t\t\tfrom visits\n" +
+                "\t\t\t\tinner join person pe\n" +
+                "\t\t\t\ton pe.id = visits.patientID\n" +
+                "\t\t\t\twhere doctorId = ?\n" +
+                "\t\t\t\tgroup by visits.patientID) as tmp\n" +
+                "\t\t\t\ton tmp.personID = pe.id\n" +
+                "\t\t\t\twhere doctorId = ?\n" +
+                "\t\t\t\torder by patientName asc, date desc";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		List<Visit> records = jdbcTemplate.query(sql,
-				new Object[] { doctorId }, new BeanPropertyRowMapper(
+				new Object[] { doctorId, doctorId }, new BeanPropertyRowMapper(
 						Visit.class));
 
 		return records;
 	}
+
+    public String getNumOfPatientByDoctorId(int doctorId) {
+        String sql = "SELECT count(distinct patientId) FROM visits \n" +
+                "where doctorId = ?";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        String number = jdbcTemplate.queryForObject(sql,
+                new Object[] { doctorId },  String.class);
+        return number;
+    }
+
 
 	public List<Visit> getAppoinmentsByPatientName(String patientName) {
 		String sql = "SELECT visits.*, CONCAT(person.NameFirst,person.NameLast) as patientName FROM visits \n"
@@ -229,6 +248,43 @@ public class AppointmentDAO {
 				FormatService.searchString(comment), prescription,
 				FormatService.searchString(prescription), surgery,
 				FormatService.searchString(surgery) },
+				new BeanPropertyRowMapper(Visit.class));
+
+		return appointments;
+	}
+
+	public List<Visit> searchAppointmentsOfDoctor(Doctor doc, Date date,
+			String patientName, String diagnosis, String comment,
+			String prescription, String surgery) {
+		String sql = "SELECT visits.*, CONCAT(person.NameLast,', ',person.NameFirst) as patientName, \n"
+				+ "		CONCAT(personDoc.NameLast,', ',personDoc.NameFirst) as doctorName \n"
+				+ "FROM visits \n"
+				+ "            LEFT JOIN patients on patients.id = visits.PatientID\n"
+				+ "            LEFT JOIN person on person.id = patients.PersonID\n"
+				+ "			   LEFT JOIN doctor on visits.DoctorID = doctor.id\n"
+				+ "			   LEFT JOIN person personDoc ON personDoc.id = doctor.PersonID\n"
+				+ "			   INNER JOIN PatientDoctor ON PatientDoctor.PatientID = patients.id AND PatientDoctor.DoctorID = ?"
+				+ "            WHERE (? = '1900-01-01' OR DAY(visits.Date) = DAY(?)) AND \n "
+				+ "					(? LIKE '' OR person.NameFirst LIKE ?) AND \n "
+				+ "					(? LIKE '' OR person.NameLast LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Diagnosis LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Comment LIKE ?) AND \n "
+				+ "					(? LIKE '' OR visits.Prescription LIKE ?) and DateModified IS NULL AND \n "
+				+ "					(? LIKE '' OR visits.Surgery LIKE ?)\n"
+				+ "			   ORDER BY visits.InitialID DESC, visits.DateModified DESC";
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		LOG.info(sql);
+		LOG.info("\tdate: " + FormatService.formatDate(date));
+		List<Visit> appointments = jdbcTemplate.query(sql,
+				new Object[] { doc.getId(), FormatService.formatDate(date),
+						FormatService.formatDate(date), patientName,
+						FormatService.searchString(patientName), patientName,
+						FormatService.searchString(patientName), diagnosis,
+						FormatService.searchString(diagnosis), comment,
+						FormatService.searchString(comment), prescription,
+						FormatService.searchString(prescription), surgery,
+						FormatService.searchString(surgery) },
 				new BeanPropertyRowMapper(Visit.class));
 
 		return appointments;
