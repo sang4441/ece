@@ -6,6 +6,7 @@
 
 <article class="info">
 	<h1>Appointment</h1>
+	<label>Patient Name</label>${visit.patientName }<br/>
 	<label>Date</label>${visit.date}<br/>
 	<label>Length</label>${visit.length }<br/>
 	<label>Prescription</label>${visit.prescription}<br/>
@@ -39,7 +40,7 @@
             <td>${visit.prescription}</td>
             <td>${visit.diagnosis}</td>
             <td>${visit.comment}</td>
-            <td>${visit.date_modified}</td>
+            <td>${visit.dateModified}</td>
             <td>${visit.initialID}</td>
         </tr>
     </c:forEach>

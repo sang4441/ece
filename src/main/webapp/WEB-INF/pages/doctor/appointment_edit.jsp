@@ -4,7 +4,7 @@
 
 <a href="/ece/doctor/dashboard"><button>go back to doctor dashboard</button></a>
 
-<form method="post" action="../">
+<form method="post" action="/ece/doctor/appointment/${visit.id}">
     <h1>Appointment</h1>
     <label>Patient Name</label>${visit.patientName}<br/>
     <label>Date</label>${visit.date}<br/>
@@ -21,6 +21,7 @@
     <form:hidden path="visit.parentID" />
     <form:hidden path="visit.doctorId" />
     <form:hidden path="visit.initialID" />
+    <form:hidden path="visit.dateModified" />
 </form>
 
 <h1>Past Visits</h1>
@@ -47,7 +48,7 @@
             <td>${visit.prescription}</td>
             <td>${visit.diagnosis}</td>
             <td>${visit.comment}</td>
-            <td>${visit.date_modified}</td>
+            <td>${visit.dateModified}</td>
             <td>${visit.initialID}</td>
         </tr>
     </c:forEach>

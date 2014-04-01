@@ -22,8 +22,8 @@
             <td>${visit.prescription}</td>
             <td>${visit.diagnosis}</td>
             <td>${visit.comment}</td>
-            <td>${visit.date_modified}</td>
-            <td align="right">${visit.initialID}</td>
+            <td>${visit.dateModified}</td>
+            <td align="right">${visit.initialID}</td>2
         </tr>
     </c:forEach>
 </table>

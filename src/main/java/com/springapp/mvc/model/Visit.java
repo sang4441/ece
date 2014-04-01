@@ -17,7 +17,7 @@ public class Visit {
 	private String diagnosis;
 	private String surgery;
 	private int doctorId;
-	private Date date_modified;
+	private Date dateModified;
 	private String comment;
 	private int initialID;
 
@@ -97,12 +97,12 @@ public class Visit {
 		this.doctorId = doctorId;
 	}
 
-	public Date getDate_modified() {
-		return date_modified;
+	public Date getDateModified() {
+		return dateModified;
 	}
 
-	public void setDate_modified(Date date_modified) {
-		this.date_modified = date_modified;
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
 	}
 
 	public int getInitialID() {

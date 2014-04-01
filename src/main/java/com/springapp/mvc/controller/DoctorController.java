@@ -26,6 +26,7 @@ import com.springapp.mvc.model.Doctor;
 import com.springapp.mvc.model.Patient;
 import com.springapp.mvc.model.Person;
 import com.springapp.mvc.model.Visit;
+import com.springapp.mvc.service.AppointmentService;
 import com.springapp.mvc.service.FormatService;
 
 @Controller
@@ -43,6 +44,9 @@ public class DoctorController {
 	AppointmentDAO appointmentDAO;
     @Autowired
     PersonDAO personDAO;
+
+	@Autowired
+	AppointmentService appointmentService;
 
 	@RequestMapping(value = "/{docID}", method = RequestMethod.GET)
 	public String getPatientsOfDoctor(@PathVariable int docID, ModelMap model) {
@@ -91,24 +95,6 @@ public class DoctorController {
 		model.addObject("patients", patients);
 		return model;
 	}
-
-	// @RequestMapping(value = "/patient/{patientID}", method =
-	// RequestMethod.GET)
-	// public ModelAndView patientRecords(HttpServletRequest request,
-	// @PathVariable int patientID) {
-	// HttpSession session = request.getSession(false);
-	// Person user = (Person) session.getAttribute("user");
-	// Patient patient = patientDAO.getPatientsByPatientId(patientID);
-	// List<Visit> visits = appointmentDAO
-	// .getAppoinmentsByPatientId(patientID);
-	//
-	// ModelAndView model = new ModelAndView("doctor/index");
-	// model.addObject("content", "patient_records");
-	// model.addObject("user", user);
-	// model.addObject("patient", patient);
-	// model.addObject("visits", visits);
-	// return model;
-	// }
 
 	@RequestMapping(value = "/patient/search", method = RequestMethod.POST)
 	public ModelAndView searchPatients(
@@ -229,12 +215,25 @@ public class DoctorController {
 	@RequestMapping(value = "/appointment/{appointmentID}", method = RequestMethod.POST)
 	public String updateAppointment(HttpServletRequest request,
 			@ModelAttribute Visit visit) {
+
+		return "redirect:/doctor/appointment/"
+				+ appointmentService.updateAppointment(visit).getId();
+	}
+
+	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
+	public ModelAndView allAppointmentsOfDoctor(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
-		appointmentDAO.updateAppointment(visit);
+		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
+		List<Visit> visits = appointmentDAO
+				.getAppointmentsOfDoctor(doc.getId());
 
-		return "redirect:/appointment/" + visit.getId();
+		ModelAndView model = new ModelAndView("doctor/index");
+		model.addObject("content", "allAppointments");
+		model.addObject("user", user);
+		model.addObject("visits", visits);
+		return model;
 	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.POST)
@@ -243,7 +242,7 @@ public class DoctorController {
 		HttpSession session = request.getSession(false);
 		Person user = (Person) session.getAttribute("user");
 
-		appointmentDAO.insertAppointment(visit);
+		visit = appointmentService.insertAppointment(visit);
 
 		// TODO: check if id is auto updated or if we have to search it again
 		return "redirect:/appointment/" + visit.getId();
