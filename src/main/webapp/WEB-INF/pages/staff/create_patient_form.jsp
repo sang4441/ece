@@ -6,7 +6,7 @@
         if(form.pwd1.value != form.pwd2.value)
         {
             alert("Error: new password does not match");
-            form.newPwd2.focus();
+            form.pwd2.focus();
             return false;
         }else {
             return true;
