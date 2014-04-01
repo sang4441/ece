@@ -197,8 +197,11 @@ public class DoctorController {
 		Person user = (Person) session.getAttribute("user");
 		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
 
-		Patient patient = patientID != 0
-				&& permissionDAO.hasPermissionForPatient(doc, patientID) ? patientDAO
+		if (!permissionDAO.hasPermissionForPatient(doc, patientID)) {
+			return new ModelAndView("redirect:/");
+		}
+
+		Patient patient = patientID != 0 ? patientDAO
 				.getPatientsByPatientId(patientID) : new Patient();
 
 		String patientName = patient.getNameFirst() + " "
@@ -223,9 +226,11 @@ public class DoctorController {
 		Person user = (Person) session.getAttribute("user");
 		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
 
-		Visit visit = permissionDAO.hasPermissionForAppointment(doc,
-				appointmentID) ? appointmentDAO.getAppointment(appointmentID)
-				: new Visit();
+		if (!permissionDAO.hasPermissionForAppointment(doc, appointmentID)) {
+			return new ModelAndView("redirect:/");
+		}
+
+		Visit visit = appointmentDAO.getAppointment(appointmentID);
 		List<Visit> visits = appointmentDAO.getRelatedAppointments(visit
 				.getInitialID());
 
@@ -242,9 +247,11 @@ public class DoctorController {
 			@ModelAttribute Visit visit) {
 		Person user = (Person) request.getSession(false).getAttribute("user");
 		Doctor doc = doctorDAO.getDoctorByPersonID(user.getId());
-		return permissionDAO.hasPermissionForPatient(doc, visit.getPatientId()) ? "redirect:/doctor/appointment/"
-				+ appointmentService.updateAppointment(visit).getId()
-				: "redirect:/doctor/dashboard";
+		if (!permissionDAO.hasPermissionForPatient(doc, visit.getPatientId())) {
+			return "redirect:/";
+		}
+		return "redirect:/doctor/appointment/"
+				+ appointmentService.updateAppointment(visit).getId();
 	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)

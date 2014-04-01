@@ -22,10 +22,9 @@ public class DoctorDAO {
 
 	@ModelAttribute("doctors")
 	public List<Doctor> getAllDoctors() {
-		String sql = "select doctor.*, pe.nameFirst, pe.nameLast\n" +
-                "from doctor\n" +
-                "inner join person pe\n" +
-                "on doctor.personID = pe.id";
+		String sql = "select doctor.*, pe.nameFirst, pe.nameLast\n"
+				+ "from doctor\n" + "inner join person pe\n"
+				+ "on doctor.personID = pe.id";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -35,36 +34,33 @@ public class DoctorDAO {
 		return doctors;
 	}
 
-    public List<Doctor> searchDoctorsByStaffPersonId(int personId){
+	public List<Doctor> searchDoctorsByStaffPersonId(int personId) {
 
-        String sql = "select id\n" +
-                        "from staff\n" +
-                        "where personID = ?\n";
+		String sql = "select id\n" + "from staff\n" + "where personID = ?\n";
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        int staff_id = jdbcTemplate.queryForInt(sql, new Object[]{personId});
+		int staff_id = jdbcTemplate.queryForInt(sql, new Object[] { personId });
 
-        sql = "select doctor.*, pe.nameFirst, pe.nameLast\n" +
-                "from doctor \n" +
-                "inner join person pe\n" +
-                "on doctor.personID = pe.id\n" +
-                "inner join StaffDoctor\n" +
-                "on StaffDoctor.doctorID = doctor.id\n" +
-                "where StaffDoctor.staffID = ?";
+		sql = "select doctor.*, pe.nameFirst, pe.nameLast\n" + "from doctor \n"
+				+ "inner join person pe\n" + "on doctor.personID = pe.id\n"
+				+ "inner join StaffDoctor\n"
+				+ "on StaffDoctor.doctorID = doctor.id\n"
+				+ "where StaffDoctor.staffID = ?";
 
-        List<Doctor> doctors = jdbcTemplate.query(sql, new Object[] {staff_id}, new BeanPropertyRowMapper(Doctor.class));
+		List<Doctor> doctors = jdbcTemplate.query(sql,
+				new Object[] { staff_id }, new BeanPropertyRowMapper(
+						Doctor.class));
 
-        return doctors;
-    }
-
+		return doctors;
+	}
 
 	public Doctor getDoctorById(int id) {
-		String sql = "  SELECT dt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n" +
-                "                FROM doctor as dt \n" +
-                "                inner join person as pr \n" +
-                "                on dt.PersonId = pr.id \n" +
-                "                where dt.id = ? LIMIT 1";
+		String sql = "  SELECT dt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n"
+				+ "                FROM doctor as dt \n"
+				+ "                inner join person as pr \n"
+				+ "                on dt.PersonId = pr.id \n"
+				+ "                where dt.id = ? LIMIT 1";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -74,30 +70,31 @@ public class DoctorDAO {
 		return doctor;
 	}
 
-    public Doctor getDoctorInfoById(int id) {
-        String sql = "SELECT pt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n" +
-                "FROM doctor as pt inner join person as pr on pt.PersonId = pr.id\n" +
-                "where pt.id = ? LIMIT 1";
+	public Doctor getDoctorInfoById(int id) {
+		String sql = "SELECT pt.*, pr.street, pr.City, pr.city, pr.Province, pr.PostalCode, pr.NameLast, pr.NameFirst, pr.Phone, pr.username\n"
+				+ "FROM doctor as pt inner join person as pr on pt.PersonId = pr.id\n"
+				+ "where pt.id = ? LIMIT 1";
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-        Doctor doctor = (Doctor) jdbcTemplate.queryForObject(sql,
-                new Object[] { id }, new BeanPropertyRowMapper(Doctor.class));
-
-        return doctor;
-    }
-
-	public Doctor getDoctorByPersonID(int id) {
-		String sql = "select doctor.id FROM doctor " + "inner join person "
-				+ "on doctor.PersonId = person.id "
-				+ "where person.id = ? LIMIT 1";
-		LOG.info(sql);
-		LOG.info("id: " + id);
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		Doctor doctor = (Doctor) jdbcTemplate.queryForObject(sql,
 				new Object[] { id }, new BeanPropertyRowMapper(Doctor.class));
 
+		return doctor;
+	}
+
+	public Doctor getDoctorByPersonID(int id) {
+		String sql = "select doctor.id FROM doctor " + "inner join person "
+				+ "on doctor.PersonID = person.id "
+				+ "where person.id = ? LIMIT 1";
+		LOG.info(sql);
+		LOG.info("id: " + id);
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		Doctor doctor = (Doctor) jdbcTemplate.queryForObject(sql,
+				new Object[] { id }, new BeanPropertyRowMapper(Doctor.class));
+		LOG.info("doc id: " + doctor.getId());
 		return doctor;
 	}
 
@@ -115,26 +112,23 @@ public class DoctorDAO {
 		return doctors;
 	}
 
+	public String getDefaultDoctorByPersonId(int personId) {
 
-    public String getDefaultDoctorByPersonId(int personId){
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		String sql = "select defaultDoc\n" + "from patients\n"
+				+ "where personID = ?";
 
-        String sql = "select defaultDoc\n" +
-                "from patients\n" +
-                "where personID = ?";
+		int doctor_id = jdbcTemplate
+				.queryForInt(sql, new Object[] { personId });
 
-        int doctor_id = jdbcTemplate.queryForInt(sql, new Object[] { personId });
+		sql = "select CONCAT(pe.nameFirst,' ', pe.nameLast) as doctorName\n"
+				+ "from doctor\n" + "inner join person pe\n"
+				+ "on pe.id = doctor.personID\n" + "WHERE doctor.id = ?";
 
-        sql = "select CONCAT(pe.nameFirst,' ', pe.nameLast) as doctorName\n" +
-                "from doctor\n" +
-                "inner join person pe\n" +
-                "on pe.id = doctor.personID\n" +
-                "WHERE doctor.id = ?";
+		String doctor = (String) jdbcTemplate.queryForObject(sql,
+				new Object[] { doctor_id }, String.class);
 
-        String doctor = (String)jdbcTemplate.queryForObject(sql,
-                new Object[] { doctor_id }, String.class);
-
-        return doctor;
-    }
+		return doctor;
+	}
 }

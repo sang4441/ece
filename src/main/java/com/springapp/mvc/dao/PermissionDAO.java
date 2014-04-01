@@ -26,7 +26,7 @@ public class PermissionDAO {
 
 	public boolean hasPermissionForPatient(Doctor doctor, int patientID) {
 
-		String sql = "select count(id)\n" + "from PatientDoctor\n"
+		String sql = "select count(PatientID)\n" + "from PatientDoctor\n"
 				+ "where DoctorID = ?\n" + "and PatientID = ?";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -42,8 +42,8 @@ public class PermissionDAO {
 				+ "FROM visits \n"
 				+ "INNER JOIN patients ON patients.id = visits.PatientID\n"
 				+ "INNER JOIN doctor ON doctor.id = visits.DoctorID\n"
-				+ "INNER JOIN PatientDoctor ON patients.id = PatientDoctor.PatientID AND doctor.id = PatientDoctor.DoctorID\n"
-				+ "WHERE PatientDoctor.DoctorID = ? AND visits.id = visitID";
+				+ "INNER JOIN PatientDoctor ON patients.id = PatientDoctor.PatientID AND doctor.id = ?\n"
+				+ "WHERE visits.id = ?";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
